@@ -1,0 +1,201 @@
+/**
+ * BIOSAF Enterprises — Shared Styles
+ * Custom styles complementing Tailwind CDN utilities.
+ */
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-12px) rotate(1deg); }
+}
+
+.animate-float {
+    animation: float 6s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .animate-float,
+    .reveal {
+        animation: none !important;
+        transition: none !important;
+    }
+
+    .reveal {
+        opacity: 1 !important;
+        transform: none !important;
+    }
+}
+
+/* Luxury Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #051E11;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #D3F340;
+    border-radius: 100px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #E1FA5F;
+}
+
+/* Smooth Reveal */
+.reveal {
+    opacity: 0;
+    transform: translateY(35px) scale(0.98);
+    transition: all 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+/* Glassmorphism */
+.glass-panel {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-panel-light {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(11, 51, 31, 0.05);
+}
+
+.glass-header {
+    background: rgba(5, 30, 17, 0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Custom Cursor Follower */
+.cursor-dot {
+    width: 8px;
+    height: 8px;
+    background-color: #D3F340;
+    position: fixed;
+    top: 0;
+    left: 0;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    z-index: 9999;
+    pointer-events: none;
+    transition: width 0.2s, height 0.2s, background-color 0.2s;
+}
+
+.cursor-outline {
+    width: 40px;
+    height: 40px;
+    border: 1.5px solid rgba(211, 243, 64, 0.4);
+    position: fixed;
+    top: 0;
+    left: 0;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    z-index: 9998;
+    pointer-events: none;
+    transition: transform 0.08s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.2s, background-color 0.2s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .cursor-dot,
+    .cursor-outline {
+        display: none !important;
+    }
+}
+
+/* Nav Link Underline */
+.nav-link {
+    position: relative;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: -4px;
+    left: 0;
+    background-color: #D3F340;
+    transform-origin: bottom right;
+    transition: transform 0.35s ease-out;
+}
+
+.nav-link:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+
+/* Hover Effects */
+.glow-hover {
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glow-hover:hover {
+    box-shadow: 0 15px 35px -5px rgba(211, 243, 64, 0.15);
+    border-color: rgba(211, 243, 64, 0.4);
+    transform: translateY(-4px);
+}
+
+.premium-card {
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.premium-card:hover {
+    box-shadow: 0 20px 40px -10px rgba(11, 51, 31, 0.12);
+    border-color: rgba(211, 243, 64, 0.2);
+    transform: translateY(-6px);
+}
+
+.industry-card {
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.industry-card:hover {
+    box-shadow: 0 20px 40px -10px rgba(11, 51, 31, 0.12);
+    border-color: rgba(11, 51, 31, 0.2);
+    transform: translateY(-6px);
+}
+
+.spec-card:hover {
+    box-shadow: 0 15px 35px -5px rgba(211, 243, 64, 0.15);
+    border-color: rgba(211, 243, 64, 0.4);
+}
+
+/* FAQ Accordion (pest-management) */
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+    opacity: 0;
+}
+
+.faq-item.active .faq-answer {
+    max-height: 300px;
+    opacity: 1;
+}
+
+/* Skip link for accessibility */
+.skip-link {
+    position: absolute;
+    top: -100%;
+    left: 1rem;
+    z-index: 100000;
+    background: #D3F340;
+    color: #051E11;
+    padding: 0.75rem 1.25rem;
+    font-weight: 700;
+    border-radius: 0.5rem;
+    text-decoration: none;
+}
+
+.skip-link:focus {
+    top: 1rem;
+}
