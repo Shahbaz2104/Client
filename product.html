@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scientific Products & Procurement | BIOSAF Enterprises</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Fonts & Premium Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    },
+                    colors: {
+                        brand: {
+                            dark: '#051E11',       /* Ultra-deep forest luxury green */
+                            primary: '#0B331F',    /* Deep rich emerald */
+                            secondary: '#1A5935',  /* Mid-tone vibrant forest */
+                            light: '#F4F7F2',      /* Soft off-white green-grey */
+                            accent: '#D3F340',     /* High-end lime yellow */
+                            accentHover: '#E1FA5F'
+                        }
+                    },
+                    animation: {
+                        'spin-slow': 'spin 15s linear infinite',
+                        'pulse-slow': 'pulse-slow 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'float': 'float 6s ease-in-out infinite'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(1deg); }
+        }
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        /* Luxury Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #051E11;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #D3F340;
+            border-radius: 100px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #E1FA5F;
+        }
+
+        /* Scroll Reveal base configuration */
+        .reveal {
+            opacity: 0;
+            transform: translateY(35px) scale(0.98);
+            transition: all 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        /* Custom Cursor Follower */
+        .cursor-dot {
+            width: 8px;
+            height: 8px;
+            background-color: #D3F340;
+            position: fixed;
+            top: 0;
+            left: 0;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            z-index: 9999;
+            pointer-events: none;
+            transition: width 0.15s, height 0.15s, background-color 0.15s;
+        }
+        .cursor-outline {
+            width: 40px;
+            height: 40px;
+            border: 1.5px solid rgba(211, 243, 64, 0.4);
+            position: fixed;
+            top: 0;
+            left: 0;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            z-index: 9998;
+            pointer-events: none;
+            transition: transform 0.08s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.2s, background-color 0.2s;
+        }
+
+        /* Glassmorphism options */
+        .glass-header {
+            background: rgba(5, 30, 17, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        /* Premium Link underline decoration */
+        .nav-link {
+            position: relative;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            transform: scaleX(0);
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: #D3F340;
+            transform-origin: bottom right;
+            transition: transform 0.35s ease-out;
+        }
+        .nav-link:hover::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+
+        /* Interactive card glow borders */
+        .spec-card:hover {
+            box-shadow: 0 15px 35px -5px rgba(211, 243, 64, 0.15);
+            border-color: rgba(211, 243, 64, 0.4);
+        }
+    </style>
+</head>
+<body class="font-sans text-slate-700 antialiased bg-brand-light selection:bg-brand-accent selection:text-brand-dark">
+
+    <!-- Custom Preloader -->
+    <div id="preloader" class="fixed inset-0 bg-brand-dark z-[99999] flex flex-col items-center justify-center transition-all duration-500 ease-out">
+        <div class="relative flex flex-col items-center">
+            <div class="absolute w-24 h-24 border-2 border-brand-accent/20 rounded-full animate-pulse"></div>
+            <div class="absolute w-20 h-20 border-t-2 border-brand-accent rounded-full animate-spin"></div>
+            <div class="w-16 h-16 bg-brand-primary rounded-full flex items-center justify-center shadow-lg relative z-10 border border-brand-accent/30">
+                <i class="ph-bold ph-flask text-brand-accent text-3xl"></i>
+            </div>
+            <div class="mt-8 text-center">
+                <h3 class="text-white font-bold text-lg tracking-widest uppercase">BIOSAF ENTERPRISES</h3>
+                <p class="text-[10px] text-brand-accent/80 mt-1 uppercase tracking-[0.25em] font-semibold">Scientific &amp; Procurement Division</p>
+            </div>
+            <div class="w-28 bg-white/10 h-1 rounded-full mt-4 overflow-hidden">
+                <div id="preloader-bar" class="bg-brand-accent h-full w-0 transition-all duration-300 ease-out"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mouse Tracking Elements (Desktops only) -->
+    <div class="cursor-dot hidden md:block" id="cursor-dot"></div>
+    <div class="cursor-outline hidden md:block" id="cursor-outline"></div>
+
+    <!-- Top Announcement Ribbon -->
+    <div class="bg-brand-dark text-gray-300 py-3 px-4 text-xs font-medium border-b border-white/5 relative z-50">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
+            <div class="flex items-center gap-2 text-brand-accent">
+                <span class="inline-block w-2 h-2 rounded-full bg-brand-accent animate-ping"></span>
+                <span class="font-bold tracking-wider uppercase">Procurement &amp; Supply Chain Desk</span>
+            </div>
+            <div class="flex flex-wrap justify-center items-center gap-x-6 gap-y-2">
+                <a href="mailto:info@khatrienterprises.com" class="hover:text-brand-accent transition-colors flex items-center gap-1.5"><i class="ph ph-envelope-simple text-sm"></i> info@khatrienterprises.com</a>
+                <span class="hidden md:inline text-white/20">|</span>
+                <div class="flex items-center gap-2">
+                    <i class="ph ph-phone text-sm"></i>
+                    <a href="tel:+923326079992" class="hover:text-brand-accent transition-colors">+92 332 6079992</a>
+                    <span class="text-gray-500">/</span>
+                    <a href="tel:+923460334449" class="hover:text-brand-accent transition-colors">+92 346 0334449</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation Bar -->
+    <header class="sticky top-0 z-40 glass-header shadow-2xl transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+            
+            <!-- Logo Area -->
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="bg-brand-primary text-white rounded-full p-2.5 transition-transform duration-500 group-hover:rotate-[360deg] shadow-lg border border-brand-accent/20">
+                    <i class="ph-bold ph-test-tube text-xl text-brand-accent"></i>
+                </div>
+                <div class="flex flex-col">
+                    <span class="text-lg font-extrabold tracking-tight text-white leading-none">BIOSAF <span class="text-brand-accent font-light">Enterprises</span></span>
+                    <span class="text-[9px] tracking-[0.2em] text-gray-400 uppercase font-bold mt-1">Laboratory &amp; Systems Sourcing</span>
+                </div>
+            </a>
+
+            <!-- Corporate Navigation links -->
+            <nav class="hidden lg:flex space-x-8 font-semibold text-sm text-gray-200">
+                <a href="#featured" class="nav-link hover:text-brand-accent transition-colors">Featured Systems</a>
+                <a href="#catalog" class="nav-link hover:text-brand-accent transition-colors">Product Catalog</a>
+                <a href="#why-biosaf" class="nav-link hover:text-brand-accent transition-colors">Why Choose Us</a>
+                <a href="#procurement-rfp" class="nav-link hover:text-brand-accent transition-colors">Submit Specification RFP</a>
+            </nav>
+
+            <!-- Actions (Manifest Trigger Button) -->
+            <div class="flex items-center gap-4">
+                <button onclick="toggleManifestDrawer()" class="relative bg-white/5 border border-white/10 hover:border-brand-accent/40 text-white p-3 rounded-full text-xs font-black tracking-wider transition-all shadow-md flex items-center gap-2">
+                    <i class="ph-bold ph-scroll text-base text-brand-accent"></i>
+                    <span class="hidden sm:inline">Inquiry List</span>
+                    <span id="manifest-count" class="bg-brand-accent text-brand-dark text-[10px] w-5 h-5 rounded-full flex items-center justify-center font-black">0</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Banner Presentation -->
+    <section class="relative pt-24 pb-20 md:pt-36 md:pb-32 bg-brand-dark overflow-hidden text-white">
+        <!-- Ambient light graphics -->
+        <div class="absolute inset-0 z-0">
+            <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(26,89,53,0.5),transparent_60%)]"></div>
+            <div class="absolute bottom-[-10%] left-[-10%] w-[50%] h-[50%] bg-[radial-gradient(circle,rgba(211,243,64,0.05),transparent_70%)]"></div>
+            <div class="absolute inset-0 opacity-[0.03] bg-[linear-gradient(to_right,#FFF_1px,transparent_1px),linear-gradient(to_bottom,#FFF_1px,transparent_1px)] bg-[size:32px_32px]"></div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid lg:grid-cols-12 gap-12 items-center">
+                <!-- Hero Core Copy -->
+                <div class="lg:col-span-7 space-y-8">
+                    <div class="inline-flex items-center gap-2 bg-white/5 border border-white/10 text-brand-accent px-4 py-2 rounded-full text-xs font-semibold tracking-wider uppercase backdrop-blur-sm">
+                        <span class="w-2.5 h-2.5 rounded-full bg-brand-accent animate-pulse"></span>
+                        Authorized Distributor &amp; Calibration Partners
+                    </div>
+                    
+                    <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold leading-[1.1] tracking-tight">
+                        Precision Laboratory &amp; <span class="text-brand-accent italic font-serif">Scientific</span> Sourcing
+                    </h1>
+                    
+                    <p class="text-lg text-gray-300 max-w-xl leading-relaxed">
+                        BIOSAF Enterprises delivers complete, world-class laboratory instrument logistics, analytical glassware, research chemical reagents, and specialized food/water diagnostics customized for regulatory accuracy.
+                    </p>
+
+                    <!-- Interactive Quick Stats Widget -->
+                    <div class="flex flex-col sm:flex-row gap-4 pt-2">
+                        <a href="#catalog" class="bg-brand-accent hover:bg-brand-accentHover text-brand-dark font-black text-xs px-8 py-4 rounded-xl uppercase tracking-wider transition-colors flex items-center justify-center gap-2 shadow-lg shadow-brand-accent/10">
+                            <i class="ph-bold ph-magnifying-glass text-sm"></i> Explore Equipment Catalog
+                        </a>
+                        <a href="#procurement-rfp" class="bg-white/5 hover:bg-white/10 text-white border border-white/15 px-8 py-4 rounded-xl font-semibold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2 backdrop-blur-md">
+                            Submit Custom Specifications
+                        </a>
+                    </div>
+
+                    <!-- Strategic Trust Anchors -->
+                    <div class="pt-6 border-t border-white/10 grid grid-cols-3 gap-4 max-w-md text-xs">
+                        <div class="flex items-center gap-2">
+                            <i class="ph-bold ph-shield-check text-brand-accent text-lg"></i>
+                            <span class="text-slate-300 font-medium">Certified Procurement</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <i class="ph-bold ph-sparkle text-brand-accent text-lg"></i>
+                            <span class="text-slate-300 font-medium">Traceable Sourcing</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <i class="ph-bold ph-wrench text-brand-accent text-lg"></i>
+                            <span class="text-slate-300 font-medium">Warranty &amp; Setup</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Side Visual Presentation (Abstract geometry & Scientific equipment asset) -->
+                <div class="lg:col-span-5 relative">
+                    <div class="relative mx-auto max-w-[420px] lg:max-w-none">
+                        <!-- Background glow elements -->
+                        <div class="absolute -top-6 -left-6 w-48 h-48 bg-brand-accent rounded-full opacity-10 blur-3xl"></div>
+                        <div class="absolute -bottom-6 -right-6 w-56 h-56 bg-brand-secondary rounded-full opacity-20 blur-3xl"></div>
+
+                        <!-- Image presentation -->
+                        <div class="relative z-10 rounded-[2.5rem] overflow-hidden border border-white/10 shadow-2xl animate-float">
+                            <img src="https://images.unsplash.com/photo-1579154204601-01588f351167?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Advanced Analytical Laboratory Chemistry" class="w-full object-cover aspect-[4/3] sm:aspect-square" />
+                            <div class="absolute inset-0 bg-gradient-to-t from-brand-dark via-transparent to-transparent"></div>
+                        </div>
+
+                        <!-- Dynamic Stat Overlay -->
+                        <div class="absolute -bottom-4 -left-4 z-20 bg-white text-brand-dark rounded-2xl p-5 shadow-2xl border border-gray-100 flex items-center gap-3">
+                            <div class="w-10 h-10 bg-brand-light rounded-xl flex items-center justify-center text-brand-primary">
+                                <i class="ph-bold ph-certificate text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-[10px] text-slate-400 font-bold uppercase leading-none">Sourcing Precision</h4>
+                                <p class="text-xs font-extrabold text-brand-dark mt-1">100% Quality Inspected</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Systems Section -->
+    <section id="featured" class="py-24 bg-white border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-12 gap-12 lg:gap-20 items-center">
+                
+                <!-- Left graphics aspect (Heavy analytical equipment) -->
+                <div class="lg:col-span-5 relative reveal">
+                    <div class="relative grid grid-cols-12 gap-3">
+                        <div class="col-span-11 rounded-[2.5rem] overflow-hidden shadow-2xl">
+                            <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Spectrophotometer Calibration Setup" class="w-full object-cover aspect-[4/5]" />
+                        </div>
+                        <div class="absolute bottom-[-20px] right-0 w-[180px] rounded-2xl overflow-hidden shadow-2xl border-4 border-white">
+                            <img src="https://images.unsplash.com/photo-1607619056574-7b8f304f3c6f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Analytical Balance" class="w-full aspect-square object-cover" />
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Featured Copy Block -->
+                <div class="lg:col-span-7 space-y-6 reveal">
+                    <span class="text-brand-primary text-xs font-bold tracking-widest uppercase bg-brand-light px-3.5 py-1.5 rounded-full inline-block">
+                        Featured Systems
+                    </span>
+                    <h2 class="text-3xl sm:text-5xl font-black text-brand-dark tracking-tight">
+                        Pioneering high-throughput chemical &amp; biological diagnostics
+                    </h2>
+                    <div class="space-y-4 text-slate-600 leading-relaxed text-base">
+                        <p class="font-bold text-brand-primary">
+                            BIOSAF Enterprises represents leading global manufacturers of high-performance analytical systems.
+                        </p>
+                        <p>
+                            Our product selection targets complex research laboratories, clinical diagnostics, petrochemical processors, and large-scale industrial food plants. Every featured system comes with extensive post-installation certification logs, IQ/OQ protocol execution support, and official warranty parameters.
+                        </p>
+                        <p>
+                            We provide comprehensive support for setup, routine recalibration cycles, and prompt technical support across all major industrial parks.
+                        </p>
+                    </div>
+                    <div class="grid sm:grid-cols-2 gap-4 pt-4 border-t border-gray-100">
+                        <div class="flex items-center gap-3">
+                            <i class="ph-bold ph-shield-check text-brand-secondary text-xl"></i>
+                            <span class="font-bold text-brand-dark text-sm">Full IQ / OQ / PQ Compliance</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <i class="ph-bold ph-calendar-check text-brand-secondary text-xl"></i>
+                            <span class="font-bold text-brand-dark text-sm">Routine Maintenance SLAs</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Product Catalog Grid with Search and Filter tabs -->
+    <section id="catalog" class="py-24 bg-[#F8FAF6] relative border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-12 reveal">
+                <span class="text-brand-primary text-xs font-bold tracking-widest uppercase bg-white border border-gray-100 px-4 py-2 rounded-full inline-block">
+                    Procurement Catalog
+                </span>
+                <h2 class="text-3xl sm:text-5xl font-extrabold text-brand-dark mt-4">
+                    Product Sourcing Hub
+                </h2>
+                <p class="text-slate-600 mt-2">Browse physical hardware, chemical parameters, and testing instrumentation. Add custom items to your B2B Inquiry List to request a quote.</p>
+            </div>
+
+            <!-- Search and Filter Panel -->
+            <div class="bg-white rounded-3xl p-6 shadow-md mb-8 border border-gray-100 reveal">
+                <div class="grid md:grid-cols-12 gap-4 items-center">
+                    <!-- Search Input -->
+                    <div class="md:col-span-5 relative">
+                        <i class="ph ph-magnifying-glass absolute left-4 top-3.5 text-gray-400 text-lg"></i>
+                        <input type="text" id="catalog-search" placeholder="Search parameters, model, category..." oninput="filterCatalog()" class="w-full bg-[#F8FAF6] border border-gray-100 rounded-xl py-3 pl-12 pr-4 text-xs font-bold text-brand-dark focus:outline-none focus:border-brand-accent focus:ring-1 focus:ring-brand-accent">
+                    </div>
+                    <!-- Category Tabs (Horizontal Scroll on Mobile) -->
+                    <div class="md:col-span-7 flex flex-wrap gap-2 justify-start md:justify-end">
+                        <button onclick="setCategoryFilter('all')" class="cat-tab active px-4 py-2.5 rounded-xl text-xs font-bold transition-all bg-brand-primary text-brand-accent">
+                            All Sourcing
+                        </button>
+                        <button onclick="setCategoryFilter('instruments')" class="cat-tab px-4 py-2.5 rounded-xl text-xs font-semibold transition-all bg-brand-light text-brand-primary hover:bg-brand-primary/5">
+                            Analytical Instruments
+                        </button>
+                        <button onclick="setCategoryFilter('glassware-reagents')" class="cat-tab px-4 py-2.5 rounded-xl text-xs font-semibold transition-all bg-brand-light text-brand-primary hover:bg-brand-primary/5">
+                            Glassware &amp; Reagents
+                        </button>
+                        <button onclick="setCategoryFilter('testing-kits')" class="cat-tab px-4 py-2.5 rounded-xl text-xs font-semibold transition-all bg-brand-light text-brand-primary hover:bg-brand-primary/5">
+                            Testing &amp; Diagnostics
+                        </button>
+                        <button onclick="setCategoryFilter('lab-furniture')" class="cat-tab px-4 py-2.5 rounded-xl text-xs font-semibold transition-all bg-brand-light text-brand-primary hover:bg-brand-primary/5">
+                            Lab Furniture
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dynamic Product Sourcing Cards Grid -->
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8" id="product-grid">
+                <!-- Javascript will load the products dynamically for maximum B2B detail, below is a list of template blocks which will render instantly and fall-back beautifully -->
+
+                <!-- Card 1: Liquid Chromatography HPLC -->
+                <div class="product-item bg-white rounded-3xl p-8 border border-gray-100 spec-card transition-all duration-300 hover:-translate-y-1 relative overflow-hidden group flex flex-col justify-between" data-category="instruments" data-title="high performance liquid chromatography hplc biosaf modular">
+                    <div>
+                        <div class="relative rounded-2xl overflow-hidden mb-6 aspect-[4/3] bg-gray-100">
+                            <img src="https://images.unsplash.com/photo-1579154341098-e4e158cc7f55?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="HPLC Chromatograph Unit" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                            <div class="absolute top-3 left-3 bg-brand-primary text-brand-accent text-[9px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full">
+                                Analytical Systems
+                            </div>
+                        </div>
+                        <span class="text-[10px] uppercase font-bold tracking-wider text-brand-secondary">BIOSAF Instruments</span>
+                        <h3 class="font-extrabold text-slate-950 text-lg mb-2 mt-1">High-Performance Liquid Chromatography (HPLC)</h3>
+                        <p class="text-xs text-slate-500 leading-relaxed mb-4">Dual-pump system designed for complex active pharmaceutical screening, ingredient profiling, and chemical tracing assays.</p>
+                        <ul class="space-y-2 mb-6 text-xs text-slate-600 font-bold">
+                            <li class="flex items-center gap-1.5"><i class="ph ph-shield-check text-brand-secondary"></i> Pressure Limit: up to 600 bar</li>
+                            <li class="flex items-center gap-1.5"><i class="ph ph-sparkle text-brand-secondary"></i> Low Carryover Autosampler</li>
+                        </ul>
+                    </div>
+                    <button onclick="addToManifest('High-Performance Liquid Chromatography (HPLC)', 'Analytical Systems', 'instruments')" class="w-full bg-brand-primary hover:bg-brand-secondary text-white font-bold py-3 px-4 rounded-xl text-xs uppercase tracking-wider transition-colors flex items-center justify-center gap-2">
+                        <i class="ph-bold ph-plus-circle text-brand-accent"></i> Add to Inquiry List
+                    </button>
+                </div>
+
+                <!-- Card 2: UV-VIS Spectrophotometer -->
+                <div class="product-item bg-white rounded-3xl p-8 border border-gray-100 spec-card transition-all duration-300 hover:-translate-y-1 relative overflow-hidden group flex flex-col justify-between" data-category="instruments" data-title="uv-vis spectrophotometer double beam biosaf spectral scan">
+                    <div>
+                        <div class="relative rounded-2xl overflow-hidden mb-6 aspect-[4/3] bg-gray-100">
+                            <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Spectrophotometer unit" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                            <div class="absolute top-3 left-3 bg-brand-primary text-brand-accent text-[9px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full">
+                                Analytical Systems
+                            </div>
+                        </div>
+                        <span class="text-[10px] uppercase font-bold tracking-wider text-brand-secondary">Spectral Analysis</span>
+                        <h3 class="font-extrabold text-slate-950 text-lg mb-2 mt-1">UV-VIS Spectrophotometer (Double Beam)</h3>
+                        <p class="text-xs text-slate-500 leading-relaxed mb-4">Precision photometric scan device for micro-volume biological assays, optical tracing, and liquid chemical density audits.</p>
+                        <ul class="space-y-2 mb-6 text-xs text-slate-600 font-bold">
+                            <li class="flex items-center gap-1.5"><i class="ph ph-shield-check text-brand-secondary"></i> Spectral Range: 190 - 1100 nm</li>
+                            <li class="flex items-center gap-1.5"><i class="ph ph-sparkle text-brand-secondary"></i> USB Data Export Protocols</li>
+                        </ul>
+                    </div>
+                    <button onclick="addToManifest('UV-VIS Spectrophotometer (Double Beam)', 'Spectral Analysis', 'instruments')" class="w-full bg-brand-primary hover:bg-brand-secondary text-white font-bold py-3 px-4 rounded-xl text-xs uppercase tracking-wider transition-colors flex items-center justify-center gap-2">
+                        <i class="ph-bold ph-plus-circle text-brand-accent"></i> Add to Inquiry List
+                    </button>
+                </div>
+
+                <!-- Card 3: Borosilicate Glassware Sourcing -->
+                <div class="product-item bg-white rounded-3xl p-8 border border-gray-100 spec-card transition-all duration-300 hover:-translate-y-1 relative overflow-hidden group flex flex-col justify-between" data-category="glassware-reagents" data-title="borosilicate glassware set premium flaks beaker pipette test tube">
+                    <div>
+                        <div class="relative rounded-2xl overflow-hidden mb-6 aspect-[4/3] bg-gray-100">
+                            <img src="https://images.unsplash.com/photo-1607619056574-7b8f304f3c6f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="High-quality flasks and glass setups" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                            <div class="absolute top-3 left-3 bg-brand-primary text-brand-accent text-[9px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full">
+                                Consumables
+                            </div>
+                        </div>
+                        <span class="text-[10px] uppercase font-bold tracking-wider text-brand-secondary">Laboratory Glassware</span>
+                        <h3 class="font-extrabold text-slate-950 text-lg mb-2 mt-1">Premium Borosilicate Glassware Kit</h3>
+                        <p class="text-xs text-slate-500 leading-relaxed mb-4">Highly thermal-shock resistant flasks, beakers, pipettes, and graduated cylinders conforming strictly to ISO DIN standards.</p>
+                        <ul class="space-y-2 mb-6 text-xs text-slate-600 font-bold">
+                            <li class="flex items-center gap-1.5"><i class="ph ph-shield-check text-brand-secondary"></i> ISO 3819 Beaker Standards</li>
+                            <li class="flex items-center gap-1.5"><i class="ph ph-sparkle text-brand-secondary"></i> Linear Expansion Coefficient: 3.3</li>
+                        </ul>
+                    </div>
+                    <button onclick="addToManifest('Premium Borosilicate Glassware Kit', 'Laboratory Glassware', 'glassware-reagents')" class="w-full bg-brand-primary hover:bg-brand-secondary text-white font-bold py-3 px-4 rounded-xl text-xs uppercase tracking-wider transition-colors flex items-center justify-center gap-2">
+                        <i class="ph-bold ph-plus-circle text-brand-accent"></i> Add to Inquiry List
+                    </button>
+                </div>
+
+                <!-- Card 4: Rapid ATP Hygiene Testing System -->
+                <div class="product-item bg-white rounded-3xl p-8 border border-gray-100 spec-card transition-all duration-300 hover:-translate-y-1 relative overflow-hidden group flex flex-col justify-between" data-category="testing-kits" data-title="rapid atp hygiene monitoring system food safety swab surface test">
+                    <div>
+                        <div class="relative rounded-2xl overflow-hidden mb-6 aspect-[4/3] bg-gray-100">
+                            <img src="https://images.unsplash.com/photo-1576086213369-97a306d36557?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Hygiene swab analysis instrument" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                            <div class="absolute top-3 left-3 bg-brand-primary text-brand-accent text-[9px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full">
+                                Diagnostics
+                            </div>
+                        </div>
+                        <span class="text-[10px] uppercase font-bold tracking-wider text-brand-secondary">Food &amp; Hygiene Testing</span>
+                        <h3 class="font-extrabold text-slate-950 text-lg mb-2 mt-1">Rapid ATP Hygiene System</h3>
+                        <p class="text-xs text-slate-500 leading-relaxed mb-4">Handheld real-time verification diagnostic tool for immediate biological residue analysis on food assembly lines.</p>
+                        <ul class="space-y-2 mb-6 text-xs text-slate-600 font-bold">
+                            <li class="flex items-center gap-1.5"><i class="ph ph-shield-check text-brand-secondary"></i> Reading Time: 10 seconds</li>
+                            <li class="flex items-center gap-1.5"><i class="ph ph-sparkle text-brand-secondary"></i> Limit of Detection: 1 femtomole ATP</li>
+                        </ul>
+                    </div>
+                    <button onclick="addToManifest('Rapid ATP Hygiene System', 'Food & Hygiene Testing', 'testing-kits')" class="w-full bg-brand-primary hover:bg-brand-secondary text-white font-bold py-3 px-4 rounded-xl text-xs uppercase tracking-wider transition-colors flex items-center justify-center gap-2">
+                        <i class="ph-bold ph-plus-circle text-brand-accent"></i> Add to Inquiry List
+                    </button>
+                </div>
+
+                <!-- Card 5: Class II Biosafety Cabinets -->
+                <div class="product-item bg-white rounded-3xl p-8 border border-gray-100 spec-card transition-all duration-300 hover:-translate-y-1 relative overflow-hidden group flex flex-col justify-between" data-category="lab-furniture" data-title="class ii biosafety cabinet fume hood laminar air flow clean bench">
+                    <div>
+                        <div class="relative rounded-2xl overflow-hidden mb-6 aspect-[4/3] bg-gray-100">
+                            <img src="https://images.unsplash.com/photo-1576328077645-b487b22a6962?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Sterile Fume Hood Workbench" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                            <div class="absolute top-3 left-3 bg-brand-primary text-brand-accent text-[9px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full">
+                                Infrastructure
+                            </div>
+                        </div>
+                        <span class="text-[10px] uppercase font-bold tracking-wider text-brand-secondary">Laboratory Furniture</span>
+                        <h3 class="font-extrabold text-slate-950 text-lg mb-2 mt-1">Class II Bio-Safety Fume Cabinets</h3>
+                        <p class="text-xs text-slate-500 leading-relaxed mb-4">Complete air recirculation laminar cabinet to protect personnel, environment, and scientific assays from airborne microbiological cross-infection.</p>
+                        <ul class="space-y-2 mb-6 text-xs text-slate-600 font-bold">
+                            <li class="flex items-center gap-1.5"><i class="ph ph-shield-check text-brand-secondary"></i> HEPA Filtration Efficiency: 99.999%</li>
+                            <li class="flex items-center gap-1.5"><i class="ph ph-sparkle text-brand-secondary"></i> EN 12469 Certification Compliance</li>
+                        </ul>
+                    </div>
+                    <button onclick="addToManifest('Class II Bio-Safety Fume Cabinets', 'Laboratory Furniture', 'lab-furniture')" class="w-full bg-brand-primary hover:bg-brand-secondary text-white font-bold py-3 px-4 rounded-xl text-xs uppercase tracking-wider transition-colors flex items-center justify-center gap-2">
+                        <i class="ph-bold ph-plus-circle text-brand-accent"></i> Add to Inquiry List
+                    </button>
+                </div>
+
+                <!-- Card 6: Multi-Parameter Water Testing Meter -->
+                <div class="product-item bg-white rounded-3xl p-8 border border-gray-100 spec-card transition-all duration-300 hover:-translate-y-1 relative overflow-hidden group flex flex-col justify-between" data-category="testing-kits" data-title="multi parameter water testing meter tds ph conductuvity do meter">
+                    <div>
+                        <div class="relative rounded-2xl overflow-hidden mb-6 aspect-[4/3] bg-gray-100">
+                            <img src="https://images.unsplash.com/photo-1511174511562-5f7f18b854f2?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Liquid sample analyzer" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                            <div class="absolute top-3 left-3 bg-brand-primary text-brand-accent text-[9px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full">
+                                Diagnostics
+                            </div>
+                        </div>
+                        <span class="text-[10px] uppercase font-bold tracking-wider text-brand-secondary">Water Quality &amp; Safety</span>
+                        <h3 class="font-extrabold text-slate-950 text-lg mb-2 mt-1">Multi-Parameter DO/pH/TDS Meter</h3>
+                        <p class="text-xs text-slate-500 leading-relaxed mb-4">Rugged benchtop system designed for continuous monitoring of conductivity, salinity, dissolved oxygen, and relative pH factors.</p>
+                        <ul class="space-y-2 mb-6 text-xs text-slate-600 font-bold">
+                            <li class="flex items-center gap-1.5"><i class="ph ph-shield-check text-brand-secondary"></i> pH range accuracy: ±0.001</li>
+                            <li class="flex items-center gap-1.5"><i class="ph ph-sparkle text-brand-secondary"></i> Dynamic Temperature Compensation</li>
+                        </ul>
+                    </div>
+                    <button onclick="addToManifest('Multi-Parameter DO/pH/TDS Meter', 'Water Quality & Safety', 'testing-kits')" class="w-full bg-brand-primary hover:bg-brand-secondary text-white font-bold py-3 px-4 rounded-xl text-xs uppercase tracking-wider transition-colors flex items-center justify-center gap-2">
+                        <i class="ph-bold ph-plus-circle text-brand-accent"></i> Add to Inquiry List
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Buy from BIOSAF / Value Propositions -->
+    <section id="why-biosaf" class="py-24 bg-white relative border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-12 gap-12 items-center">
+                <!-- Text introduction -->
+                <div class="lg:col-span-5 reveal">
+                    <span class="text-brand-primary text-xs font-bold tracking-widest uppercase bg-brand-light px-3.5 py-1.5 rounded-full inline-block">
+                        Why Buy from BIOSAF
+                    </span>
+                    <h2 class="text-3xl sm:text-5xl font-black text-brand-dark mt-4 mb-4">
+                        Scientific Sourcing Built on Complete Compliance
+                    </h2>
+                    <p class="text-slate-600 leading-relaxed text-base">
+                        Acquiring scientific equipment requires deep verification. Our technical division guarantees the integrity, tracking, and certification parameters of every single shipment.
+                    </p>
+                    <div class="mt-6 border-l-4 border-brand-accent pl-6 py-1">
+                        <p class="font-serif italic text-lg text-brand-primary">
+                            "Accuracy in science starts with physical integrity. We secure clean, traceable procurement."
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Structured pillars grid -->
+                <div class="lg:col-span-7 grid sm:grid-cols-2 gap-4 reveal">
+                    <!-- Documentation -->
+                    <div class="p-6 bg-[#F8FAF6] border border-gray-100 rounded-3xl group hover:bg-white hover:border-brand-accent/30 transition-all">
+                        <div class="w-10 h-10 bg-white text-brand-primary rounded-xl flex items-center justify-center mb-4 border border-gray-200 group-hover:bg-brand-primary group-hover:text-brand-accent transition-colors">
+                            <i class="ph-bold ph-stamp text-xl"></i>
+                        </div>
+                        <h3 class="font-bold text-brand-dark text-sm">Calibration Conformity</h3>
+                        <p class="text-xs text-slate-500 mt-2">Every physical shipment undergoes rigorous performance verification at our logistics center to ensure precise diagnostic alignment.</p>
+                    </div>
+
+                    <!-- Training -->
+                    <div class="p-6 bg-[#F8FAF6] border border-gray-100 rounded-3xl group hover:bg-white hover:border-brand-accent/30 transition-all">
+                        <div class="w-10 h-10 bg-white text-brand-primary rounded-xl flex items-center justify-center mb-4 border border-gray-200 group-hover:bg-brand-primary group-hover:text-brand-accent transition-colors">
+                            <i class="ph-bold ph-truck text-xl"></i>
+                        </div>
+                        <h3 class="font-bold text-brand-dark text-sm">Cold-Chain Reagents</h3>
+                        <p class="text-xs text-slate-500 mt-2">Microbiological and chemical tests are transported in climate-controlled units, fully preserving material integrity.</p>
+                    </div>
+
+                    <!-- Audits -->
+                    <div class="p-6 bg-[#F8FAF6] border border-gray-100 rounded-3xl group hover:bg-white hover:border-brand-accent/30 transition-all">
+                        <div class="w-10 h-10 bg-white text-brand-primary rounded-xl flex items-center justify-center mb-4 border border-gray-200 group-hover:bg-brand-primary group-hover:text-brand-accent transition-colors">
+                            <i class="ph-bold ph-user-focus text-xl"></i>
+                        </div>
+                        <h3 class="font-bold text-brand-dark text-sm">Direct Manufacturer Ties</h3>
+                        <p class="text-xs text-slate-500 mt-2">By excluding intermediary wholesalers, we guarantee direct warranty protection and rapid component replacement SLA timelines.</p>
+                    </div>
+
+                    <!-- Certification Support -->
+                    <div class="p-6 bg-[#F8FAF6] border border-gray-100 rounded-3xl group hover:bg-white hover:border-brand-accent/30 transition-all">
+                        <div class="w-10 h-10 bg-white text-brand-primary rounded-xl flex items-center justify-center mb-4 border border-gray-200 group-hover:bg-brand-primary group-hover:text-brand-accent transition-colors">
+                            <i class="ph-bold ph-wrench text-xl"></i>
+                        </div>
+                        <h3 class="font-bold text-brand-dark text-sm">Complete System Training</h3>
+                        <p class="text-xs text-slate-500 mt-2">Our physical setup operations include hands-on operator workshops, detailed software briefings, and complete user compliance manuals.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- B2B Procurement Inquiry Form CTA -->
+    <section id="procurement-rfp" class="py-24 bg-[#F8FAF6] relative border-t border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-brand-primary rounded-[3rem] overflow-hidden shadow-2xl border border-white/5 relative">
+                
+                <div class="grid lg:grid-cols-12 items-stretch">
+                    <!-- Text Info Column -->
+                    <div class="lg:col-span-7 p-8 md:p-16 text-white space-y-6 relative z-10 flex flex-col justify-center">
+                        <i class="ph-fill ph-file-text text-brand-accent text-5xl animate-pulse"></i>
+                        <h2 class="text-3xl sm:text-5xl font-black leading-tight">Ready to Source <br class="hidden sm:inline"/>Specialized Hardware?</h2>
+                        <p class="text-slate-300 leading-relaxed text-sm max-w-xl">
+                            Our procurement specialists and engineers will review your selected list parameters immediately to provide a complete B2B quotation. Add catalog items or submit custom specifications below.
+                        </p>
+                        
+                        <div class="flex flex-col sm:flex-row gap-4 pt-4">
+                            <a href="tel:+923326079992" class="bg-brand-accent hover:bg-brand-accentHover text-brand-dark px-6 py-4 rounded-full font-bold transition-all text-xs tracking-wider uppercase flex items-center justify-center gap-2">
+                                <i class="ph-fill ph-phone-call"></i> Call Sourcing Desk
+                            </a>
+                            <a href="mailto:info@khatrienterprises.com" class="bg-white/10 hover:bg-white/20 border border-white/20 text-white px-6 py-4 rounded-full font-bold transition-all text-xs tracking-wider uppercase flex items-center justify-center gap-2 backdrop-blur-sm">
+                                <i class="ph-fill ph-envelope"></i> Email Specifications
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- RFP Interactive Submission Form -->
+                    <div class="lg:col-span-5 bg-white/5 border-l border-white/10 p-8 md:p-12 relative z-10 flex flex-col justify-center">
+                        <h3 class="text-white text-lg font-bold mb-6">Request Technical Quotation</h3>
+                        <form class="space-y-4" onsubmit="event.preventDefault(); triggerSuccessAlert();">
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-300 mb-1">Company / Organization Name</label>
+                                <input required type="text" placeholder="e.g. Paramount Diagnostics Ltd" class="w-full bg-white/5 border border-white/10 rounded-xl py-3 px-4 text-white placeholder-slate-500 focus:outline-none focus:border-brand-accent focus:ring-1 focus:ring-brand-accent text-xs">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-300 mb-1">Contact Phone</label>
+                                <input required type="tel" placeholder="e.g. +92 332 6079992" class="w-full bg-white/5 border border-white/10 rounded-xl py-3 px-4 text-white placeholder-slate-500 focus:outline-none focus:border-brand-accent focus:ring-1 focus:ring-brand-accent text-xs">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-300 mb-1">Target Products &amp; Sourcing Specifications</label>
+                                <textarea id="inquiry-scope" required placeholder="Select products from the catalog above to automatically populate this manifest area, or outline custom model parameters here." class="w-full bg-white/5 border border-white/10 rounded-xl py-3 px-4 text-slate-300 placeholder-slate-500 focus:outline-none focus:border-brand-accent focus:ring-1 focus:ring-brand-accent text-xs h-32 resize-none"></textarea>
+                            </div>
+                            <button type="submit" class="w-full bg-brand-accent hover:bg-brand-accentHover text-brand-dark font-extrabold py-3.5 rounded-xl transition-all text-xs tracking-wider uppercase mt-4">
+                                Submit Sourcing RFP
+                              </button>
+                        </form>
+                        <!-- Success message feedback container -->
+                        <div id="proposal-success" class="hidden mt-4 p-4 bg-emerald-950/80 border border-emerald-500/30 rounded-xl text-center">
+                            <p class="text-xs text-emerald-400 font-bold flex items-center justify-center gap-1.5">
+                                <i class="ph-bold ph-seal-check text-base"></i> Inquiry logged. Our lead procurement engineer will contact you shortly.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- B2B Procurement Sourcing Slide-out Drawer (Slide-in Manifest List) -->
+    <div id="manifest-drawer" class="fixed top-0 right-0 h-full w-full sm:w-[450px] bg-brand-dark border-l border-white/10 z-50 transform translate-x-full transition-transform duration-500 ease-out flex flex-col justify-between p-6 shadow-2xl text-white">
+        <div>
+            <div class="flex justify-between items-center pb-4 border-b border-white/10 mb-6">
+                <div class="flex items-center gap-2">
+                    <i class="ph-bold ph-scroll text-brand-accent text-lg"></i>
+                    <h3 class="font-extrabold text-base uppercase tracking-wider">Inquiry List</h3>
+                </div>
+                <button onclick="toggleManifestDrawer()" class="text-gray-400 hover:text-brand-accent transition-colors p-1" aria-label="Close Drawer">
+                    <i class="ph-bold ph-x text-xl"></i>
+                </button>
+            </div>
+
+            <!-- List items container -->
+            <div id="manifest-items-container" class="space-y-4 max-h-[60vh] overflow-y-auto pr-2">
+                <!-- Fallback empty state -->
+                <div id="manifest-empty" class="text-center py-12 text-slate-500 space-y-3">
+                    <i class="ph ph-handbag-simple text-4xl"></i>
+                    <p class="text-xs font-semibold">Your custom inquiry manifest is empty.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="space-y-4 border-t border-white/10 pt-6">
+            <div class="flex justify-between text-xs text-slate-400">
+                <span>Total Sourced Parameters:</span>
+                <span id="drawer-count" class="font-extrabold text-white">0 Items</span>
+            </div>
+            <button onclick="transferManifestToRfp()" class="w-full bg-brand-accent hover:bg-brand-accentHover text-brand-dark py-3.5 rounded-xl text-xs font-extrabold uppercase tracking-wider transition-colors flex items-center justify-center gap-2">
+                Transfer Sourcing to Quote <i class="ph ph-arrow-right"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Corporate Footer -->
+    <footer class="bg-brand-dark pt-20 pb-8 px-4 sm:px-6 lg:px-8 text-gray-400 border-t-2 border-brand-accent relative overflow-hidden">
+        <!-- Background radial glow overlay -->
+        <div class="absolute bottom-0 right-0 w-[20%] h-[20%] bg-[radial-gradient(circle,rgba(211,243,64,0.03),transparent_70%)]"></div>
+
+        <div class="max-w-7xl mx-auto relative z-10">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+                <!-- Brand Description -->
+                <div class="space-y-6">
+                    <a href="#" class="flex items-center gap-3">
+                        <div class="bg-brand-accent text-brand-dark rounded-full p-2 flex items-center justify-center">
+                            <i class="ph-fill ph-flask text-lg"></i>
+                        </div>
+                        <span class="text-base font-extrabold tracking-tight text-white uppercase font-sans">BIOSAF <span class="text-brand-accent font-light">Enterprises</span></span>
+                    </a>
+                    <p class="text-xs leading-relaxed">
+                        Leading corporate systems quality advisory and scientific procurement logistics across Pakistan. Aligning local research labs with international performance benchmarks.
+                    </p>
+                    <div class="flex gap-3">
+                        <a href="#" class="w-8 h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white hover:bg-brand-accent hover:text-brand-dark transition-all duration-300" aria-label="Facebook"><i class="ph-fill ph-facebook-logo text-sm"></i></a>
+                        <a href="#" class="w-8 h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white hover:bg-brand-accent hover:text-brand-dark transition-all duration-300" aria-label="Twitter"><i class="ph-fill ph-twitter-logo text-sm"></i></a>
+                        <a href="#" class="w-8 h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white hover:bg-brand-accent hover:text-brand-dark transition-all duration-300" aria-label="LinkedIn"><i class="ph-fill ph-linkedin-logo text-sm"></i></a>
+                    </div>
+                </div>
+
+                <!-- Column 1 Quick links -->
+                <div>
+                    <h4 class="text-white font-bold text-xs tracking-wider uppercase mb-6">Scientific Hardware</h4>
+                    <ul class="space-y-3.5 text-xs">
+                        <li><a href="#catalog" class="hover:text-brand-accent transition-colors">HPLC Chromatography</a></li>
+                        <li><a href="#catalog" class="hover:text-brand-accent transition-colors">UV-VIS Spectrophotometers</a></li>
+                        <li><a href="#catalog" class="hover:text-brand-accent transition-colors">Borosilicate Glassware</a></li>
+                        <li><a href="#catalog" class="hover:text-brand-accent transition-colors">Class II Fume Hoods</a></li>
+                        <li><a href="#catalog" class="hover:text-brand-accent transition-colors">Water Diagnostics Systems</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 2 Advisory Hub -->
+                <div>
+                    <h4 class="text-white font-bold text-xs tracking-wider uppercase mb-6">Accreditations Desk</h4>
+                    <ul class="space-y-3.5 text-xs">
+                        <li><a href="#" class="hover:text-brand-accent transition-colors">ISO 9001 Certification</a></li>
+                        <li><a href="#" class="hover:text-brand-accent transition-colors">ISO 17025 Laboratory Audits</a></li>
+                        <li><a href="#" class="hover:text-brand-accent transition-colors">HACCP Safety Documentation</a></li>
+                        <li><a href="#" class="hover:text-brand-accent transition-colors">Halal Sourcing S733</a></li>
+                        <li><a href="#" class="hover:text-brand-accent transition-colors font-bold text-brand-accent">Return to Home Portal</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 3 Advisory Updates -->
+                <div class="space-y-4">
+                    <h4 class="text-white font-bold text-xs tracking-wider uppercase mb-6">Procurement Updates Loop</h4>
+                    <p class="text-xs text-slate-400">Join our mailing program to verify newly verified diagnostic products and chemicals.</p>
+                    <form class="space-y-2" onsubmit="event.preventDefault();">
+                        <input type="email" required placeholder="Enter professional email" class="w-full bg-white/5 border border-white/10 rounded-lg py-2 px-3 text-white text-xs focus:outline-none focus:border-brand-accent">
+                        <button type="submit" class="w-full bg-white/10 hover:bg-brand-accent hover:text-brand-dark text-white font-bold py-2 rounded-lg transition-all text-[10px] tracking-wider uppercase">
+                            Join Sourcing Loop
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Bottom Line details -->
+            <div class="border-t border-white/5 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-slate-500">
+                <p>&copy; 2026 BIOSAF Enterprises. All rights reserved. Managed to ISO Advisory Framework Standards.</p>
+                <div class="flex items-center gap-6">
+                    <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
+                    <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
+                    <div class="flex items-center gap-1.5 text-brand-accent font-bold">
+                        <span>ISO Accredited System</span>
+                        <i class="ph-fill ph-seal-check"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Active script controllers -->
+    <script>
+        // Preloader Fadeout controller
+        window.addEventListener('load', () => {
+            const preloader = document.getElementById('preloader');
+            const preloaderBar = document.getElementById('preloader-bar');
+            
+            preloaderBar.style.width = '100%';
+            
+            setTimeout(() => {
+                preloader.classList.add('opacity-0', 'pointer-events-none');
+                setTimeout(() => {
+                    preloader.style.display = 'none';
+                }, 500);
+            }, 400);
+        });
+
+        // Mouse cursor tracker script
+        const dot = document.getElementById('cursor-dot');
+        const outline = document.getElementById('cursor-outline');
+
+        let outlineX = 0;
+        let outlineY = 0;
+        let targetX = 0;
+        let targetY = 0;
+
+        window.addEventListener('mousemove', (e) => {
+            targetX = e.clientX;
+            targetY = e.clientY;
+            
+            dot.style.transform = `translate(${targetX}px, ${targetY}px) translate(-50%, -50%)`;
+        });
+
+        function updateOutlinePosition() {
+            outlineX += (targetX - outlineX) * 0.15;
+            outlineY += (targetY - outlineY) * 0.15;
+            
+            outline.style.transform = `translate(${outlineX}px, ${outlineY}px) translate(-50%, -50%)`;
+            requestAnimationFrame(updateOutlinePosition);
+        }
+        updateOutlinePosition();
+
+        // Enlarge interactive elements on hover
+        const clickables = document.querySelectorAll('a, button, select, input, textarea');
+        clickables.forEach(item => {
+            item.addEventListener('mouseenter', () => {
+                outline.style.width = '55px';
+                outline.style.height = '55px';
+                outline.style.borderColor = '#D3F340';
+                outline.style.backgroundColor = 'rgba(211, 243, 64, 0.08)';
+            });
+            item.addEventListener('mouseleave', () => {
+                outline.style.width = '40px';
+                outline.style.height = '40px';
+                outline.style.borderColor = 'rgba(211, 243, 64, 0.4)';
+                outline.style.backgroundColor = 'transparent';
+            });
+        });
+
+        // Intersection Observer scroll reveal animation logic
+        const revealItems = document.querySelectorAll('.reveal');
+        const revealOptions = {
+            root: null,
+            threshold: 0.1,
+            rootMargin: '0px'
+        };
+
+        const revealObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, revealOptions);
+
+        revealItems.forEach(item => {
+            revealObserver.observe(item);
+        });
+
+
+        // Active B2B Sourcing Manifest (Quote List) State Logic
+        let manifestList = [];
+
+        function toggleManifestDrawer() {
+            const drawer = document.getElementById('manifest-drawer');
+            drawer.classList.toggle('translate-x-full');
+        }
+
+        function addToManifest(name, categoryText, categoryKey) {
+            // Check if product already exists
+            const exists = manifestList.some(item => item.name === name);
+            if (exists) {
+                showFloatingNotification(`"${name}" is already in your inquiry list.`);
+                return;
+            }
+
+            manifestList.push({ name, categoryText, categoryKey });
+            updateManifestUI();
+            showFloatingNotification(`"${name}" added to Sourcing Manifest.`);
+        }
+
+        function removeFromManifest(index) {
+            manifestList.splice(index, 1);
+            updateManifestUI();
+        }
+
+        function updateManifestUI() {
+            // Update counter badges
+            document.getElementById('manifest-count').innerText = manifestList.length;
+            document.getElementById('drawer-count').innerText = `${manifestList.length} Item(s)`;
+
+            const itemsContainer = document.getElementById('manifest-items-container');
+            
+            if (manifestList.length === 0) {
+                itemsContainer.innerHTML = `
+                    <div id="manifest-empty" class="text-center py-12 text-slate-500 space-y-3">
+                        <i class="ph ph-handbag-simple text-4xl"></i>
+                        <p class="text-xs font-semibold">Your custom inquiry manifest is empty.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            itemsContainer.innerHTML = ''; // reset
+            manifestList.forEach((item, index) => {
+                const itemDiv = document.createElement('div');
+                itemDiv.className = 'bg-white/5 border border-white/10 rounded-2xl p-4 flex justify-between items-center gap-3 relative';
+                itemDiv.innerHTML = `
+                    <div>
+                        <span class="text-[9px] bg-brand-accent/20 text-brand-accent px-2 py-0.5 rounded font-bold uppercase">${item.categoryText}</span>
+                        <h4 class="text-xs font-bold text-white mt-1 pr-6">${item.name}</h4>
+                    </div>
+                    <button onclick="removeFromManifest(${index})" class="text-gray-400 hover:text-red-400 transition-colors p-1" aria-label="Remove item">
+                        <i class="ph-bold ph-trash text-sm"></i>
+                    </button>
+                `;
+                itemsContainer.appendChild(itemDiv);
+            });
+        }
+
+        // Transfer Sourced Items from B2B Drawer into the official RFP Form
+        function transferManifestToRfp() {
+            if (manifestList.length === 0) {
+                showFloatingNotification("Please add products to your Sourcing Manifest first!");
+                return;
+            }
+
+            const targetTextArea = document.getElementById('inquiry-scope');
+            let builtString = "We require a specialized technical quote for the following sourced parameters:\n";
+            
+            manifestList.forEach((item, index) => {
+                builtString += `${index + 1}. [${item.categoryText}] - ${item.name}\n`;
+            });
+
+            builtString += "\nPlease supply complete specification logs, logistics parameters, and post-sales SLA options.";
+            targetTextArea.value = builtString;
+
+            // Close the drawer and slide down to contact form area
+            toggleManifestDrawer();
+            document.getElementById('procurement-rfp').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // B2B Search and Filter system
+        let currentFilter = 'all';
+
+        function setCategoryFilter(category) {
+            currentFilter = category;
+            
+            // Adjust Active styles in filters
+            const tabs = document.querySelectorAll('.cat-tab');
+            tabs.forEach(tab => {
+                tab.classList.remove('active', 'bg-brand-primary', 'text-brand-accent');
+                tab.classList.add('bg-brand-light', 'text-brand-primary');
+            });
+
+            // Find clicked tab to colorize
+            event.currentTarget.classList.add('active', 'bg-brand-primary', 'text-brand-accent');
+            event.currentTarget.classList.remove('bg-brand-light', 'text-brand-primary');
+
+            filterCatalog();
+        }
+
+        function filterCatalog() {
+            const searchQuery = document.getElementById('catalog-search').value.toLowerCase().trim();
+            const items = document.querySelectorAll('.product-item');
+
+            items.forEach(item => {
+                const category = item.getAttribute('data-category');
+                const searchTags = item.getAttribute('data-title');
+
+                const matchesCategory = (currentFilter === 'all' || category === currentFilter);
+                const matchesSearch = (searchQuery === '' || searchTags.includes(searchQuery));
+
+                if (matchesCategory && matchesSearch) {
+                    item.classList.remove('hidden');
+                } else {
+                    item.classList.add('hidden');
+                }
+            });
+        }
+
+        // Clean Floating Notification feedback element (In replacement of alert/confirm)
+        function showFloatingNotification(message) {
+            // Check if older notification exists
+            const olderNotification = document.getElementById('floating-b2b-toast');
+            if (olderNotification) olderNotification.remove();
+
+            const toast = document.createElement('div');
+            toast.id = 'floating-b2b-toast';
+            toast.className = 'fixed bottom-24 left-6 bg-brand-primary border-l-4 border-brand-accent text-white p-4 rounded-xl shadow-2xl z-[999] max-w-sm transition-all duration-300 transform translate-y-4 opacity-0 flex items-center gap-3';
+            toast.innerHTML = `
+                <i class="ph-bold ph-info text-brand-accent text-xl"></i>
+                <p class="text-xs font-bold">${message}</p>
+            `;
+
+            document.body.appendChild(toast);
+
+            // Trigger animation
+            setTimeout(() => {
+                toast.classList.remove('translate-y-4', 'opacity-0');
+            }, 50);
+
+            // Hide after 3.5 seconds
+            setTimeout(() => {
+                toast.classList.add('translate-y-4', 'opacity-0');
+                setTimeout(() => {
+                    toast.remove();
+                }, 300);
+            }, 3500);
+        }
+
+        // Trigger Success feedback on RFP submit
+        function triggerSuccessAlert() {
+            const successBox = document.getElementById('proposal-success');
+            successBox.classList.remove('hidden');
+            setTimeout(() => {
+                successBox.classList.add('hidden');
+            }, 6000);
+        }
+    </script>
+</body>
+</html>

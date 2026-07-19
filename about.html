@@ -1,0 +1,1118 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BIOSAF Enterprises | Integrated Laboratory, Food Safety & Pest Management</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Typography & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <!-- Tailwind System Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    },
+                    colors: {
+                        brand: {
+                            dark: '#051E11',       /* Luxury Ultra-Deep Forest Green */
+                            primary: '#0B331F',    /* Rich Emerald Base */
+                            secondary: '#1A5935',  /* Active Mid-Tone Forest */
+                            light: '#F4F7F2',      /* Off-White Greenish Gray */
+                            accent: '#D3F340',     /* Premium Neon Lime Highlight */
+                            accentHover: '#E1FA5F'
+                        }
+                    },
+                    animation: {
+                        'spin-slow': 'spin 12s linear infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Keyframe Animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(0.5deg); }
+        }
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        /* Luxury Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #051E11;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #D3F340;
+            border-radius: 100px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #E1FA5F;
+        }
+
+        /* Smooth Reveal Base State */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px) scale(0.99);
+            transition: all 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        /* Glassmorphism Classes */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .glass-panel-light {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(11, 51, 31, 0.05);
+        }
+
+        /* Custom Interactive Dual-Circle Cursor Follower */
+        .cursor-dot {
+            width: 8px;
+            height: 8px;
+            background-color: #D3F340;
+            position: fixed;
+            top: 0;
+            left: 0;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            z-index: 9999;
+            pointer-events: none;
+            transition: width 0.2s, height 0.2s, background-color 0.2s;
+        }
+        .cursor-outline {
+            width: 40px;
+            height: 40px;
+            border: 1.5px solid rgba(211, 243, 64, 0.45);
+            position: fixed;
+            top: 0;
+            left: 0;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            z-index: 9998;
+            pointer-events: none;
+            transition: transform 0.08s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.2s, background-color 0.2s;
+        }
+
+        /* Nav Link Underline Flow */
+        .nav-link {
+            position: relative;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            transform: scaleX(0);
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: #D3F340;
+            transform-origin: bottom right;
+            transition: transform 0.35s ease-out;
+        }
+        .nav-link:hover::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+
+        /* Premium Shadow Hover Borders */
+        .glow-hover {
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .glow-hover:hover {
+            box-shadow: 0 20px 40px -10px rgba(211, 243, 64, 0.12);
+            border-color: rgba(211, 243, 64, 0.35);
+            transform: translateY(-5px);
+        }
+    </style>
+</head>
+<body class="font-sans text-gray-800 antialiased bg-brand-light selection:bg-brand-accent selection:text-brand-dark">
+
+    <!-- Premium Global Preloader -->
+    <div id="preloader" class="fixed inset-0 bg-brand-dark z-[99999] flex flex-col items-center justify-center transition-all duration-700 ease-out">
+        <div class="relative flex flex-col items-center">
+            <!-- Intersecting Tech Rings -->
+            <div class="absolute w-28 h-28 border-2 border-brand-accent/20 rounded-full animate-pulse-slow"></div>
+            <div class="absolute w-24 h-24 border-t-2 border-brand-accent rounded-full animate-spin"></div>
+            <div class="w-16 h-16 bg-brand-primary rounded-full flex items-center justify-center shadow-lg relative z-10 border border-brand-accent/30">
+                <i class="ph-bold ph-dna text-brand-accent text-3xl"></i>
+            </div>
+            
+            <div class="mt-8 text-center">
+                <h3 class="text-white font-extrabold text-xl tracking-widest uppercase">BIOSAF</h3>
+                <p class="text-[10px] text-brand-accent/80 mt-1 uppercase tracking-[0.25em] font-semibold">Scientific &amp; Quality Systems</p>
+            </div>
+            <div class="w-36 bg-white/10 h-1 rounded-full mt-6 overflow-hidden">
+                <div id="preloader-bar" class="bg-brand-accent h-full w-0 transition-all duration-500 ease-out"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mouse Tracker Circles -->
+    <div class="cursor-dot hidden md:block" id="cursor-dot"></div>
+    <div class="cursor-outline hidden md:block" id="cursor-outline"></div>
+
+    <!-- Floating Strategic Fast Actions Widget -->
+    <div class="fixed bottom-6 right-6 z-50 flex flex-col gap-3">
+        <a href="https://wa.me/923326079992" target="_blank" class="w-14 h-14 bg-emerald-500 hover:bg-emerald-600 text-white rounded-full flex items-center justify-center shadow-2xl transition-all duration-300 hover:scale-110 group relative" aria-label="WhatsApp Us">
+            <span class="absolute right-16 bg-brand-dark text-white text-xs px-3 py-1.5 rounded-lg whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-300 font-medium">Chat with Consultant</span>
+            <i class="ph-bold ph-whatsapp-logo text-2xl"></i>
+        </a>
+        <a href="tel:+923326079992" class="w-14 h-14 bg-brand-accent text-brand-dark rounded-full flex items-center justify-center shadow-2xl transition-all duration-300 hover:scale-110 group relative border border-white/20" aria-label="Call Support">
+            <span class="absolute right-16 bg-brand-dark text-white text-xs px-3 py-1.5 rounded-lg whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-300 font-medium">Free Corporate Audit</span>
+            <i class="ph-fill ph-phone text-2xl"></i>
+        </a>
+    </div>
+
+    <!-- Top Announcement Ribbon -->
+    <div class="bg-brand-dark text-gray-300 py-3.5 px-4 text-xs font-medium flex flex-col lg:flex-row justify-between items-center gap-3 border-b border-white/5 relative z-50">
+        <div class="max-w-7xl mx-auto w-full flex flex-col md:flex-row justify-between items-center gap-2">
+            <div class="flex items-center gap-2 text-brand-accent">
+                <span class="inline-block w-2.5 h-2.5 rounded-full bg-brand-accent animate-ping"></span>
+                <span class="font-extrabold tracking-wider uppercase">Global Standards &amp; Corporate Compliance Support</span>
+            </div>
+            <div class="flex flex-wrap justify-center items-center gap-x-6 gap-y-2">
+                <a href="mailto:info@biosafenterprises.com" class="hover:text-brand-accent transition-colors flex items-center gap-1.5"><i class="ph ph-envelope-simple text-sm"></i> info@biosafenterprises.com</a>
+                <span class="hidden md:inline text-white/20">|</span>
+                <div class="flex items-center gap-2">
+                    <i class="ph ph-phone text-sm"></i>
+                    <a href="tel:+923326079992" class="hover:text-brand-accent transition-colors">+92 332 6079992</a>
+                    <span class="text-gray-500">/</span>
+                    <a href="tel:+923460334449" class="hover:text-brand-accent transition-colors">+92 346 0334449</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating Luxury Header -->
+    <header class="absolute top-14 left-0 right-0 z-40 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto glass-panel rounded-full px-8 py-4 flex justify-between items-center shadow-2xl relative transition-all duration-300 hover:border-brand-accent/20">
+            <!-- Brand Logo -->
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="bg-brand-accent text-brand-dark rounded-full p-2.5 transition-transform duration-500 group-hover:rotate-[360deg] shadow-lg shadow-brand-accent/20">
+                    <i class="ph-bold ph-shield-check text-xl"></i>
+                </div>
+                <div class="flex flex-col">
+                    <span class="text-xl font-extrabold tracking-tight text-white leading-none">BIOSAF <span class="text-brand-accent font-light">ENTERPRISES</span></span>
+                    <span class="text-[9px] tracking-[0.22em] text-gray-400 uppercase font-bold mt-1">Scientific &amp; Environmental Solutions</span>
+                </div>
+            </a>
+
+            <!-- Corporate Navigation -->
+            <nav class="hidden md:flex space-x-8 font-semibold text-sm text-gray-200">
+                <a href="index.html" class="nav-link hover:text-brand-accent transition-colors">Home</a>
+                <a href="about.html" class="nav-link hover:text-brand-accent transition-colors">About Us</a>
+                <a href="divisions.html" class="nav-link hover:text-brand-accent transition-colors">Divisions</a>
+                <a href="#industries" class="nav-link hover:text-brand-accent transition-colors">Industries</a>
+                <a href="#process" class="nav-link hover:text-brand-accent transition-colors">Process</a>
+            </nav>
+
+            <!-- Actions and Sign In -->
+            <div class="hidden md:flex items-center gap-6">
+                <a href="#contact" class="text-sm font-semibold text-gray-300 hover:text-brand-accent transition-colors">Sign In</a>
+                <a href="#contact" class="bg-brand-accent hover:bg-brand-accentHover text-brand-dark px-7 py-3 rounded-full font-extrabold text-xs tracking-wider transition-all duration-300 hover:shadow-[0_0_20px_rgba(211,243,64,0.35)] hover:-translate-y-0.5 flex items-center gap-2">
+                    REQUEST A QUOTE
+                    <i class="ph-bold ph-paper-plane-tilt text-sm"></i>
+                </a>
+            </div>
+
+            <!-- Mobile Menu Toggle -->
+            <button class="md:hidden text-white p-2 hover:text-brand-accent transition-colors" id="mobile-menu-btn" aria-label="Toggle Menu">
+                <i class="ph ph-list text-2xl"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Drawer -->
+        <div id="mobile-drawer" class="hidden md:hidden mt-3 mx-2 bg-brand-primary/95 backdrop-blur-xl border border-white/10 rounded-3xl p-6 shadow-2xl relative z-50">
+            <nav class="flex flex-col space-y-4">
+                <a href="#home" class="text-white hover:text-brand-accent text-lg font-medium transition-colors border-b border-white/5 pb-2">Home</a>
+                <a href="#about" class="text-white hover:text-brand-accent text-lg font-medium transition-colors border-b border-white/5 pb-2">About Us</a>
+                <a href="#divisions" class="text-white hover:text-brand-accent text-lg font-medium transition-colors border-b border-white/5 pb-2">Divisions</a>
+                <a href="#industries" class="text-white hover:text-brand-accent text-lg font-medium transition-colors border-b border-white/5 pb-2">Industries</a>
+                <a href="#process" class="text-white hover:text-brand-accent text-lg font-medium transition-colors pb-2">Process</a>
+                
+                <div class="pt-4 border-t border-white/10 flex flex-col gap-4">
+                    <a href="#contact" class="bg-brand-accent text-brand-dark text-center py-3.5 rounded-full font-bold">
+                        Request Quote
+                    </a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Showcase Section -->
+    <section id="home" class="relative pt-48 pb-28 sm:pt-56 sm:pb-36 lg:pt-60 lg:pb-48 bg-brand-dark overflow-hidden">
+        <!-- Background Assets Grid & Ambient Glows -->
+        <div class="absolute inset-0 z-0">
+            <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(11,51,31,0.65),transparent_60%)]"></div>
+            <div class="absolute bottom-[-10%] left-[-10%] w-[55%] h-[55%] bg-[radial-gradient(circle,rgba(211,243,64,0.08),transparent_70%)]"></div>
+            <!-- Fine alignment matrix grid -->
+            <div class="absolute inset-0 opacity-[0.03] bg-[linear-gradient(to_right,#808080_1px,transparent_1px),linear-gradient(to_bottom,#808080_1px,transparent_1px)] bg-[size:24px_24px]"></div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <!-- Breadcrumbs -->
+            <nav class="flex items-center gap-2.5 text-xs font-semibold uppercase tracking-widest text-gray-400 mb-8">
+                <a href="#" class="hover:text-brand-accent transition-colors">Home</a>
+                <i class="ph ph-caret-right text-[10px]"></i>
+                <span class="text-brand-accent font-bold">Solutions Overview</span>
+            </nav>
+
+            <div class="grid lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+                <!-- Hero Core Copy -->
+                <div class="lg:col-span-7 space-y-8">
+                    <div class="inline-flex items-center gap-2 bg-white/5 border border-white/10 text-white px-4 py-2 rounded-full text-xs font-semibold tracking-wider uppercase backdrop-blur-sm">
+                        <span class="w-2.5 h-2.5 rounded-full bg-brand-accent animate-pulse"></span>
+                        Trusted Scientific Advisory &amp; Operations
+                    </div>
+                    
+                    <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold text-white leading-[1.1] tracking-tight">
+                        Integrated Laboratory, <br class="hidden sm:inline" />
+                        Food Safety &amp; <span class="text-brand-accent italic font-serif">Pest Solutions</span>
+                    </h1>
+                    
+                    <p class="text-lg text-gray-300 max-w-xl leading-relaxed">
+                        Helping progressive businesses achieve global quality standards, food security, compliance validation, and pest-free environments with customized operational methodologies.
+                    </p>
+
+                    <!-- CTAs -->
+                    <div class="flex flex-col sm:flex-row gap-4 pt-4">
+                        <a href="#contact" class="bg-brand-accent hover:bg-brand-accentHover text-brand-dark px-8 py-5 rounded-full font-extrabold text-base transition-all duration-300 flex items-center justify-center gap-3 shadow-[0_15px_30px_rgba(211,243,64,0.25)] hover:-translate-y-1 group">
+                            Request Quote
+                            <i class="ph-bold ph-arrow-right text-lg group-hover:translate-x-1 transition-transform"></i>
+                        </a>
+                        <a href="#divisions" class="bg-white/5 hover:bg-white/10 text-white border border-white/15 px-8 py-5 rounded-full font-semibold text-base transition-all duration-300 flex items-center justify-center gap-2 backdrop-blur-md">
+                            Explore Services
+                            <i class="ph ph-caret-double-down"></i>
+                        </a>
+                    </div>
+
+                    <!-- Strategic Numbers -->
+                    <div class="pt-8 border-t border-white/10 grid grid-cols-3 gap-6 max-w-lg">
+                        <div>
+                            <h3 class="text-3xl font-extrabold text-white">15+</h3>
+                            <p class="text-xs text-gray-400 mt-1">Years Experience</p>
+                        </div>
+                        <div>
+                            <h3 class="text-3xl font-extrabold text-brand-accent">500+</h3>
+                            <p class="text-xs text-gray-400 mt-1">Projects Completed</p>
+                        </div>
+                        <div>
+                            <h3 class="text-3xl font-extrabold text-white">100+</h3>
+                            <p class="text-xs text-gray-400 mt-1">Business Clients</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hero Interactive Right Aspect (Layered Graphics) -->
+                <div class="lg:col-span-5 relative mt-8 lg:mt-0">
+                    <div class="relative mx-auto max-w-[420px] lg:max-w-none">
+                        <!-- Floating ambient glows -->
+                        <div class="absolute -top-12 -left-12 w-48 h-48 bg-brand-accent rounded-full opacity-10 blur-3xl"></div>
+                        <div class="absolute -bottom-12 -right-12 w-56 h-56 bg-brand-secondary rounded-full opacity-20 blur-3xl"></div>
+
+                        <!-- Main Grid Image Frame -->
+                        <div class="relative z-10 rounded-[2.5rem] overflow-hidden border border-white/10 shadow-2xl animate-float">
+                            <img src="https://images.unsplash.com/photo-1579154204601-01588f351167?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Scientific Research Laboratory and Testing" class="w-full object-cover aspect-[4/5]" />
+                            <div class="absolute inset-0 bg-gradient-to-t from-brand-dark via-transparent to-transparent"></div>
+                        </div>
+
+                        <!-- Floating Badges -->
+                        <div class="absolute -bottom-6 -left-6 z-20 bg-white rounded-3xl p-6 shadow-2xl border border-gray-100 flex items-center gap-4 transition-transform duration-300 hover:scale-105">
+                            <div class="w-12 h-12 bg-brand-accent rounded-2xl flex items-center justify-center text-brand-dark">
+                                <i class="ph-fill ph-certificate text-2xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-black text-brand-dark leading-none">98%</h4>
+                                <p class="text-xs text-gray-500 font-semibold mt-1">Satisfaction Rate</p>
+                            </div>
+                        </div>
+
+                        <div class="absolute top-12 -right-6 z-20 glass-panel text-white py-3 px-5 rounded-2xl border border-white/20 flex items-center gap-2 shadow-xl backdrop-blur-md">
+                            <i class="ph-fill ph-dna text-brand-accent text-xl"></i>
+                            <span class="text-xs font-bold tracking-wide">Scientific Standards</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Company Overview & Philosophy -->
+    <section id="about" class="py-24 lg:py-36 px-4 sm:px-6 lg:px-8 bg-white relative overflow-hidden">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid lg:grid-cols-12 gap-12 lg:gap-20 items-center">
+                <!-- Left Stack Images -->
+                <div class="lg:col-span-6 relative reveal">
+                    <div class="relative grid grid-cols-12 gap-4">
+                        <div class="col-span-10 rounded-[2rem] overflow-hidden shadow-2xl relative">
+                            <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Advanced Safety Auditing Personnel" class="w-full object-cover aspect-[4/5]" />
+                            <div class="absolute inset-0 bg-brand-primary/10"></div>
+                        </div>
+                        <!-- Inset Overlay Image representing industrial operations -->
+                        <div class="absolute bottom-[-30px] right-0 col-span-5 w-[200px] sm:w-[240px] rounded-3xl overflow-hidden shadow-2xl border-4 border-white">
+                            <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Consultation meeting on safety" class="w-full aspect-square object-cover" />
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Copy Space -->
+                <div class="lg:col-span-6 space-y-6 reveal">
+                    <div class="inline-flex items-center gap-2 text-brand-primary font-bold text-xs uppercase tracking-widest bg-brand-light px-3.5 py-1.5 rounded-full">
+                        <i class="ph-fill ph-atom"></i> Corporate Profile
+                    </div>
+                    
+                    <h2 class="text-3xl sm:text-5xl font-black text-brand-dark leading-tight">
+                        Delivering Safe Environments &amp; Quality Systems
+                    </h2>
+                    
+                    <div class="space-y-4 text-gray-600 leading-relaxed text-base">
+                        <p class="font-medium text-brand-primary">
+                            BIOSAF Enterprises is a distinguished professional services and scientific trading company configured to align physical structures with strict international quality norms.
+                        </p>
+                        <p>
+                            We specialize in configuring robust pest control frameworks, implementing global certifications, planning custom food safety systems, and procuring certified laboratory assets. Our mission is to secure human health, preserve resource values, and sustain regulatory compliance benchmarks.
+                        </p>
+                    </div>
+
+                    <!-- Vision & Mission Inner Grid -->
+                    <div class="grid sm:grid-cols-2 gap-6 pt-6 border-t border-gray-100">
+                        <div class="space-y-2">
+                            <div class="flex items-center gap-2 font-extrabold text-brand-dark">
+                                <i class="ph-bold ph-eye text-brand-primary text-xl"></i>
+                                <span>Our Vision</span>
+                            </div>
+                            <p class="text-xs text-gray-500 leading-relaxed">To be the region's premium scientific choice in engineering technical, biological, and system certifications.</p>
+                        </div>
+                        <div class="space-y-2">
+                            <div class="flex items-center gap-2 font-extrabold text-brand-dark">
+                                <i class="ph-bold ph-target text-brand-primary text-xl"></i>
+                                <span>Our Mission</span>
+                            </div>
+                            <p class="text-xs text-gray-500 leading-relaxed">Providing high-grade equipment, tailored environmental compliance setups, and strategic audits that shield clients' reputations.</p>
+                        </div>
+                    </div>
+
+                    <!-- Core Values Bullets -->
+                    <div class="pt-4 flex flex-wrap gap-x-6 gap-y-2 text-xs font-bold text-brand-dark">
+                        <span class="flex items-center gap-1.5"><i class="ph-fill ph-seal-check text-brand-secondary"></i> Scientific Integrity</span>
+                        <span class="flex items-center gap-1.5"><i class="ph-fill ph-seal-check text-brand-secondary"></i> Client Security</span>
+                        <span class="flex items-center gap-1.5"><i class="ph-fill ph-seal-check text-brand-secondary"></i> Continuous Innovation</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Business Divisions Section -->
+    <section id="divisions" class="py-24 lg:py-36 bg-brand-dark text-white relative overflow-hidden">
+        <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,rgba(11,51,31,0.5),transparent_50%)]"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="max-w-3xl mx-auto text-center mb-20 reveal">
+                <span class="text-brand-accent text-xs font-extrabold tracking-widest uppercase bg-white/5 border border-white/10 px-4 py-2 rounded-full inline-block">
+                    Operational Core Capabilities
+                </span>
+                <h2 class="text-3xl sm:text-5xl font-extrabold mt-6 mb-4">
+                    Our Business Divisions
+                </h2>
+                <p class="text-gray-400">BIOSAF organizes and deploys multi-disciplinary technical solutions across four critical sectors of progressive commerce.</p>
+            </div>
+
+            <!-- Divisions Matrix -->
+            <div class="grid lg:grid-cols-4 md:grid-cols-2 gap-8">
+                
+                <!-- Division 1 -->
+                <div class="glass-panel rounded-[2rem] p-8 glow-hover flex flex-col justify-between group reveal">
+                    <div>
+                        <div class="w-14 h-14 bg-brand-accent/10 rounded-2xl flex items-center justify-center text-brand-accent mb-6 group-hover:bg-brand-accent group-hover:text-brand-dark transition-all duration-300">
+                            <i class="ph-fill ph-bug text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Pest Management &amp; Fumigation</h3>
+                        <p class="text-gray-400 text-xs leading-relaxed mb-6">Expert termite management, vector control, rodent blockades, food facility sanitation protocols, and complex warehouse fumigations.</p>
+                    </div>
+                    <ul class="space-y-2 text-[11px] text-gray-300 border-t border-white/10 pt-4">
+                        <li class="flex items-center gap-1.5"><i class="ph ph-check text-brand-accent"></i> Annual Maintenance Plans</li>
+                        <li class="flex items-center gap-1.5"><i class="ph ph-check text-brand-accent"></i> Termite Proofing Foundations</li>
+                        <li class="flex items-center gap-1.5"><i class="ph ph-check text-brand-accent"></i> Rodent &amp; Insect Control</li>
+                    </ul>
+                </div>
+
+                <!-- Division 2 -->
+                <div class="glass-panel rounded-[2rem] p-8 glow-hover flex flex-col justify-between group reveal">
+                    <div>
+                        <div class="w-14 h-14 bg-brand-accent/10 rounded-2xl flex items-center justify-center text-brand-accent mb-6 group-hover:bg-brand-accent group-hover:text-brand-dark transition-all duration-300">
+                            <i class="ph-fill ph-certificate text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">ISO Certification Support</h3>
+                        <p class="text-gray-400 text-xs leading-relaxed mb-6">Execution of system architectures for ISO 9001, ISO 22000, ISO 14001, ISO 45001, internal gap audits, and compliance documentation.</p>
+                    </div>
+                    <ul class="space-y-2 text-[11px] text-gray-300 border-t border-white/10 pt-4">
+                        <li class="flex items-center gap-1.5"><i class="ph ph-check text-brand-accent"></i> ISO Standard SOP Design</li>
+                        <li class="flex items-center gap-1.5"><i class="ph ph-check text-brand-accent"></i> Pre-Audit Appraisals</li>
+                        <li class="flex items-center gap-1.5"><i class="ph ph-check text-brand-accent"></i> Policy System Writing</li>
+                    </ul>
+                </div>
+
+                <!-- Division 3 -->
+                <div class="glass-panel rounded-[2rem] p-8 glow-hover flex flex-col justify-between group reveal">
+                    <div>
+                        <div class="w-14 h-14 bg-brand-accent/10 rounded-2xl flex items-center justify-center text-brand-accent mb-6 group-hover:bg-brand-accent group-hover:text-brand-dark transition-all duration-300">
+                            <i class="ph-fill ph-activity text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Food Safety Systems</h3>
+                        <p class="text-gray-400 text-xs leading-relaxed mb-6">Formulating structured hazard risk audits, establishing SSOP blueprints, mapping safety manuals, and coordinating regulatory certification readiness.</p>
+                    </div>
+                    <ul class="space-y-2 text-[11px] text-gray-300 border-t border-white/10 pt-4">
+                        <li class="flex items-center gap-1.5"><i class="ph ph-check text-brand-accent"></i> HACCP Plan Setup</li>
+                        <li class="flex items-center gap-1.5"><i class="ph ph-check text-brand-accent"></i> Risk Mitigation Studies</li>
+                        <li class="flex items-center gap-1.5"><i class="ph ph-check text-brand-accent"></i> Staff Competency Training</li>
+                    </ul>
+                </div>
+
+                <!-- Division 4 -->
+                <div class="glass-panel rounded-[2rem] p-8 glow-hover flex flex-col justify-between group reveal">
+                    <div>
+                        <div class="w-14 h-14 bg-brand-accent/10 rounded-2xl flex items-center justify-center text-brand-accent mb-6 group-hover:bg-brand-accent group-hover:text-brand-dark transition-all duration-300">
+                            <i class="ph-fill ph-flask text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Laboratory Equipment Sales</h3>
+                        <p class="text-gray-400 text-xs leading-relaxed mb-6">End-to-end procurement and supply of scientific hardware, glassware, testing reagents, furniture modules, and analytical kits.</p>
+                    </div>
+                    <ul class="space-y-2 text-[11px] text-gray-300 border-t border-white/10 pt-4">
+                        <li class="flex items-center gap-1.5"><i class="ph ph-check text-brand-accent"></i> Water &amp; Food Testing Kits</li>
+                        <li class="flex items-center gap-1.5"><i class="ph ph-check text-brand-accent"></i> Premium Glassware Sets</li>
+                        <li class="flex items-center gap-1.5"><i class="ph ph-check text-brand-accent"></i> Consumables &amp; Lab Spares</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose BIOSAF Section -->
+    <section class="py-24 lg:py-36 bg-white relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-12 gap-12 lg:gap-20 items-center">
+                <!-- Left Details -->
+                <div class="lg:col-span-5 relative reveal">
+                    <div class="space-y-6">
+                        <div class="inline-flex items-center gap-2 text-brand-primary font-bold text-xs uppercase tracking-widest bg-brand-light px-3.5 py-1.5 rounded-full">
+                            <i class="ph-fill ph-crown"></i> Technical Values
+                        </div>
+                        <h2 class="text-3xl sm:text-5xl font-extrabold text-brand-dark leading-tight">
+                            Why Choose BIOSAF Enterprises?
+                        </h2>
+                        <p class="text-gray-600 leading-relaxed">
+                            We bridge complex regulatory objectives with actionable physical methodologies. Our standard operates to match international agencies, validating safe conditions for heavy industries.
+                        </p>
+                    </div>
+                    <div class="mt-8 border-l-4 border-brand-accent pl-6 py-2">
+                        <p class="font-serif italic text-xl text-brand-primary">
+                            "We construct permanent resilience and global audit readiness across physical installations."
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Right Feature Grid -->
+                <div class="lg:col-span-7 grid sm:grid-cols-2 gap-6 reveal">
+                    
+                    <!-- Item 1 -->
+                    <div class="bg-[#F8FAF6] p-8 rounded-3xl border border-gray-100 transition-all duration-300 hover:bg-white hover:shadow-xl hover:border-brand-accent/20 group">
+                        <div class="w-12 h-12 bg-brand-primary rounded-xl flex items-center justify-center text-brand-accent mb-6 group-hover:scale-110 transition-transform">
+                            <i class="ph-bold ph-graduation-cap text-xl"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-brand-dark mb-2">Experienced Professionals</h3>
+                        <p class="text-gray-500 text-xs leading-relaxed">A certified lineup of chemical experts, ISO lead auditors, and safety engineers.</p>
+                    </div>
+
+                    <!-- Item 2 -->
+                    <div class="bg-[#F8FAF6] p-8 rounded-3xl border border-gray-100 transition-all duration-300 hover:bg-white hover:shadow-xl hover:border-brand-accent/20 group">
+                        <div class="w-12 h-12 bg-brand-primary rounded-xl flex items-center justify-center text-brand-accent mb-6 group-hover:scale-110 transition-transform">
+                            <i class="ph-bold ph-gear-six text-xl"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-brand-dark mb-2">Complete Technical Solutions</h3>
+                        <p class="text-gray-500 text-xs leading-relaxed">Handling hardware supply, validation protocols, and insect barrier operations natively.</p>
+                    </div>
+
+                    <!-- Item 3 -->
+                    <div class="bg-[#F8FAF6] p-8 rounded-3xl border border-gray-100 transition-all duration-300 hover:bg-white hover:shadow-xl hover:border-brand-accent/20 group">
+                        <div class="w-12 h-12 bg-brand-primary rounded-xl flex items-center justify-center text-brand-accent mb-6 group-hover:scale-110 transition-transform">
+                            <i class="ph-bold ph-globe-hemisphere-west text-xl"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-brand-dark mb-2">International Standards</h3>
+                        <p class="text-gray-500 text-xs leading-relaxed">Perfect alignment with WHO, EPA, FDA, and global regulatory food safety metrics.</p>
+                    </div>
+
+                    <!-- Item 4 -->
+                    <div class="bg-[#F8FAF6] p-8 rounded-3xl border border-gray-100 transition-all duration-300 hover:bg-white hover:shadow-xl hover:border-brand-accent/20 group">
+                        <div class="w-12 h-12 bg-brand-primary rounded-xl flex items-center justify-center text-brand-accent mb-6 group-hover:scale-110 transition-transform">
+                            <i class="ph-bold ph-headset text-xl"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-brand-dark mb-2">Reliable Technical Support</h3>
+                        <p class="text-gray-500 text-xs leading-relaxed">Comprehensive follow-up audits, emergency dispatches, and responsive consultants.</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Industries We Serve Section -->
+    <section id="industries" class="py-24 lg:py-36 bg-brand-light relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-16 reveal">
+                <span class="text-brand-primary text-xs font-bold tracking-widest uppercase bg-white border border-gray-100 px-4 py-2 rounded-full inline-block mb-4">
+                    Sectors Covered
+                </span>
+                <h2 class="text-3xl sm:text-5xl font-extrabold text-brand-dark">Industries We Serve</h2>
+                <p class="text-gray-600 mt-4">Compliance-driven environmental systems tailored for critical scientific and industrial structures.</p>
+            </div>
+
+            <!-- Industries Interactive Grid -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 reveal">
+                
+                <!-- Food Manufacturing -->
+                <div class="bg-white rounded-3xl p-8 border border-gray-100 text-center transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 group cursor-pointer relative overflow-hidden">
+                    <div class="absolute inset-0 bg-gradient-to-b from-brand-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                    <div class="w-16 h-16 bg-brand-light rounded-2xl flex items-center justify-center text-brand-primary mx-auto mb-6 transition-all duration-300 group-hover:bg-brand-primary group-hover:text-brand-accent shadow-sm">
+                        <i class="ph-fill ph-cookie text-3xl"></i>
+                    </div>
+                    <h3 class="font-extrabold text-brand-dark text-lg mb-2">Food Manufacturing</h3>
+                    <p class="text-xs text-gray-500 leading-relaxed">Processing lines requiring HACCP &amp; strict sanitary controls.</p>
+                </div>
+
+                <!-- Pharmaceuticals -->
+                <div class="bg-white rounded-3xl p-8 border border-gray-100 text-center transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 group cursor-pointer relative overflow-hidden">
+                    <div class="absolute inset-0 bg-gradient-to-b from-brand-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                    <div class="w-16 h-16 bg-brand-light rounded-2xl flex items-center justify-center text-brand-primary mx-auto mb-6 transition-all duration-300 group-hover:bg-brand-primary group-hover:text-brand-accent shadow-sm">
+                        <i class="ph-fill ph-pill text-3xl"></i>
+                    </div>
+                    <h3 class="font-extrabold text-brand-dark text-lg mb-2">Pharmaceuticals</h3>
+                    <p class="text-xs text-gray-500 leading-relaxed">Sterile zones requiring certified particle and pest control.</p>
+                </div>
+
+                <!-- Hospitals & Labs -->
+                <div class="bg-white rounded-3xl p-8 border border-gray-100 text-center transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 group cursor-pointer relative overflow-hidden">
+                    <div class="absolute inset-0 bg-gradient-to-b from-brand-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                    <div class="w-16 h-16 bg-brand-light rounded-2xl flex items-center justify-center text-brand-primary mx-auto mb-6 transition-all duration-300 group-hover:bg-brand-primary group-hover:text-brand-accent shadow-sm">
+                        <i class="ph-fill ph-hospital text-3xl"></i>
+                    </div>
+                    <h3 class="font-extrabold text-brand-dark text-lg mb-2">Hospitals &amp; Labs</h3>
+                    <p class="text-xs text-gray-500 leading-relaxed">High-level pathogen protection and premium analyzer supplies.</p>
+                </div>
+
+                <!-- Warehouses -->
+                <div class="bg-white rounded-3xl p-8 border border-gray-100 text-center transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 group cursor-pointer relative overflow-hidden">
+                    <div class="absolute inset-0 bg-gradient-to-b from-brand-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                    <div class="w-16 h-16 bg-brand-light rounded-2xl flex items-center justify-center text-brand-primary mx-auto mb-6 transition-all duration-300 group-hover:bg-brand-primary group-hover:text-brand-accent shadow-sm">
+                        <i class="ph-fill ph-warehouse text-3xl"></i>
+                    </div>
+                    <h3 class="font-extrabold text-brand-dark text-lg mb-2">Warehouses</h3>
+                    <p class="text-xs text-gray-500 leading-relaxed">Raw commodity security and custom gas fumigation barriers.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Systematic Process Section (How We Work) -->
+    <section id="process" class="py-24 lg:py-36 bg-brand-dark text-white relative overflow-hidden">
+        <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(11,51,31,0.6),transparent_60%)]"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center max-w-2xl mx-auto mb-20 reveal">
+                <span class="text-brand-accent text-xs font-bold tracking-widest uppercase bg-white/5 border border-white/10 px-4 py-2 rounded-full inline-block mb-4">
+                    Rigorous Workflow
+                </span>
+                <h2 class="text-3xl sm:text-5xl font-extrabold">Our Systematic Process</h2>
+                <p class="text-gray-400 mt-4">A standard-driven methodology ensuring full audit compliance from evaluation to validation.</p>
+            </div>
+
+            <!-- Intersecting Flow Grid -->
+            <div class="grid md:grid-cols-6 gap-6 relative">
+                
+                <!-- Step 1 -->
+                <div class="bg-white/5 border border-white/10 rounded-3xl p-6 hover:bg-white/10 transition-colors relative group reveal">
+                    <div class="absolute -top-4 left-6 w-9 h-9 bg-brand-accent text-brand-dark rounded-xl flex items-center justify-center font-black text-sm shadow-md">
+                        01
+                    </div>
+                    <h3 class="text-base font-bold mt-2 mb-2">Consultation</h3>
+                    <p class="text-gray-400 text-[11px] leading-relaxed">Understanding exact operational standards, compliance goals, and hardware requirements.</p>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="bg-white/5 border border-white/10 rounded-3xl p-6 hover:bg-white/10 transition-colors relative group reveal">
+                    <div class="absolute -top-4 left-6 w-9 h-9 bg-brand-accent text-brand-dark rounded-xl flex items-center justify-center font-black text-sm shadow-md">
+                        02
+                    </div>
+                    <h3 class="text-base font-bold mt-2 mb-2">Assessment</h3>
+                    <p class="text-gray-400 text-[11px] leading-relaxed">Conducting deep site reviews, thermal tracking scans, and GAP audits.</p>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="bg-white/5 border border-white/10 rounded-3xl p-6 hover:bg-white/10 transition-colors relative group reveal">
+                    <div class="absolute -top-4 left-6 w-9 h-9 bg-brand-accent text-brand-dark rounded-xl flex items-center justify-center font-black text-sm shadow-md">
+                        03
+                    </div>
+                    <h3 class="text-base font-bold mt-2 mb-2">Planning</h3>
+                    <p class="text-gray-400 text-[11px] leading-relaxed">Formulating custom technical maps, safety schedules, and documentation drafts.</p>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="bg-white/5 border border-white/10 rounded-3xl p-6 hover:bg-white/10 transition-colors relative group reveal">
+                    <div class="absolute -top-4 left-6 w-9 h-9 bg-brand-accent text-brand-dark rounded-xl flex items-center justify-center font-black text-sm shadow-md">
+                        04
+                    </div>
+                    <h3 class="text-base font-bold mt-2 mb-2">Execution</h3>
+                    <p class="text-gray-400 text-[11px] leading-relaxed">Deploying qualified operators to treat facilities and supply precision apparatus.</p>
+                </div>
+
+                <!-- Step 5 -->
+                <div class="bg-white/5 border border-white/10 rounded-3xl p-6 hover:bg-white/10 transition-colors relative group reveal">
+                    <div class="absolute -top-4 left-6 w-9 h-9 bg-brand-accent text-brand-dark rounded-xl flex items-center justify-center font-black text-sm shadow-md">
+                        05
+                    </div>
+                    <h3 class="text-base font-bold mt-2 mb-2">Training</h3>
+                    <p class="text-gray-400 text-[11px] leading-relaxed">Conducting user training modules and transferring regulatory safety checklists.</p>
+                </div>
+
+                <!-- Step 6 -->
+                <div class="bg-white/5 border border-white/10 rounded-3xl p-6 hover:bg-white/10 transition-colors relative group reveal">
+                    <div class="absolute -top-4 left-6 w-9 h-9 bg-brand-accent text-brand-dark rounded-xl flex items-center justify-center font-black text-sm shadow-md">
+                        06
+                    </div>
+                    <h3 class="text-base font-bold mt-2 mb-2">Efficacy Check</h3>
+                    <p class="text-gray-400 text-[11px] leading-relaxed">Performing periodic verification reviews to sustain quality system status.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Slider Section -->
+    <section class="py-24 lg:py-36 bg-white relative overflow-hidden">
+        <div class="max-w-4xl mx-auto px-4 text-center relative z-10">
+            <span class="text-brand-primary text-xs font-bold tracking-widest uppercase bg-brand-light px-4 py-2 rounded-full inline-block mb-8">
+                Corporate Endorsements
+            </span>
+            
+            <!-- Slider container -->
+            <div class="relative min-h-[250px] flex items-center justify-center">
+                <div id="testimonial-container" class="transition-opacity duration-500 ease-in-out opacity-100">
+                    <div class="flex justify-center mb-6">
+                        <div class="flex text-brand-accent">
+                            <i class="ph-fill ph-star text-2xl bg-brand-primary p-1 rounded-md"></i>
+                            <i class="ph-fill ph-star text-2xl bg-brand-primary p-1 rounded-md ml-1"></i>
+                            <i class="ph-fill ph-star text-2xl bg-brand-primary p-1 rounded-md ml-1"></i>
+                            <i class="ph-fill ph-star text-2xl bg-brand-primary p-1 rounded-md ml-1"></i>
+                            <i class="ph-fill ph-star text-2xl bg-brand-primary p-1 rounded-md ml-1"></i>
+                        </div>
+                    </div>
+                    <p id="testimonial-text" class="font-serif italic text-2xl sm:text-3xl text-brand-dark leading-relaxed mb-8 max-w-3xl">
+                        "BIOSAF transformed our quality compliance map. Their team handled our laboratory procurement and ISO certification prep under a single, integrated plan. Simply top-tier."
+                    </p>
+                    <div>
+                        <h4 id="testimonial-author" class="font-extrabold text-brand-primary text-lg">Zia Ur Rehman</h4>
+                        <p id="testimonial-role" class="text-xs text-gray-500 uppercase tracking-widest mt-1">EHS Manager, PharmaCorp Pakistan</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Navigation Controls -->
+            <div class="flex justify-center gap-4 mt-8">
+                <button id="prev-testimonial-btn" aria-label="Previous Review" class="w-12 h-12 rounded-full bg-brand-light text-brand-dark hover:bg-brand-primary hover:text-white transition-colors flex items-center justify-center">
+                    <i class="ph-bold ph-caret-left text-lg"></i>
+                </button>
+                <button id="next-testimonial-btn" aria-label="Next Review" class="w-12 h-12 rounded-full bg-brand-light text-brand-dark hover:bg-brand-primary hover:text-white transition-colors flex items-center justify-center">
+                    <i class="ph-bold ph-caret-right text-lg"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Latest Knowledge Center / Blog Section -->
+    <section class="py-24 lg:py-36 bg-brand-light relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-3xl mx-auto text-center mb-16 reveal">
+                <span class="text-brand-primary text-xs font-bold tracking-widest uppercase bg-white border border-gray-100 px-4 py-2 rounded-full inline-block mb-4">
+                    Technical Knowledge Center
+                </span>
+                <h2 class="text-3xl sm:text-5xl font-extrabold text-brand-dark">Scientific Insights</h2>
+                <p class="text-gray-600 mt-4">Read expert assessments, updates on international quality controls, and scientific protection guidelines.</p>
+            </div>
+
+            <!-- Blog Grid -->
+            <div class="grid md:grid-cols-3 gap-8 reveal">
+                
+                <!-- Article 1 -->
+                <div class="bg-white rounded-3xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 group flex flex-col h-full justify-between">
+                    <div>
+                        <div class="overflow-hidden relative aspect-[16/10]">
+                            <img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="HACCP Process Execution" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                        </div>
+                        <div class="p-8">
+                            <span class="text-brand-secondary text-xs font-bold uppercase tracking-widest">Food Safety Systems</span>
+                            <h3 class="text-lg font-bold text-brand-dark mt-2 mb-3 group-hover:text-brand-secondary transition-colors">Benefits of HACCP Implementation</h3>
+                            <p class="text-gray-500 text-xs leading-relaxed">Explore how implementing Hazard Analysis Critical Control Point rules secures food manufacturing and preserves trade integrity.</p>
+                        </div>
+                    </div>
+                    <div class="px-8 pb-8">
+                        <a href="#contact" class="text-brand-primary font-bold text-xs inline-flex items-center gap-2 group-hover:text-brand-secondary">
+                            Request Guide Booklet <i class="ph-bold ph-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Article 2 -->
+                <div class="bg-white rounded-3xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 group flex flex-col h-full justify-between">
+                    <div>
+                        <div class="overflow-hidden relative aspect-[16/10]">
+                            <img src="https://images.unsplash.com/photo-1576086213369-97a306d36557?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Technical Lab Instruments" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                        </div>
+                        <div class="p-8">
+                            <span class="text-brand-secondary text-xs font-bold uppercase tracking-widest">Lab Equipment</span>
+                            <h3 class="text-lg font-bold text-brand-dark mt-2 mb-3 group-hover:text-brand-secondary transition-colors">Choosing Premium Laboratory Equipment</h3>
+                            <p class="text-gray-500 text-xs leading-relaxed">Guidelines on balancing precision calibration, testing throughput metrics, and material certifications in research purchases.</p>
+                        </div>
+                    </div>
+                    <div class="px-8 pb-8">
+                        <a href="#contact" class="text-brand-primary font-bold text-xs inline-flex items-center gap-2 group-hover:text-brand-secondary">
+                            Request Guide Booklet <i class="ph-bold ph-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Article 3 -->
+                <div class="bg-white rounded-3xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 group flex flex-col h-full justify-between">
+                    <div>
+                        <div class="overflow-hidden relative aspect-[16/10]">
+                            <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="ISO Certification Standard" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                        </div>
+                        <div class="p-8">
+                            <span class="text-brand-secondary text-xs font-bold uppercase tracking-widest">ISO Compliance</span>
+                            <h3 class="text-lg font-bold text-brand-dark mt-2 mb-3 group-hover:text-brand-secondary transition-colors">Why ISO 22000 Matters</h3>
+                            <p class="text-gray-500 text-xs leading-relaxed">Understanding the baseline requirements of the international food security chain standard from farm production to storage.</p>
+                        </div>
+                    </div>
+                    <div class="px-8 pb-8">
+                        <a href="#contact" class="text-brand-primary font-bold text-xs inline-flex items-center gap-2 group-hover:text-brand-secondary">
+                            Request Guide Booklet <i class="ph-bold ph-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Strategic Contact Section -->
+    <section id="contact" class="py-24 lg:py-36 bg-brand-light relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-brand-primary rounded-[3rem] overflow-hidden shadow-2xl border border-white/5 relative">
+                
+                <div class="grid lg:grid-cols-12 items-stretch">
+                    <!-- Text Frame -->
+                    <div class="lg:col-span-7 p-8 md:p-16 text-white space-y-6 relative z-10 flex flex-col justify-center">
+                        <i class="ph-fill ph-chat-circle-dots text-brand-accent text-5xl"></i>
+                        <h2 class="text-3xl sm:text-5xl font-black leading-tight">Need Professional <br class="hidden sm:inline"/>Technical Solutions?</h2>
+                        <p class="text-gray-300 leading-relaxed text-base max-w-xl">
+                            Our corporate specialists are prepared to audit your organization. Reach out today for laboratory equipment, food safety setups, ISO implementation, or pest management plans.
+                        </p>
+                        
+                        <div class="flex flex-col sm:flex-row gap-4 pt-4">
+                            <a href="tel:+923326079992" class="bg-brand-accent hover:bg-brand-accentHover text-brand-dark px-8 py-4 rounded-full font-bold transition-all text-sm flex items-center justify-center gap-2">
+                                <i class="ph-fill ph-phone-call"></i> Call +92 332 6079992
+                            </a>
+                            <a href="mailto:info@biosafenterprises.com" class="bg-white/10 hover:bg-white/20 border border-white/20 text-white px-8 py-4 rounded-full font-bold transition-all text-sm flex items-center justify-center gap-2 backdrop-blur-sm">
+                                <i class="ph-fill ph-envelope"></i> Email Our Support
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Lead Capture Form Frame -->
+                    <div class="lg:col-span-5 bg-white/5 border-l border-white/10 p-8 md:p-16 relative z-10 flex flex-col justify-center">
+                        <h3 class="text-white text-xl font-bold mb-6">Schedule An Assessment</h3>
+                        <form class="space-y-4" onsubmit="event.preventDefault();">
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-300 mb-1">Company / Contact Name</label>
+                                <input type="text" placeholder="e.g. BIOSAF Representative" class="w-full bg-white/5 border border-white/10 rounded-xl py-3.5 px-4 text-white placeholder-gray-500 focus:outline-none focus:border-brand-accent focus:ring-1 focus:ring-brand-accent text-xs">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-300 mb-1">Active Phone Line</label>
+                                <input type="tel" placeholder="e.g. +92 332 6079992" class="w-full bg-white/5 border border-white/10 rounded-xl py-3.5 px-4 text-white placeholder-gray-500 focus:outline-none focus:border-brand-accent focus:ring-1 focus:ring-brand-accent text-xs">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-300 mb-1">Primary Requirement</label>
+                                <select class="w-full bg-brand-primary border border-white/10 rounded-xl py-3.5 px-4 text-gray-400 focus:outline-none focus:border-brand-accent focus:ring-1 focus:ring-brand-accent text-xs">
+                                    <option class="bg-brand-primary text-white">Pest Management &amp; Fumigation</option>
+                                    <option class="bg-brand-primary text-white">ISO Certification Support</option>
+                                    <option class="bg-brand-primary text-white">Food Safety Systems Development</option>
+                                    <option class="bg-brand-primary text-white">Laboratory Equipment Sales</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="w-full bg-brand-accent hover:bg-brand-accentHover text-brand-dark font-extrabold py-4 rounded-xl transition-all text-xs tracking-wider uppercase mt-4">
+                                Request Callback
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Premium Corporate Footer -->
+    <footer class="bg-brand-dark pt-20 pb-8 px-4 sm:px-6 lg:px-8 text-gray-400 border-t-2 border-brand-accent relative overflow-hidden">
+        <!-- Ambient bottom-right glow -->
+        <div class="absolute bottom-0 right-0 w-[30%] h-[30%] bg-[radial-gradient(circle,rgba(211,243,64,0.03),transparent_70%)]"></div>
+
+        <div class="max-w-7xl mx-auto relative z-10">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+                
+                <!-- Identity -->
+                <div class="space-y-6">
+                    <a href="#" class="flex items-center gap-3">
+                        <div class="bg-brand-accent text-brand-dark rounded-full p-2">
+                            <i class="ph-fill ph-shield-check text-lg"></i>
+                        </div>
+                        <span class="text-base font-black tracking-tight text-white uppercase">BIOSAF <span class="text-brand-accent font-light">ENTERPRISES</span></span>
+                    </a>
+                    <p class="text-xs leading-relaxed">
+                        Delivering Safe Environments, Quality Systems, and Scientific Solutions for a Better Tomorrow. Setting corporate safety benchmarks.
+                    </p>
+                    <div class="flex gap-3">
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white hover:bg-brand-accent hover:text-brand-dark transition-all duration-300" aria-label="Facebook"><i class="ph-fill ph-facebook-logo text-lg"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white hover:bg-brand-accent hover:text-brand-dark transition-all duration-300" aria-label="Twitter"><i class="ph-fill ph-twitter-logo text-lg"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white hover:bg-brand-accent hover:text-brand-dark transition-all duration-300" aria-label="Instagram"><i class="ph-fill ph-instagram-logo text-lg"></i></a>
+                    </div>
+                </div>
+
+                <!-- Division links -->
+                <div>
+                    <h4 class="text-white font-extrabold text-sm tracking-wider uppercase mb-6">Our Divisions</h4>
+                    <ul class="space-y-3 text-xs">
+                        <li><a href="#divisions" class="hover:text-brand-accent transition-colors">Pest Management &amp; Fumigation</a></li>
+                        <li><a href="#divisions" class="hover:text-brand-accent transition-colors">ISO Certification Support</a></li>
+                        <li><a href="#divisions" class="hover:text-brand-accent transition-colors">Food Safety Systems</a></li>
+                        <li><a href="#divisions" class="hover:text-brand-accent transition-colors">Laboratory Equipment Sales</a></li>
+                    </ul>
+                </div>
+
+                <!-- Corporate links -->
+                <div>
+                    <h4 class="text-white font-extrabold text-sm tracking-wider uppercase mb-6">Corporate Hub</h4>
+                    <ul class="space-y-3 text-xs">
+                        <li><a href="#about" class="hover:text-brand-accent transition-colors">About Us</a></li>
+                        <li><a href="#process" class="hover:text-brand-accent transition-colors">Our Systematic Process</a></li>
+                        <li><a href="#industries" class="hover:text-brand-accent transition-colors">Industries Served</a></li>
+                        <li><a href="#contact" class="hover:text-brand-accent transition-colors">Request Callback</a></li>
+                    </ul>
+                </div>
+
+                <!-- Subscription & Opt-In -->
+                <div class="space-y-4">
+                    <h4 class="text-white font-extrabold text-sm tracking-wider uppercase mb-6">Newsletter Program</h4>
+                    <p class="text-xs text-gray-500">Opt-in to receive regulatory, ISO updates and pest safety alerts directly.</p>
+                    <form class="space-y-3" onsubmit="event.preventDefault();">
+                        <input type="email" required placeholder="Enter professional email" class="w-full bg-white/5 border border-white/10 rounded-xl py-3 px-4 text-white text-xs focus:outline-none focus:border-brand-accent">
+                        <label class="flex items-start gap-2.5 text-[11px] text-gray-500 cursor-pointer select-none">
+                            <input type="checkbox" class="mt-0.5 rounded bg-white/5 border-white/15 text-brand-accent focus:ring-brand-accent">
+                            <span>I opt-in to receive BIOSAF system status and updates.</span>
+                        </label>
+                        <button type="submit" class="w-full bg-white/10 hover:bg-brand-accent hover:text-brand-dark text-white font-bold py-3 rounded-xl transition-all text-xs tracking-wider uppercase">
+                            Join Loop
+                        </button>
+                    </form>
+                </div>
+
+            </div>
+
+            <!-- Footer Baseline -->
+            <div class="border-t border-white/5 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-gray-500">
+                <p>&copy; 2026 BIOSAF Enterprises. All rights reserved. Designed to Standard Corporate Specifications.</p>
+                <div class="flex items-center gap-6">
+                    <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
+                    <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
+                    <div class="flex items-center gap-1 text-brand-accent">
+                        <span>ISO Compliant</span>
+                        <i class="ph-fill ph-seal-check"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Interactive Execution Engine -->
+    <script>
+        // Preloader Fadeout Animation
+        window.addEventListener('load', () => {
+            const preloader = document.getElementById('preloader');
+            const preloaderBar = document.getElementById('preloader-bar');
+            
+            preloaderBar.style.width = '100%';
+            
+            setTimeout(() => {
+                preloader.classList.add('opacity-0', 'pointer-events-none');
+                setTimeout(() => {
+                    preloader.style.display = 'none';
+                }, 750);
+            }, 600);
+        });
+
+        // Dual-Circle Custom Mouse Follower Logic
+        const dot = document.getElementById('cursor-dot');
+        const outline = document.getElementById('cursor-outline');
+
+        let outlineX = 0;
+        let outlineY = 0;
+        let targetX = 0;
+        let targetY = 0;
+
+        window.addEventListener('mousemove', (e) => {
+            targetX = e.clientX;
+            targetY = e.clientY;
+            dot.style.transform = `translate(${targetX}px, ${targetY}px) translate(-50%, -50%)`;
+        });
+
+        function animateCursor() {
+            outlineX += (targetX - outlineX) * 0.15;
+            outlineY += (targetY - outlineY) * 0.15;
+            outline.style.transform = `translate(${outlineX}px, ${outlineY}px) translate(-50%, -50%)`;
+            requestAnimationFrame(animateCursor);
+        }
+        animateCursor();
+
+        // Enlarge Mouse follower outline on hover
+        const clickableItems = document.querySelectorAll('a, button, select, input, option');
+        clickableItems.forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                outline.style.width = '55px';
+                outline.style.height = '55px';
+                outline.style.backgroundColor = 'rgba(211, 243, 64, 0.08)';
+                outline.style.borderColor = '#D3F340';
+            });
+            el.addEventListener('mouseleave', () => {
+                outline.style.width = '40px';
+                outline.style.height = '40px';
+                outline.style.backgroundColor = 'transparent';
+                outline.style.borderColor = 'rgba(211, 243, 64, 0.45)';
+            });
+        });
+
+        // Scroll-driven Reveal Intersections Observer
+        const elementsToReveal = document.querySelectorAll('.reveal');
+        const intersectionOptions = {
+            root: null,
+            threshold: 0.10,
+            rootMargin: '0px'
+        };
+
+        const observer = new IntersectionObserver((entries, self) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    self.unobserve(entry.target);
+                }
+            });
+        }, intersectionOptions);
+
+        elementsToReveal.forEach(el => {
+            observer.observe(el);
+        });
+
+        // Mobile drawer controller
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const drawer = document.getElementById('mobile-drawer');
+
+        menuBtn.addEventListener('click', () => {
+            drawer.classList.toggle('hidden');
+        });
+
+        const drawerLinks = drawer.querySelectorAll('a');
+        drawerLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                drawer.classList.add('hidden');
+            });
+        });
+
+        // High-end Testimonials Slider Cycle
+        const clientTestimonials = [
+            {
+                text: '"BIOSAF transformed our quality compliance map. Their team handled our laboratory procurement and ISO certification prep under a single, integrated plan. Simply top-tier."',
+                author: 'Zia Ur Rehman',
+                role: 'EHS Manager, PharmaCorp Pakistan'
+            },
+            {
+                text: '"Meticulous industrial fumigation work. Their rodent barriers and grain protection treatments at our supply warehouses are highly safe and strictly audit-ready."',
+                author: 'Ayesha Siddique',
+                role: 'Supply Chain Operations, Indus Foods'
+            },
+            {
+                text: '"Their water safety testing modules and certified diagnostic equipment supply exceeded our expectations. Responsive, highly technical, and exceptionally reliable."',
+                author: 'Prof. Faisal Shah',
+                role: 'Senior QA Director, Allied Laboratories'
+            }
+        ];
+
+        let index = 0;
+        const container = document.getElementById('testimonial-container');
+        const tText = document.getElementById('testimonial-text');
+        const tAuthor = document.getElementById('testimonial-author');
+        const tRole = document.getElementById('testimonial-role');
+        const prev = document.getElementById('prev-testimonial-btn');
+        const next = document.getElementById('next-testimonial-btn');
+
+        function changeTestimonial(newIndex) {
+            container.style.opacity = '0';
+            setTimeout(() => {
+                tText.innerText = clientTestimonials[newIndex].text;
+                tAuthor.innerText = clientTestimonials[newIndex].author;
+                tRole.innerText = clientTestimonials[newIndex].role;
+                container.style.opacity = '1';
+            }, 450);
+        }
+
+        next.addEventListener('click', () => {
+            index = (index + 1) % clientTestimonials.length;
+            changeTestimonial(index);
+        });
+
+        prev.addEventListener('click', () => {
+            index = (index - 1 + clientTestimonials.length) % clientTestimonials.length;
+            changeTestimonial(index);
+        });
+
+        // Autoplay testmonials transition loop
+        setInterval(() => {
+            index = (index + 1) % clientTestimonials.length;
+            changeTestimonial(index);
+        }, 7500);
+    </script>
+</body>
+</html>
