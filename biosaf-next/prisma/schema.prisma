@@ -1,0 +1,276 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  admin
+  super_admin
+}
+
+enum Status {
+  active
+  inactive
+}
+
+enum SettingType {
+  text
+  textarea
+  number
+  boolean
+  image
+}
+
+enum BlogStatus {
+  draft
+  published
+  archived
+}
+
+enum QuoteStatus {
+  new
+  in_progress
+  completed
+  rejected
+}
+
+model Admin {
+  id        Int      @id @default(autoincrement()) @db.UnsignedInt
+  name      String   @db.VarChar(100)
+  email     String   @unique @db.VarChar(100)
+  password  String   @db.VarChar(255)
+  role      Role     @default(admin)
+  status    Status   @default(active)
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamp
+  updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamp
+  blogs     Blog[]
+
+  @@map("admins")
+}
+
+model SiteSetting {
+  id        Int         @id @default(autoincrement()) @db.UnsignedInt
+  key       String      @unique @db.VarChar(100)
+  value     String?
+  group     String?     @default("general") @db.VarChar(50)
+  type      SettingType @default(text)
+  createdAt DateTime    @default(now()) @map("created_at") @db.Timestamp
+  updatedAt DateTime    @updatedAt @map("updated_at") @db.Timestamp
+
+  @@map("site_settings")
+}
+
+model Division {
+  id               Int      @id @default(autoincrement()) @db.UnsignedInt
+  name             String   @db.VarChar(100)
+  slug             String   @unique @db.VarChar(100)
+  description      String?
+  shortDescription String?  @map("short_description") @db.VarChar(255)
+  icon             String?  @db.VarChar(255)
+  image            String?  @db.VarChar(255)
+  sortOrder        Int      @default(0) @map("sort_order")
+  status           Status   @default(active)
+  metaTitle        String?  @map("meta_title") @db.VarChar(200)
+  metaDescription  String?  @map("meta_description")
+  createdAt       DateTime @default(now()) @map("created_at") @db.Timestamp
+  updatedAt       DateTime @updatedAt @map("updated_at") @db.Timestamp
+  services      Service[]
+
+  @@map("divisions")
+}
+
+model Service {
+  id               Int          @id @default(autoincrement()) @db.UnsignedInt
+  divisionId      Int?         @map("division_id") @db.UnsignedInt
+  division       Division?    @relation(fields: [divisionId], references: [id], onDelete: SetNull, onUpdate: Cascade)
+  name             String       @db.VarChar(100)
+  slug             String       @unique @db.VarChar(100)
+  description      String?
+  shortDescription String?      @map("short_description") @db.VarChar(255)
+  icon             String?      @db.VarChar(255)
+  image            String?      @db.VarChar(255)
+  sortOrder        Int          @default(0) @map("sort_order")
+  status           Status       @default(active)
+  metaTitle        String?      @map("meta_title") @db.VarChar(200)
+  metaDescription  String?      @map("meta_description")
+  createdAt       DateTime     @default(now()) @map("created_at") @db.Timestamp
+  updatedAt       DateTime     @updatedAt @map("updated_at") @db.Timestamp
+  quoteRequests   QuoteRequest[]
+
+  @@map("services")
+}
+
+model Category {
+  id               Int        @id @default(autoincrement()) @db.UnsignedInt
+  parentId         Int?       @map("parent_id") @db.UnsignedInt
+  parent         Category?   @relation("CategoryHierarchy", fields: [parentId], references: [id], onDelete: SetNull, onUpdate: Cascade)
+  children         Category[]  @relation("CategoryHierarchy")
+  name             String     @db.VarChar(100)
+  slug             String     @unique @db.VarChar(100)
+  description      String?
+  image            String?    @db.VarChar(255)
+  sortOrder        Int       @default(0) @map("sort_order")
+  status           Status    @default(active)
+  metaTitle        String?    @map("meta_title") @db.VarChar(200)
+  metaDescription  String?    @map("meta_description")
+  createdAt       DateTime  @default(now()) @map("created_at") @db.Timestamp
+  updatedAt       DateTime  @updatedAt @map("updated_at") @db.Timestamp
+  products         Product[]
+
+  @@map("categories")
+}
+
+model Product {
+  id               Int        @id @default(autoincrement()) @db.UnsignedInt
+  categoryId      Int?       @map("category_id") @db.UnsignedInt
+  category       Category?  @relation(fields: [categoryId], references: [id], onDelete: SetNull, onUpdate: Cascade)
+  name             String     @db.VarChar(150)
+  slug             String     @unique @db.VarChar(150)
+  description      String?
+  shortDescription String?    @map("short_description") @db.VarChar(255)
+  image            String?    @db.VarChar(255)
+  images           Json?
+  price            Decimal?  @db.Decimal(10, 2)
+  sortOrder        Int       @default(0) @map("sort_order")
+  status           Status    @default(active)
+  isFeatured       Boolean    @default(false) @map("is_featured") @db.TinyInt
+  metaTitle        String?    @map("meta_title") @db.VarChar(200)
+  metaDescription  String?    @map("meta_description")
+  createdAt       DateTime  @default(now()) @map("created_at") @db.Timestamp
+  updatedAt       DateTime  @updatedAt @map("updated_at") @db.Timestamp
+  quoteRequests   QuoteRequest[]
+
+  @@map("products")
+}
+
+model Industry {
+  id               Int        @id @default(autoincrement()) @db.UnsignedInt
+  name             String     @db.VarChar(100)
+  slug             String     @unique @db.VarChar(100)
+  description      String?
+  icon             String?    @db.VarChar(255)
+  image            String?    @db.VarChar(255)
+  sortOrder        Int       @default(0) @map("sort_order")
+  status           Status    @default(active)
+  metaTitle        String?    @map("meta_title") @db.VarChar(200)
+  metaDescription  String?    @map("meta_description")
+  createdAt       DateTime  @default(now()) @map("created_at") @db.Timestamp
+  updatedAt       DateTime  @updatedAt @map("updated_at") @db.Timestamp
+
+  @@map("industries")
+}
+
+model Testimonial {
+  id          Int        @id @default(autoincrement()) @db.UnsignedInt
+  clientName  String     @map("client_name") @db.VarChar(100)
+  clientTitle String?    @map("client_title") @db.VarChar(100)
+  company     String?    @db.VarChar(100)
+  content     String
+  rating      Int?       @db.TinyInt
+  avatar      String?    @db.VarChar(255)
+  sortOrder  Int       @default(0) @map("sort_order")
+  status      Status    @default(active)
+  isFeatured  Boolean    @default(false) @map("is_featured") @db.TinyInt
+  createdAt DateTime  @default(now()) @map("created_at") @db.Timestamp
+  updatedAt DateTime  @updatedAt @map("updated_at") @db.Timestamp
+
+  @@map("testimonials")
+}
+
+model Faq {
+  id        Int        @id @default(autoincrement()) @db.UnsignedInt
+  question  String     @db.VarChar(255)
+  answer    String
+  sortOrder Int       @default(0) @map("sort_order")
+  status    Status    @default(active)
+  createdAt DateTime  @default(now()) @map("created_at") @db.Timestamp
+  updatedAt DateTime  @updatedAt @map("updated_at") @db.Timestamp
+
+  @@map("faqs")
+}
+
+model Gallery {
+  id          Int        @id @default(autoincrement()) @db.UnsignedInt
+  title       String?    @db.VarChar(150)
+  description String?
+  image       String     @db.VarChar(255)
+  category    String?    @db.VarChar(50)
+  sortOrder  Int       @default(0) @map("sort_order")
+  status      Status    @default(active)
+  createdAt DateTime  @default(now()) @map("created_at") @db.Timestamp
+  updatedAt DateTime  @updatedAt @map("updated_at") @db.Timestamp
+
+  @@map("gallery")
+}
+
+model Blog {
+  id               Int          @id @default(autoincrement()) @db.UnsignedInt
+  authorId        Int?         @map("author_id") @db.UnsignedInt
+  author         Admin?       @relation(fields: [authorId], references: [id], onDelete: SetNull, onUpdate: Cascade)
+  title           String       @db.VarChar(200)
+  slug             String       @unique @db.VarChar(200)
+  excerpt         String?
+  content         String
+  image           String?      @db.VarChar(255)
+  status          BlogStatus   @default(draft)
+  isFeatured       Boolean      @default(false) @map("is_featured") @db.TinyInt
+  publishedAt    DateTime?    @map("published_at") @db.Timestamp
+  metaTitle       String?      @map("meta_title") @db.VarChar(200)
+  metaDescription String?      @map("meta_description")
+  createdAt       DateTime     @default(now()) @map("created_at") @db.Timestamp
+  updatedAt       DateTime     @updatedAt @map("updated_at") @db.Timestamp
+
+  @@map("blogs")
+}
+
+model ContactMessage {
+  id        Int       @id @default(autoincrement()) @db.UnsignedInt
+  name      String    @db.VarChar(100)
+  email     String    @db.VarChar(100)
+  phone     String?   @db.VarChar(20)
+  subject   String?   @db.VarChar(150)
+  message   String
+  isRead    Boolean    @default(false) @map("is_read") @db.TinyInt
+  readAt    DateTime? @map("read_at") @db.Timestamp
+  createdAt DateTime  @default(now()) @map("created_at") @db.Timestamp
+
+  @@map("contact_messages")
+}
+
+model QuoteRequest {
+  id        Int          @id @default(autoincrement()) @db.UnsignedInt
+  name      String       @db.VarChar(100)
+  email     String       @db.VarChar(100)
+  phone     String?      @db.VarChar(20)
+  company     String?      @db.VarChar(100)
+  serviceId Int?         @map("service_id") @db.UnsignedInt
+  service   Service?    @relation(fields: [serviceId], references: [id], onDelete: SetNull, onUpdate: Cascade)
+  productId Int?         @map("product_id") @db.UnsignedInt
+  product   Product?    @relation(fields: [productId], references: [id], onDelete: SetNull, onUpdate: Cascade)
+  message   String?
+  status    QuoteStatus @default(new)
+  notes     String?
+  createdAt DateTime    @default(now()) @map("created_at") @db.Timestamp
+  updatedAt DateTime    @updatedAt @map("updated_at") @db.Timestamp
+
+  @@map("quote_requests")
+}
+
+model Seo {
+  id          Int       @id @default(autoincrement()) @db.UnsignedInt
+  page        String    @unique @db.VarChar(50)
+  title       String?   @db.VarChar(200)
+  description String?
+  keywords    String?
+  createdAt   DateTime  @default(now()) @map("created_at") @db.Timestamp
+  updatedAt   DateTime  @updatedAt @map("updated_at") @db.Timestamp
+
+  @@map("seo")
+}
