@@ -10,7 +10,8 @@ interface ContactMessage {
   phone: string | null;
   subject: string | null;
   message: string;
-  status: 'unread' | 'read' | 'replied';
+  isRead: boolean;
+  readAt: string | null;
   createdAt: string;
 }
 
@@ -33,12 +34,11 @@ export default function MessagesPage() {
     }
   }
 
-  async function toggleStatus(id: number, currentStatus: string) {
-    const nextStatus = currentStatus === 'unread' ? 'read' : 'unread';
+  async function toggleStatus(id: number, isCurrentlyRead: boolean) {
     await fetch(`/api/admin/messages/${id}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ status: nextStatus }),
+      body: JSON.stringify({ isRead: !isCurrentlyRead }),
     });
     fetchMessages();
   }
@@ -85,9 +85,9 @@ export default function MessagesPage() {
                 </td>
                 <td className="px-6 py-4 text-sm">
                   <span className={`px-2.5 py-1 text-xs font-semibold rounded-full ${
-                    item.status === 'unread' ? 'bg-amber-100 text-amber-800 dark:bg-amber-950/60 dark:text-amber-300' : 'bg-emerald-100 text-emerald-800 dark:bg-emerald-950/60 dark:text-emerald-300'
+                    !item.isRead ? 'bg-amber-100 text-amber-800 dark:bg-amber-950/60 dark:text-amber-300' : 'bg-emerald-100 text-emerald-800 dark:bg-emerald-950/60 dark:text-emerald-300'
                   }`}>
-                    {item.status}
+                    {!item.isRead ? 'unread' : 'read'}
                   </span>
                 </td>
                 <td className="px-6 py-4 text-xs text-gray-500">
@@ -96,7 +96,7 @@ export default function MessagesPage() {
                 <td className="px-6 py-4 text-right">
                   <div className="flex items-center justify-end gap-2">
                     <button
-                      onClick={() => toggleStatus(item.id, item.status)}
+                      onClick={() => toggleStatus(item.id, item.isRead)}
                       className="p-1.5 text-brand-primary dark:text-brand-accent hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg"
                       title="Toggle Read/Unread"
                     >

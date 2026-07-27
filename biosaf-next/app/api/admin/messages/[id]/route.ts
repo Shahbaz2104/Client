@@ -12,9 +12,15 @@ export async function PUT(
 
     const { id } = await params;
     const body = await request.json();
+    const data: Record<string, unknown> = {};
+    if (typeof body.isRead === 'boolean') {
+      data.isRead = body.isRead;
+      if (body.isRead) data.readAt = new Date();
+      else data.readAt = null;
+    }
     const item = await prisma.contactMessage.update({
       where: { id: parseInt(id) },
-      data: body,
+      data,
     });
     return NextResponse.json(item);
   } catch (error) {
