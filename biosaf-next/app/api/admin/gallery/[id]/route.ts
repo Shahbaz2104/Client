@@ -1,6 +1,15 @@
 import { NextRequest, NextResponse } from 'next/server';
 import prisma from '@/lib/prisma';
 import { getSession } from '@/lib/auth';
+import { z } from 'zod';
+
+const gallerySchema = z.object({
+  title: z.string().min(1).optional(),
+  image: z.string().min(1).optional(),
+  category: z.string().optional().nullable(),
+  sortOrder: z.number().optional(),
+  status: z.enum(['active', 'inactive']).optional(),
+});
 
 export async function PUT(
   request: NextRequest,
@@ -12,12 +21,16 @@ export async function PUT(
 
     const { id } = await params;
     const body = await request.json();
+    const data = gallerySchema.parse(body);
     const item = await prisma.gallery.update({
       where: { id: parseInt(id) },
-      data: body,
+      data,
     });
     return NextResponse.json(item);
   } catch (error) {
+    if (error instanceof z.ZodError) {
+      return NextResponse.json({ error: 'Invalid input data' }, { status: 400 });
+    }
     console.error('Error updating gallery item:', error);
     return NextResponse.json({ error: 'Failed to update gallery item' }, { status: 500 });
   }

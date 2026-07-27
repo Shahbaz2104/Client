@@ -6,8 +6,8 @@ import { Plus, Edit, Trash2, Star, Quote } from 'lucide-react';
 interface Testimonial {
   id: number;
   clientName: string;
+  clientTitle: string | null;
   company: string | null;
-  position: string | null;
   content: string;
   rating: number;
   status: 'active' | 'inactive';
@@ -112,7 +112,7 @@ export default function TestimonialsPage() {
                     {item.clientName}
                   </div>
                 </td>
-                <td className="px-6 py-4 text-sm text-gray-500">{item.company || '—'} {item.position ? `(${item.position})` : ''}</td>
+                <td className="px-6 py-4 text-sm text-gray-500">{item.company || '—'} {item.clientTitle ? `(${item.clientTitle})` : ''}</td>
                 <td className="px-6 py-4 text-sm">
                   <div className="flex items-center text-amber-500">
                     <Star className="w-4 h-4 fill-amber-500" />
@@ -133,7 +133,7 @@ export default function TestimonialsPage() {
                       setFormData({
                         clientName: item.clientName,
                         company: item.company || '',
-                        position: item.position || '',
+                        position: item.clientTitle || '',
                         content: item.content,
                         rating: item.rating,
                         status: item.status,

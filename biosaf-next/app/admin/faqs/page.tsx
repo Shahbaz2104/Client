@@ -7,7 +7,6 @@ interface Faq {
   id: number;
   question: string;
   answer: string;
-  category: string | null;
   status: 'active' | 'inactive';
   sortOrder: number;
 }
@@ -20,7 +19,6 @@ export default function FaqsPage() {
   const [formData, setFormData] = useState({
     question: '',
     answer: '',
-    category: '',
     status: 'active' as 'active' | 'inactive',
     sortOrder: 0,
   });
@@ -77,7 +75,7 @@ export default function FaqsPage() {
         </div>
         <button
           onClick={() => {
-            setFormData({ question: '', answer: '', category: '', status: 'active', sortOrder: 0 });
+            setFormData({ question: '', answer: '', status: 'active', sortOrder: 0 });
             setEditingItem(null);
             setShowModal(true);
           }}
@@ -107,7 +105,7 @@ export default function FaqsPage() {
                     {item.question}
                   </div>
                 </td>
-                <td className="px-6 py-4 text-sm text-gray-500">{item.category || 'General'}</td>
+                <td className="px-6 py-4 text-sm text-gray-500">General</td>
                 <td className="px-6 py-4 text-sm">
                   <span className={`px-2.5 py-1 text-xs font-semibold rounded-full ${
                     item.status === 'active' ? 'bg-emerald-100 text-emerald-800 dark:bg-emerald-950/60 dark:text-emerald-300' : 'bg-red-100 text-red-800'
@@ -122,7 +120,6 @@ export default function FaqsPage() {
                       setFormData({
                         question: item.question,
                         answer: item.answer,
-                        category: item.category || '',
                         status: item.status,
                         sortOrder: item.sortOrder,
                       });
@@ -166,16 +163,7 @@ export default function FaqsPage() {
                   required
                 />
               </div>
-              <div>
-                <label className="block text-sm font-semibold mb-1">Category</label>
-                <input
-                  type="text"
-                  value={formData.category}
-                  onChange={(e) => setFormData({ ...formData, category: e.target.value })}
-                  className="w-full p-2.5 border rounded-xl dark:bg-gray-800 text-sm"
-                  placeholder="e.g. Pest Control, Food Safety"
-                />
-              </div>
+
               <div className="flex justify-end gap-3 pt-4">
                 <button type="button" onClick={() => setShowModal(false)} className="px-4 py-2 border rounded-xl text-sm font-medium">Cancel</button>
                 <button type="submit" className="px-4 py-2 bg-brand-primary text-white rounded-xl text-sm font-semibold">{editingItem ? 'Save' : 'Create'}</button>
