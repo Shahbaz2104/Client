@@ -693,7 +693,7 @@ export default function Products() {
 
                 <div className="flex flex-col sm:flex-row gap-4 pt-4">
                   <a
-                    href="tel:+923326079992"
+                    href="tel:+923422766482"
                     className="bg-brand-accent hover:bg-[#b8e036] text-brand-dark px-6 py-4 rounded-full font-bold transition-all text-xs tracking-wider uppercase flex items-center justify-center gap-2"
                   >
                     <svg
@@ -745,7 +745,7 @@ export default function Products() {
                     <input
                       required
                       type="tel"
-                      placeholder="e.g. +92 332 6079992"
+                      placeholder="e.g. +92 342 2766482"
                       className="w-full bg-white/5 border border-white/10 rounded-xl py-3 px-4 text-white placeholder-slate-500 focus:outline-none focus:border-brand-accent focus:ring-1 focus:ring-brand-accent text-xs"
                     />
                   </div>

@@ -687,8 +687,8 @@ export default function PestManagement() {
                 </p>
 
                 <div className="flex flex-col sm:flex-row gap-4 pt-4">
-                  <a href="tel:+923326079992" className="bg-brand-accent hover:bg-[#b8e036] text-brand-dark px-8 py-4 rounded-full font-bold transition-all text-xs tracking-wider uppercase flex items-center justify-center gap-2">
-                    <Phone className="w-5 h-5" /> Call +92 332 6079992
+                  <a href="tel:+923422766482" className="bg-brand-accent hover:bg-[#b8e036] text-brand-dark px-8 py-4 rounded-full font-bold transition-all text-xs tracking-wider uppercase flex items-center justify-center gap-2">
+                    <Phone className="w-5 h-5" /> Call +92 342 2766482
                   </a>
                   <a href="mailto:info@biosafenterprises.com" className="bg-white/10 hover:bg-white/20 border border-white/20 text-white px-8 py-4 rounded-full font-bold transition-all text-xs tracking-wider uppercase flex items-center justify-center gap-2 backdrop-blur-sm">
                     <Mail className="w-5 h-5" /> Email Our Support
@@ -720,7 +720,7 @@ export default function PestManagement() {
                     <label className="block text-xs font-semibold text-gray-300 mb-1">Active Phone Line *</label>
                     <input
                       type="tel"
-                      placeholder="e.g. +92 332 6079992"
+                      placeholder="e.g. +92 342 2766482"
                       value={formData.phone}
                       onChange={(e) => {
                         setFormData({ ...formData, phone: e.target.value });

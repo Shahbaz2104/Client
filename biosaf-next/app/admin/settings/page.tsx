@@ -7,9 +7,9 @@ export default function SettingsPage() {
   const [settings, setSettings] = useState({
     siteName: 'BIOSAF Enterprises',
     siteEmail: 'info@biosafenterprises.com',
-    sitePhone: '+92 332 6079992',
+    sitePhone: '+92 342 2766482',
     address: 'BIOSAF Corporate Complex, Office #4, Main Commercial Boulevard, Karachi, Sindh, Pakistan',
-    emergencyPhone: '+92 346 0334449',
+    emergencyPhone: '+92 302 1266345',
     heroTitle: 'Delivering Safe Environments & Scientific Quality Systems',
   });
   const [loading, setLoading] = useState(true);

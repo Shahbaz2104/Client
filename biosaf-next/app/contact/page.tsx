@@ -206,8 +206,8 @@ export default function Contact() {
                   <div>
                     <h4 className="text-xs font-extrabold uppercase tracking-widest text-slate-400">Direct Compliance Desk</h4>
                     <div className="flex flex-col gap-1.5 mt-1">
-                      <a href="tel:+923326079992" className="text-brand-dark hover:text-brand-primary font-extrabold text-sm transition-colors flex items-center gap-1.5">+92 332 6079992</a>
-                      <a href="tel:+923460334449" className="text-brand-dark hover:text-brand-primary font-extrabold text-sm transition-colors flex items-center gap-1.5">+92 346 0334449</a>
+                      <a href="tel:+923422766482" className="text-brand-dark hover:text-brand-primary font-extrabold text-sm transition-colors flex items-center gap-1.5">+92 342 2766482</a>
+                      <a href="tel:+923021266345" className="text-brand-dark hover:text-brand-primary font-extrabold text-sm transition-colors flex items-center gap-1.5">+92 302 1266345</a>
                     </div>
                   </div>
                 </div>
@@ -242,7 +242,7 @@ export default function Contact() {
               </div>
 
               <div className="pt-2">
-                <a href="https://wa.me/923326079992" target="_blank" rel="noreferrer" className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-4 px-6 rounded-2xl transition-all shadow-md flex items-center justify-center gap-3 text-sm">
+                <a href="https://wa.me/923422766482" target="_blank" rel="noreferrer" className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-4 px-6 rounded-2xl transition-all shadow-md flex items-center justify-center gap-3 text-sm">
                   <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.488-.49-.67-.5-.173-.009-.371-.009-.57-.009-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479s1.067 2.877 1.213 3.074c.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.285-15.192c-2.17-2.176-5.061-3.366-8.125-3.368-6.346 0-11.51 5.16-11.513 11.504-.002 2.023.524 3.99 1.516 5.73l-1.027 3.765 3.867-1.012c1.693.957 3.596 1.473 5.655 1.476h.004c6.345 0 11.509-5.162 11.51-11.508.003-3.066-1.192-5.956-3.366-8.127z" />
                   </svg>
@@ -323,7 +323,7 @@ export default function Contact() {
                     <label className="block text-xs font-bold text-brand-primary uppercase tracking-wider mb-2">Active Mobile Line</label>
                     <input
                       type="tel"
-                      placeholder="e.g. +92 332 0000000"
+                      placeholder="e.g. +92 342 0000000"
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                       className="w-full bg-white border border-gray-200 rounded-xl py-3.5 px-4 text-brand-dark placeholder-slate-400 focus:outline-none focus:border-brand-accent focus:ring-1 focus:ring-brand-accent text-xs"

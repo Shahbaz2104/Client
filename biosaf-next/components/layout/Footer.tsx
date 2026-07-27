@@ -30,7 +30,7 @@ export function Footer() {
           </div>
           <div>
             <h4 className="font-semibold mb-4">Contact Us</h4>
-            <p className="text-gray-300">Email: info@biosaf.com</p>
+            <p className="text-gray-300">Email: info@biosafenterprises.com</p>
           </div>
         </div>
         <div className="mt-8 pt-8 border-t border-gray-700 text-center text-gray-400">

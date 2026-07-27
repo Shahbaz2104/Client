@@ -457,8 +457,8 @@ export default function LaboratoryEquipment() {
                   Our corporate specialists are prepared to perform professional laboratory equipment sales and custom configurations for your organization. Submit your active request details today to initiate a custom corporate bid.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 pt-4">
-                  <a href="tel:+923326079992" className="bg-brand-accent hover:bg-[#b8e036] text-brand-dark px-6 py-4 rounded-full font-bold transition-all text-xs tracking-wider uppercase flex items-center justify-center gap-2">
-                    <Phone className="w-5 h-5" /> Call +92 332 6079992
+                  <a href="tel:+923422766482" className="bg-brand-accent hover:bg-[#b8e036] text-brand-dark px-6 py-4 rounded-full font-bold transition-all text-xs tracking-wider uppercase flex items-center justify-center gap-2">
+                    <Phone className="w-5 h-5" /> Call +92 342 2766482
                   </a>
                   <a href="mailto:info@biosafenterprises.com" className="bg-white/10 hover:bg-white/20 border border-white/20 text-white px-6 py-4 rounded-full font-bold transition-all text-xs tracking-wider uppercase flex items-center justify-center gap-2 backdrop-blur-sm">
                     <Mail className="w-5 h-5" /> Email Our Sourcing Desk
@@ -478,7 +478,7 @@ export default function LaboratoryEquipment() {
                   </div>
                   <div>
                     <label className="block text-xs font-semibold text-gray-300 mb-1">Point of Contact Phone</label>
-                    <input required type="tel" placeholder="e.g. +92 332 6079992" className="w-full bg-white/5 border border-white/10 rounded-xl py-3 px-4 text-white placeholder-gray-500 focus:outline-none focus:border-brand-accent focus:ring-1 focus:ring-brand-accent text-xs" />
+                    <input required type="tel" placeholder="e.g. +92 342 2766482" className="w-full bg-white/5 border border-white/10 rounded-xl py-3 px-4 text-white placeholder-gray-500 focus:outline-none focus:border-brand-accent focus:ring-1 focus:ring-brand-accent text-xs" />
                   </div>
                   <div>
                     <label className="block text-xs font-semibold text-gray-300 mb-1">Selected Systems to Quote</label>
