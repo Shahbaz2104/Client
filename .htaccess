@@ -1,0 +1,7 @@
+# BIOSAF Enterprises .htaccess
+# Redirect all root requests to biosaf/ directory
+RewriteEngine On
+
+# Redirect root to biosaf/
+RewriteCond %{REQUEST_URI} !^/biosaf/
+RewriteRule ^(.*)$ /biosaf/$1 [L,QSA]

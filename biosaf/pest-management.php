@@ -1,282 +1,20 @@
-<!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Advanced Pest Management & Fumigation | Pest Shield</title>
-    
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Typography & Premium Icons -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
-    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+<?php
+declare(strict_types=1);
 
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Plus Jakarta Sans', 'sans-serif'],
-                        serif: ['Playfair Display', 'serif'],
-                    },
-                    colors: {
-                        brand: {
-                            dark: '#051E11',       /* Luxury Ultra-Deep Forest Green */
-                            primary: '#0B331F',    /* Rich Emerald Base */
-                            secondary: '#1A5935',  /* Active Mid-Tone Forest */
-                            light: '#FAFBF9',      /* Pure Off-White Ivory Gray */
-                            accent: '#D3F340',     /* Premium Neon Lime Highlight */
-                            accentHover: '#E1FA5F'
-                        }
-                    },
-                    animation: {
-                        'spin-slow': 'spin 12s linear infinite',
-                        'float': 'float 6s ease-in-out infinite',
-                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-                    }
-                }
-            }
-        }
-    </script>
+require_once __DIR__ . '/includes/bootstrap.php';
 
-    <style>
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-10px) rotate(0.5deg); }
-        }
-        .animate-float {
-            animation: float 6s ease-in-out infinite;
-        }
+$pageTitle = 'Pest Management & Fumigation';
+$metaDescription = 'Professional pest control, termite management, warehouse fumigation, and food facility pest management by BIOSAF Enterprises.';
+$activePage = 'divisions';
+$navStyle = 'floating';
+$preloaderIcon = 'ph-bold ph-bug';
+$preloaderSubtext = 'Pest Management Division';
+$pageScripts = ['pest-management.js'];
 
-        /* Luxury Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #051E11;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #D3F340;
-            border-radius: 100px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #E1FA5F;
-        }
+require BIOSAF_INCLUDES . '/header.php';
+?>
 
-        /* Smooth Scroll-Driven Reveal Engine */
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px) scale(0.99);
-            transition: all 0.9s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0) scale(1);
-        }
-
-        /* Glassmorphism Styles */
-        .glass-panel {
-            background: rgba(5, 30, 17, 0.75);
-            backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-        }
-        .glass-card {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-        }
-
-        /* Custom Dual-Circle Mouse Follower */
-        .cursor-dot {
-            width: 8px;
-            height: 8px;
-            background-color: #D3F340;
-            position: fixed;
-            top: 0;
-            left: 0;
-            transform: translate(-50%, -50%);
-            border-radius: 50%;
-            z-index: 9999;
-            pointer-events: none;
-            transition: width 0.2s, height 0.2s, background-color 0.2s;
-        }
-        .cursor-outline {
-            width: 40px;
-            height: 40px;
-            border: 1.5px solid rgba(211, 243, 64, 0.45);
-            position: fixed;
-            top: 0;
-            left: 0;
-            transform: translate(-50%, -50%);
-            border-radius: 50%;
-            z-index: 9998;
-            pointer-events: none;
-            transition: transform 0.08s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.2s, background-color 0.2s;
-        }
-
-        /* Header link hover underline motion */
-        .nav-link {
-            position: relative;
-        }
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            width: 100%;
-            transform: scaleX(0);
-            height: 2px;
-            bottom: -4px;
-            left: 0;
-            background-color: #D3F340;
-            transform-origin: bottom right;
-            transition: transform 0.35s ease-out;
-        }
-        .nav-link:hover::after {
-            transform: scaleX(1);
-            transform-origin: bottom left;
-        }
-
-        /* Glowing Border Effects on Hover */
-        .glow-hover {
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .glow-hover:hover {
-            box-shadow: 0 20px 40px -10px rgba(211, 243, 64, 0.12);
-            border-color: rgba(211, 243, 64, 0.35);
-            transform: translateY(-5px);
-        }
-
-        /* Smooth FAQ transition */
-        .faq-answer {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
-            opacity: 0;
-        }
-        .faq-item.active .faq-answer {
-            max-height: 300px;
-            opacity: 1;
-        }
-    </style>
-</head>
-<body class="font-sans text-gray-800 antialiased bg-brand-light selection:bg-brand-accent selection:text-brand-dark">
-
-    <!-- Brand Global Preloader -->
-    <div id="preloader" class="fixed inset-0 bg-brand-dark z-[99999] flex flex-col items-center justify-center transition-all duration-700 ease-out">
-        <div class="relative flex flex-col items-center">
-            <div class="absolute w-28 h-28 border-2 border-brand-accent/20 rounded-full animate-pulse-slow"></div>
-            <div class="absolute w-24 h-24 border-t-2 border-brand-accent rounded-full animate-spin"></div>
-            <div class="w-16 h-16 bg-brand-primary rounded-full flex items-center justify-center shadow-lg relative z-10 border border-brand-accent/30">
-                <i class="ph-bold ph-shield text-brand-accent text-3xl"></i>
-            </div>
-            
-            <div class="mt-8 text-center">
-                <h3 class="text-white font-extrabold text-xl tracking-widest uppercase">PEST SHIELD</h3>
-                <p class="text-[10px] text-brand-accent/80 mt-1 uppercase tracking-[0.25em] font-semibold">Biological Safety &amp; Control</p>
-            </div>
-            <div class="w-36 bg-white/10 h-1 rounded-full mt-6 overflow-hidden">
-                <div id="preloader-bar" class="bg-brand-accent h-full w-0 transition-all duration-500 ease-out"></div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Mouse Tracking Elements -->
-    <div class="cursor-dot id-cursor-dot hidden md:block" id="cursor-dot"></div>
-    <div class="cursor-outline id-cursor-outline hidden md:block" id="cursor-outline"></div>
-
-    <!-- Floating Actions Widget -->
-    <div class="fixed bottom-6 right-6 z-50 flex flex-col gap-3">
-        <a href="https://wa.me/923326079992" target="_blank" class="w-14 h-14 bg-emerald-500 hover:bg-emerald-600 text-white rounded-full flex items-center justify-center shadow-2xl transition-all duration-300 hover:scale-110 group relative" aria-label="WhatsApp Consultancy">
-            <span class="absolute right-16 bg-brand-dark text-white text-xs px-3 py-1.5 rounded-lg whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-300 font-medium">WhatsApp Support</span>
-            <i class="ph-bold ph-whatsapp-logo text-2xl"></i>
-        </a>
-        <a href="#quote" class="w-14 h-14 bg-brand-accent text-brand-dark rounded-full flex items-center justify-center shadow-2xl transition-all duration-300 hover:scale-110 group relative border border-white/20" aria-label="Book Audit">
-            <span class="absolute right-16 bg-brand-dark text-white text-xs px-3 py-1.5 rounded-lg whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-300 font-medium">Free Estimation Call</span>
-            <i class="ph-bold ph-calendar-plus text-xl"></i>
-        </a>
-    </div>
-
-    <!-- Top Ribbon Communications Bar -->
-    <div class="bg-brand-dark text-gray-300 py-3.5 px-4 text-xs font-medium flex flex-col lg:flex-row justify-between items-center gap-3 border-b border-white/5 relative z-50">
-        <div class="max-w-7xl mx-auto w-full flex flex-col md:flex-row justify-between items-center gap-2">
-            <div class="flex items-center gap-2 text-brand-accent">
-                <span class="inline-block w-2.5 h-2.5 rounded-full bg-brand-accent animate-ping"></span>
-                <span class="font-extrabold tracking-wider uppercase">Biological Elimination &amp; Industrial Standards Compliance</span>
-            </div>
-            <div class="flex flex-wrap justify-center items-center gap-x-6 gap-y-2">
-                <a href="mailto:info@khatrienterprises.com" class="hover:text-brand-accent transition-colors flex items-center gap-1.5"><i class="ph ph-envelope-simple text-sm"></i> info@khatrienterprises.com</a>
-                <span class="hidden md:inline text-white/20">|</span>
-                <div class="flex items-center gap-2">
-                    <i class="ph ph-phone text-sm"></i>
-                    <a href="tel:+923326079992" class="hover:text-brand-accent transition-colors">+92 332 6079992</a>
-                    <span class="text-gray-500">/</span>
-                    <a href="tel:+923460334449" class="hover:text-brand-accent transition-colors">+92 346 0334449</a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Sticky Glassmorphism Header -->
-    <header class="absolute top-14 left-0 right-0 z-40 px-4 sm:px-6 lg:px-8">
-        <div class="max-w-7xl mx-auto glass-panel rounded-full px-8 py-4 flex justify-between items-center shadow-2xl relative transition-all duration-300 hover:border-brand-accent/20">
-            <!-- Logo Section -->
-            <a href="#" class="flex items-center gap-3 group">
-                <div class="bg-brand-accent text-brand-dark rounded-full p-2.5 transition-transform duration-500 group-hover:rotate-[360deg] shadow-lg shadow-brand-accent/20">
-                    <i class="ph-bold ph-shield-chevron text-xl"></i>
-                </div>
-                <div class="flex flex-col">
-                    <span class="text-xl font-extrabold tracking-tight text-white leading-none">PEST <span class="text-brand-accent font-light">SHIELD</span></span>
-                    <span class="text-[9px] tracking-[0.25em] text-gray-400 uppercase font-bold mt-1">Certified Biological Barriers</span>
-                </div>
-            </a>
-
-            <!-- Menu Navigation -->
-            <nav class="hidden md:flex space-x-8 font-semibold text-sm text-gray-200">
-                <a href="#hero" class="nav-link hover:text-brand-accent transition-colors">Home</a>
-                <a href="#overview" class="nav-link hover:text-brand-accent transition-colors">Overview</a>
-                <a href="#services" class="nav-link hover:text-brand-accent transition-colors">Services</a>
-                <a href="#process" class="nav-link hover:text-brand-accent transition-colors">Methodology</a>
-                <a href="#why-us" class="nav-link hover:text-brand-accent transition-colors">Why Shield</a>
-                <a href="#faq" class="nav-link hover:text-brand-accent transition-colors">FAQ</a>
-            </nav>
-
-            <!-- Actions and Estimation Trigger -->
-            <div class="hidden md:flex items-center gap-6">
-                <a href="#quote" class="text-sm font-semibold text-gray-300 hover:text-brand-accent transition-colors">Sign In</a>
-                <a href="#quote" class="bg-brand-accent hover:bg-brand-accentHover text-brand-dark px-7 py-3 rounded-full font-extrabold text-xs tracking-wider transition-all duration-300 hover:shadow-[0_0_20px_rgba(211,243,64,0.35)] hover:-translate-y-0.5 flex items-center gap-2">
-                    FREE ESTIMATION
-                    <i class="ph-bold ph-phone-call text-sm"></i>
-                </a>
-            </div>
-
-            <!-- Toggle Button for Mobile Navigation -->
-            <button class="md:hidden text-white p-2 hover:text-brand-accent transition-colors" id="mobile-menu-btn" aria-label="Toggle Navigation">
-                <i class="ph ph-list text-2xl"></i>
-            </button>
-        </div>
-
-        <!-- Mobile Menu Drawer Dropdown -->
-        <div id="mobile-drawer" class="hidden md:hidden mt-3 mx-2 bg-brand-primary/95 backdrop-blur-xl border border-white/10 rounded-3xl p-6 shadow-2xl relative z-50">
-            <nav class="flex flex-col space-y-4">
-                <a href="#hero" class="text-white hover:text-brand-accent text-lg font-medium transition-colors border-b border-white/5 pb-2">Home</a>
-                <a href="#overview" class="text-white hover:text-brand-accent text-lg font-medium transition-colors border-b border-white/5 pb-2">Overview</a>
-                <a href="#services" class="text-white hover:text-brand-accent text-lg font-medium transition-colors border-b border-white/5 pb-2">Services</a>
-                <a href="#process" class="text-white hover:text-brand-accent text-lg font-medium transition-colors border-b border-white/5 pb-2">Methodology</a>
-                <a href="#why-us" class="text-white hover:text-brand-accent text-lg font-medium transition-colors border-b border-white/5 pb-2">Why Shield</a>
-                <a href="#faq" class="text-white hover:text-brand-accent text-lg font-medium transition-colors pb-2">FAQ</a>
-                
-                <div class="pt-4 border-t border-white/10 flex flex-col gap-4">
-                    <a href="#quote" class="bg-brand-accent text-brand-dark text-center py-3.5 rounded-full font-bold">
-                        Request Quote
-                    </a>
-                </div>
-            </nav>
-        </div>
-    </header>
-
-    <!-- Hero Banner Presentation Section -->
+<!-- Hero Banner Presentation Section -->
     <section id="hero" class="relative pt-48 pb-24 lg:pt-56 lg:pb-36 bg-brand-dark overflow-hidden">
         <div class="absolute inset-0 z-0">
             <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(11,51,31,0.65),transparent_60%)]"></div>
@@ -299,7 +37,7 @@
                     </h1>
                     
                     <p class="text-lg text-gray-300 max-w-xl leading-relaxed">
-                        Pest Shield delivers absolute biological containment, custom warehouse fumigation, and industrial-grade pest exclusion systems engineered to surpass international hygiene audits.
+                        BIOSAF Enterprises delivers absolute biological containment, custom warehouse fumigation, and industrial-grade pest exclusion systems engineered to surpass international hygiene audits.
                     </p>
 
                     <!-- Interactive Call-To-Action Framework -->
@@ -399,7 +137,7 @@
                     
                     <div class="space-y-4 text-gray-600 leading-relaxed text-sm sm:text-base">
                         <p class="font-medium text-brand-primary">
-                            Pest Shield Pest Management operates as an elite corporate service provider, delivering targeted and scientifically-backed insect, rodent, and structural bio-protection campaigns.
+                            BIOSAF Enterprises Pest Management operates as an elite corporate service provider, delivering targeted and scientifically-backed insect, rodent, and structural bio-protection campaigns.
                         </p>
                         <p>
                             We address structural contamination through highly documented processes compliant with food manufacturing safety codes, pharmaceutical quality controls, and cleanroom standards.
@@ -684,7 +422,7 @@
                     Standard Framework
                 </span>
                 <h2 class="text-3xl sm:text-5xl font-extrabold mt-6 mb-4">A Smarter, Safer Pest Control Process</h2>
-                <p class="text-gray-400">Discover how Pest Shield executes biological safety parameters from first contact to continuous prevention support.</p>
+                <p class="text-gray-400">Discover how BIOSAF Enterprises executes biological safety parameters from first contact to continuous prevention support.</p>
             </div>
 
             <!-- Horizontal / Vertical Flow Pathway -->
@@ -779,7 +517,7 @@
         </div>
     </section>
 
-    <!-- Why Choose Pest Shield Section -->
+    <!-- Why Choose BIOSAF Enterprises Section -->
     <section id="why-us" class="py-24 bg-brand-light border-t border-b border-gray-200">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid lg:grid-cols-12 gap-12 lg:gap-20 items-center">
@@ -893,7 +631,7 @@
                     </button>
                     <div class="faq-answer px-6">
                         <p class="pb-5 text-xs sm:text-sm text-gray-500 leading-relaxed">
-                            Pest Shield delivers complete audit folders, including active ingredient SDS sheets, physical trend logging maps, technician licensing papers, and fully-signed service certificates compliant with international audits.
+                            BIOSAF Enterprises delivers complete audit folders, including active ingredient SDS sheets, physical trend logging maps, technician licensing papers, and fully-signed service certificates compliant with international audits.
                         </p>
                     </div>
                 </div>
@@ -919,7 +657,7 @@
                             <a href="tel:+923326079992" class="bg-brand-accent hover:bg-brand-accentHover text-brand-dark px-8 py-4 rounded-full font-bold transition-all text-xs tracking-wider uppercase flex items-center justify-center gap-2">
                                 <i class="ph-fill ph-phone-call"></i> Call +92 332 6079992
                             </a>
-                            <a href="mailto:info@khatrienterprises.com" class="bg-white/10 hover:bg-white/20 border border-white/20 text-white px-8 py-4 rounded-full font-bold transition-all text-xs tracking-wider uppercase flex items-center justify-center gap-2 backdrop-blur-sm">
+                            <a href="mailto:info@biosafenterprises.com" class="bg-white/10 hover:bg-white/20 border border-white/20 text-white px-8 py-4 rounded-full font-bold transition-all text-xs tracking-wider uppercase flex items-center justify-center gap-2 backdrop-blur-sm">
                                 <i class="ph-fill ph-envelope"></i> Email Our Advisory
                             </a>
                         </div>
@@ -966,214 +704,5 @@
     </section>
 
     <!-- Premium Corporate Footer -->
-    <footer class="bg-brand-dark pt-20 pb-8 px-4 sm:px-6 lg:px-8 text-gray-400 border-t-2 border-brand-accent relative overflow-hidden">
-        <!-- Accent bottom-right ambient lighting -->
-        <div class="absolute bottom-0 right-0 w-[30%] h-[30%] bg-[radial-gradient(circle,rgba(211,243,64,0.03),transparent_70%)]"></div>
 
-        <div class="max-w-7xl mx-auto relative z-10">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
-                <!-- Branding -->
-                <div class="space-y-6">
-                    <a href="#" class="flex items-center gap-3">
-                        <div class="bg-brand-accent text-brand-dark rounded-full p-2">
-                            <i class="ph-fill ph-shield-check text-lg"></i>
-                        </div>
-                        <span class="text-base font-black tracking-tight text-white uppercase">PEST <span class="text-brand-accent font-light">SHIELD</span></span>
-                    </a>
-                    <p class="text-xs leading-relaxed">
-                        Setting structural safety benchmarks with professional, science-backed environmental barriers. Aligned with WHO, EPA, and global food quality directives.
-                    </p>
-                    <div class="flex gap-3">
-                        <a href="#" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white hover:bg-brand-accent hover:text-brand-dark transition-all duration-300" aria-label="Facebook"><i class="ph-fill ph-facebook-logo text-lg"></i></a>
-                        <a href="#" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white hover:bg-brand-accent hover:text-brand-dark transition-all duration-300" aria-label="Twitter"><i class="ph-fill ph-twitter-logo text-lg"></i></a>
-                        <a href="#" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white hover:bg-brand-accent hover:text-brand-dark transition-all duration-300" aria-label="Instagram"><i class="ph-fill ph-instagram-logo text-lg"></i></a>
-                    </div>
-                </div>
-
-                <!-- Services Wing Links -->
-                <div>
-                    <h4 class="text-white font-extrabold text-sm tracking-wider uppercase mb-6">Our Services</h4>
-                    <ul class="space-y-3 text-xs">
-                        <li><a href="#services" class="hover:text-brand-accent transition-colors">Termite Barriers</a></li>
-                        <li><a href="#services" class="hover:text-brand-accent transition-colors">Rodent Control</a></li>
-                        <li><a href="#services" class="hover:text-brand-accent transition-colors">Warehouse Fumigation</a></li>
-                        <li><a href="#services" class="hover:text-brand-accent transition-colors">Food Safety IPM</a></li>
-                    </ul>
-                </div>
-
-                <!-- Method Link Wing -->
-                <div>
-                    <h4 class="text-white font-extrabold text-sm tracking-wider uppercase mb-6">Corporate Hub</h4>
-                    <ul class="space-y-3 text-xs">
-                        <li><a href="#overview" class="hover:text-brand-accent transition-colors">About Us Overview</a></li>
-                        <li><a href="#process" class="hover:text-brand-accent transition-colors">Service Process</a></li>
-                        <li><a href="#industries" class="hover:text-brand-accent transition-colors">Sectors Covered</a></li>
-                        <li><a href="#quote" class="hover:text-brand-accent transition-colors">Free Site Survey</a></li>
-                    </ul>
-                </div>
-
-                <!-- Regulatory News opt-in -->
-                <div class="space-y-4">
-                    <h4 class="text-white font-extrabold text-sm tracking-wider uppercase mb-6">Compliance Loop</h4>
-                    <p class="text-xs text-gray-500">Opt-in to verify local regulatory, chemical status, and safety audits directly.</p>
-                    <form class="space-y-3" onsubmit="event.preventDefault();">
-                        <input type="email" required placeholder="Enter professional email" class="w-full bg-white/5 border border-white/10 rounded-xl py-3 px-4 text-white text-xs focus:outline-none focus:border-brand-accent">
-                        <label class="flex items-start gap-2.5 text-[11px] text-gray-500 cursor-pointer select-none">
-                            <input type="checkbox" required class="mt-0.5 rounded bg-white/5 border-white/15 text-brand-accent focus:ring-brand-accent">
-                            <span>I opt-in to receive Pest Shield system updates.</span>
-                        </label>
-                        <button type="submit" class="w-full bg-white/10 hover:bg-brand-accent hover:text-brand-dark text-white font-bold py-3 rounded-xl transition-all text-xs tracking-wider uppercase">
-                            Verify Opt-In
-                        </button>
-                    </form>
-                </div>
-            </div>
-
-            <!-- Baseline copy -->
-            <div class="border-t border-white/5 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-gray-500">
-                <p>&copy; 2026 Pest Shield Pest Management. All rights reserved. Designed to Standard Specifications.</p>
-                <div class="flex items-center gap-6">
-                    <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
-                    <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
-                    <div class="flex items-center gap-1.5 text-brand-accent">
-                        <span>ISO Compliant</span>
-                        <i class="ph-fill ph-seal-check"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Interactive Mechanics Engine -->
-    <script>
-        // Smooth Preloader Fadeout Action
-        window.addEventListener('load', () => {
-            const preloader = document.getElementById('preloader');
-            const preloaderBar = document.getElementById('preloader-bar');
-            
-            preloaderBar.style.width = '100%';
-            
-            setTimeout(() => {
-                preloader.classList.add('opacity-0', 'pointer-events-none');
-                setTimeout(() => {
-                    preloader.style.display = 'none';
-                }, 750);
-            }, 600);
-        });
-
-        // Dual-Circle Cursor Follower Coordination
-        const cursorDot = document.getElementById('cursor-dot');
-        const cursorOutline = document.getElementById('cursor-outline');
-
-        let targetX = 0;
-        let targetY = 0;
-        let outlineX = 0;
-        let outlineY = 0;
-
-        window.addEventListener('mousemove', (e) => {
-            targetX = e.clientX;
-            targetY = e.clientY;
-            
-            // Instantly position the dot
-            cursorDot.style.transform = `translate(${targetX}px, ${targetY}px) translate(-50%, -50%)`;
-        });
-
-        // Frame update loop for Lerp movement of shadow outline
-        function updateCursorFrame() {
-            outlineX += (targetX - outlineX) * 0.15;
-            outlineY += (targetY - outlineY) * 0.15;
-            
-            cursorOutline.style.transform = `translate(${outlineX}px, ${outlineY}px) translate(-50%, -50%)`;
-            requestAnimationFrame(updateCursorFrame);
-        }
-        updateCursorFrame();
-
-        // Enlarge shadow follower when hovering over clickable links/buttons
-        const interactiveItems = document.querySelectorAll('a, button, select, input, select option');
-        interactiveItems.forEach(el => {
-            el.addEventListener('mouseenter', () => {
-                cursorOutline.style.width = '55px';
-                cursorOutline.style.height = '55px';
-                cursorOutline.style.backgroundColor = 'rgba(211, 243, 64, 0.08)';
-                cursorOutline.style.borderColor = '#D3F340';
-            });
-            el.addEventListener('mouseleave', () => {
-                cursorOutline.style.width = '40px';
-                cursorOutline.style.height = '40px';
-                cursorOutline.style.backgroundColor = 'transparent';
-                cursorOutline.style.borderColor = 'rgba(211, 243, 64, 0.45)';
-            });
-        });
-
-        // Scroll reveal logic
-        const revealElements = document.querySelectorAll('.reveal');
-        const observeConfig = {
-            root: null,
-            threshold: 0.10,
-            rootMargin: '0px'
-        };
-
-        const revealObserver = new IntersectionObserver((entries, self) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                    self.unobserve(entry.target);
-                }
-            });
-        }, observeConfig);
-
-        revealElements.forEach(el => {
-            revealObserver.observe(el);
-        });
-
-        // Mobile drawer panel toggle
-        const menuBtn = document.getElementById('mobile-menu-btn');
-        const drawerPanel = document.getElementById('mobile-drawer');
-
-        menuBtn.addEventListener('click', () => {
-            drawerPanel.classList.toggle('hidden');
-        });
-
-        const drawerLinks = drawerPanel.querySelectorAll('a');
-        drawerLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                drawerPanel.classList.add('hidden');
-            });
-        });
-
-        // Interactive Accordion Setup
-        const faqItems = document.querySelectorAll('.faq-item');
-        faqItems.forEach(item => {
-            const trigger = item.querySelector('.faq-trigger');
-            const icon = item.querySelector('.ph-caret-down');
-            
-            trigger.addEventListener('click', () => {
-                const isActive = item.classList.contains('active');
-                
-                // Reset all other open items
-                faqItems.forEach(inner => {
-                    inner.classList.remove('active');
-                    inner.querySelector('.ph-caret-down').style.transform = 'rotate(0deg)';
-                });
-
-                if (!isActive) {
-                    item.classList.add('active');
-                    icon.style.transform = 'rotate(180deg)';
-                } else {
-                    item.classList.remove('active');
-                    icon.style.transform = 'rotate(0deg)';
-                }
-            });
-        });
-
-        // Safe consultation trigger feedback handler
-        function showFormSuccess() {
-            const box = document.getElementById('form-success-box');
-            box.classList.remove('hidden');
-            setTimeout(() => {
-                box.classList.add('hidden');
-            }, 8000);
-        }
-    </script>
-</body>
-</html>
+<?php require BIOSAF_INCLUDES . '/footer.php';

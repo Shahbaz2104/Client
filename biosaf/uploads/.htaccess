@@ -1,0 +1,19 @@
+# Restrict file execution in uploads directory
+# Allow only image, document, and media files
+
+# Disable script execution
+AddHandler cgi-script .php .php3 .php4 .php5 .php7 .phtml .pl .py .jsp .asp .sh .cgi
+Options -ExecCGI
+
+# Allow access only to safe file types
+<FilesMatch "\.(jpg|jpeg|png|gif|webp|svg|pdf|doc|docx|xls|xlsx|ppt|pptx|txt|zip|rar)$">
+    Require all granted
+</FilesMatch>
+
+# Deny all other files
+<FilesMatch ".*">
+    Require all denied
+</FilesMatch>
+
+# Prevent directory listing
+Options -Indexes

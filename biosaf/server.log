@@ -1,0 +1,115 @@
+[Sun Jul 19 14:27:44 2026] PHP 8.4.1 Development Server (http://127.0.0.1:8000) started
+[Sun Jul 19 14:28:01 2026] 127.0.0.1:48038 Accepted
+[Sun Jul 19 14:28:01 2026] 127.0.0.1:48038 [200]: GET /
+[Sun Jul 19 14:28:01 2026] 127.0.0.1:48038 Closing
+[Sun Jul 19 14:28:01 2026] 127.0.0.1:48054 Accepted
+[Sun Jul 19 14:28:01 2026] 127.0.0.1:48066 Accepted
+[Sun Jul 19 14:28:01 2026] 127.0.0.1:48054 [200]: GET /assets/css/main.css
+[Sun Jul 19 14:28:01 2026] 127.0.0.1:48054 Closing
+[Sun Jul 19 14:28:01 2026] 127.0.0.1:48066 [200]: GET /assets/js/tailwind-config.js
+[Sun Jul 19 14:28:01 2026] 127.0.0.1:48066 Closing
+[Sun Jul 19 14:28:01 2026] 127.0.0.1:48072 Accepted
+[Sun Jul 19 14:28:01 2026] 127.0.0.1:48072 [200]: GET /assets/js/testimonials.js
+[Sun Jul 19 14:28:01 2026] 127.0.0.1:48072 Closing
+[Sun Jul 19 14:28:01 2026] 127.0.0.1:48074 Accepted
+[Sun Jul 19 14:28:01 2026] 127.0.0.1:48074 [200]: GET /assets/js/core.js
+[Sun Jul 19 14:28:01 2026] 127.0.0.1:48074 Closing
+[Sun Jul 19 14:28:03 2026] 127.0.0.1:48084 Accepted
+[Sun Jul 19 14:28:03 2026] 127.0.0.1:48084 [200]: GET /@vite/client
+[Sun Jul 19 14:28:03 2026] 127.0.0.1:48084 Closing
+[Sun Jul 19 14:28:09 2026] 127.0.0.1:39224 Accepted
+[Sun Jul 19 14:28:09 2026] 127.0.0.1:39224 [200]: GET /
+[Sun Jul 19 14:28:09 2026] 127.0.0.1:39224 Closing
+[Sun Jul 19 14:28:09 2026] 127.0.0.1:39228 Accepted
+[Sun Jul 19 14:28:09 2026] 127.0.0.1:39244 Accepted
+[Sun Jul 19 14:28:09 2026] 127.0.0.1:39228 [200]: GET /assets/css/main.css
+[Sun Jul 19 14:28:09 2026] 127.0.0.1:39228 Closing
+[Sun Jul 19 14:28:09 2026] 127.0.0.1:39244 [200]: GET /assets/js/tailwind-config.js
+[Sun Jul 19 14:28:09 2026] 127.0.0.1:39244 Closing
+[Sun Jul 19 14:28:09 2026] 127.0.0.1:39246 Accepted
+[Sun Jul 19 14:28:09 2026] 127.0.0.1:39246 [200]: GET /assets/js/testimonials.js
+[Sun Jul 19 14:28:09 2026] 127.0.0.1:39246 Closing
+[Sun Jul 19 14:28:09 2026] 127.0.0.1:39248 Accepted
+[Sun Jul 19 14:28:09 2026] 127.0.0.1:39248 [200]: GET /assets/js/core.js
+[Sun Jul 19 14:28:09 2026] 127.0.0.1:39248 Closing
+[Sun Jul 19 14:28:11 2026] 127.0.0.1:39258 Accepted
+[Sun Jul 19 14:28:11 2026] 127.0.0.1:39258 [200]: GET /favicon.ico
+[Sun Jul 19 14:28:11 2026] 127.0.0.1:39258 Closing
+[Sun Jul 19 14:28:13 2026] 127.0.0.1:39274 Accepted
+[Sun Jul 19 14:28:13 2026] 127.0.0.1:39274 [200]: GET /contact.php
+[Sun Jul 19 14:28:13 2026] 127.0.0.1:39274 Closing
+[Sun Jul 19 14:28:13 2026] 127.0.0.1:39286 Accepted
+[Sun Jul 19 14:28:13 2026] 127.0.0.1:39286 [200]: GET /assets/js/tailwind-config.js
+[Sun Jul 19 14:28:13 2026] 127.0.0.1:39286 Closing
+[Sun Jul 19 14:28:13 2026] 127.0.0.1:39294 Accepted
+[Sun Jul 19 14:28:13 2026] 127.0.0.1:39294 [200]: GET /assets/css/main.css
+[Sun Jul 19 14:28:13 2026] 127.0.0.1:39294 Closing
+[Sun Jul 19 14:28:13 2026] 127.0.0.1:39306 Accepted
+[Sun Jul 19 14:28:13 2026] 127.0.0.1:39314 Accepted
+[Sun Jul 19 14:28:13 2026] 127.0.0.1:39306 [404]: GET /assets/js/pages/contact.js - No such file or directory
+[Sun Jul 19 14:28:13 2026] 127.0.0.1:39314 [200]: GET /assets/js/core.js
+[Sun Jul 19 14:28:13 2026] 127.0.0.1:39306 Closing
+[Sun Jul 19 14:28:13 2026] 127.0.0.1:39314 Closing
+[Sun Jul 19 14:28:14 2026] 127.0.0.1:39316 Accepted
+[Sun Jul 19 14:28:14 2026] 127.0.0.1:39316 [200]: GET /favicon.ico
+[Sun Jul 19 14:28:14 2026] 127.0.0.1:39316 Closing
+[Sun Jul 19 14:28:17 2026] 127.0.0.1:39318 Accepted
+[Sun Jul 19 14:28:17 2026] 127.0.0.1:39318 [200]: GET /index.php
+[Sun Jul 19 14:28:17 2026] 127.0.0.1:39318 Closing
+[Sun Jul 19 14:28:17 2026] 127.0.0.1:39330 Accepted
+[Sun Jul 19 14:28:17 2026] 127.0.0.1:39346 Accepted
+[Sun Jul 19 14:28:17 2026] 127.0.0.1:39330 [200]: GET /assets/css/main.css
+[Sun Jul 19 14:28:17 2026] 127.0.0.1:39330 Closing
+[Sun Jul 19 14:28:17 2026] 127.0.0.1:39346 [200]: GET /assets/js/tailwind-config.js
+[Sun Jul 19 14:28:17 2026] 127.0.0.1:39346 Closing
+[Sun Jul 19 14:28:17 2026] 127.0.0.1:39354 Accepted
+[Sun Jul 19 14:28:17 2026] 127.0.0.1:39362 Accepted
+[Sun Jul 19 14:28:17 2026] 127.0.0.1:39354 [200]: GET /assets/js/testimonials.js
+[Sun Jul 19 14:28:17 2026] 127.0.0.1:39362 [200]: GET /assets/js/core.js
+[Sun Jul 19 14:28:17 2026] 127.0.0.1:39354 Closing
+[Sun Jul 19 14:28:17 2026] 127.0.0.1:39362 Closing
+[Sun Jul 19 14:28:17 2026] 127.0.0.1:39374 Accepted
+[Sun Jul 19 14:28:17 2026] 127.0.0.1:39374 [200]: GET /favicon.ico
+[Sun Jul 19 14:28:17 2026] 127.0.0.1:39374 Closing
+[Sun Jul 19 14:28:22 2026] 127.0.0.1:35320 Accepted
+[Sun Jul 19 14:28:22 2026] 127.0.0.1:35320 [200]: GET /divisions.php
+[Sun Jul 19 14:28:22 2026] 127.0.0.1:35320 Closing
+[Sun Jul 19 14:28:22 2026] 127.0.0.1:35326 Accepted
+[Sun Jul 19 14:28:22 2026] 127.0.0.1:35340 Accepted
+[Sun Jul 19 14:28:22 2026] 127.0.0.1:35326 [200]: GET /assets/css/main.css
+[Sun Jul 19 14:28:22 2026] 127.0.0.1:35326 Closing
+[Sun Jul 19 14:28:22 2026] 127.0.0.1:35340 [200]: GET /assets/js/tailwind-config.js
+[Sun Jul 19 14:28:22 2026] 127.0.0.1:35340 Closing
+[Sun Jul 19 14:28:22 2026] 127.0.0.1:35342 Accepted
+[Sun Jul 19 14:28:22 2026] 127.0.0.1:35342 [404]: GET /assets/js/pages/divisions.js - No such file or directory
+[Sun Jul 19 14:28:22 2026] 127.0.0.1:35342 Closing
+[Sun Jul 19 14:28:22 2026] 127.0.0.1:35346 Accepted
+[Sun Jul 19 14:28:22 2026] 127.0.0.1:35346 [200]: GET /assets/js/core.js
+[Sun Jul 19 14:28:22 2026] 127.0.0.1:35346 Closing
+[Sun Jul 19 14:28:23 2026] 127.0.0.1:35362 Accepted
+[Sun Jul 19 14:28:23 2026] 127.0.0.1:35362 [200]: GET /favicon.ico
+[Sun Jul 19 14:28:23 2026] 127.0.0.1:35362 Closing
+[Sun Jul 19 14:28:26 2026] 127.0.0.1:35366 Accepted
+[Sun Jul 19 14:28:26 2026] 127.0.0.1:35366 [200]: GET /admin/login.php - Cannot redeclare function e() (previously declared in /home/shahbaz/Desktop/Project Client/biosaf/includes/functions.php:9) in /home/shahbaz/Desktop/Project Client/biosaf/includes/auth.php on line 130
+[Sun Jul 19 14:28:26 2026] 127.0.0.1:35366 Closing
+[Sun Jul 19 14:28:26 2026] 127.0.0.1:35378 Accepted
+[Sun Jul 19 14:28:26 2026] 127.0.0.1:35378 [200]: GET /@vite/client
+[Sun Jul 19 14:28:26 2026] 127.0.0.1:35378 Closing
+[Sun Jul 19 14:28:34 2026] 127.0.0.1:38034 Accepted
+[Sun Jul 19 14:28:34 2026] 127.0.0.1:38034 [200]: GET /admin - Cannot redeclare function e() (previously declared in /home/shahbaz/Desktop/Project Client/biosaf/includes/functions.php:9) in /home/shahbaz/Desktop/Project Client/biosaf/includes/auth.php on line 130
+[Sun Jul 19 14:28:34 2026] 127.0.0.1:38034 Closing
+[Sun Jul 19 14:28:34 2026] 127.0.0.1:38048 Accepted
+[Sun Jul 19 14:28:34 2026] 127.0.0.1:38048 [200]: GET /favicon.ico
+[Sun Jul 19 14:28:34 2026] 127.0.0.1:38048 Closing
+[Sun Jul 19 14:28:43 2026] 127.0.0.1:37778 Accepted
+[Sun Jul 19 14:28:43 2026] 127.0.0.1:37778 [200]: GET /admin/login.php - Cannot redeclare function e() (previously declared in /home/shahbaz/Desktop/Project Client/biosaf/includes/functions.php:9) in /home/shahbaz/Desktop/Project Client/biosaf/includes/auth.php on line 130
+[Sun Jul 19 14:28:43 2026] 127.0.0.1:37778 Closing
+[Sun Jul 19 14:28:43 2026] 127.0.0.1:37784 Accepted
+[Sun Jul 19 14:28:43 2026] 127.0.0.1:37784 [200]: GET /@vite/client
+[Sun Jul 19 14:28:43 2026] 127.0.0.1:37784 Closing
+[Sun Jul 19 14:58:09 2026] 127.0.0.1:52576 Accepted
+[Sun Jul 19 14:58:09 2026] 127.0.0.1:52576 [200]: GET /admin/login.php
+[Sun Jul 19 14:58:09 2026] 127.0.0.1:52576 Closing
+[Sun Jul 19 14:58:11 2026] 127.0.0.1:52582 Accepted
+[Sun Jul 19 14:58:11 2026] 127.0.0.1:52582 [200]: GET /@vite/client
+[Sun Jul 19 14:58:11 2026] 127.0.0.1:52582 Closing

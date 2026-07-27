@@ -5,9 +5,9 @@ import re
 import shutil
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parent.parent
-BIOSAF = ROOT / "biosaf"
-SRC = ROOT
+PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
+BIOSAF = PROJECT_ROOT / "biosaf"
+SRC = PROJECT_ROOT
 
 HEAD_ASSETS = """    <script src="assets/js/tailwind-config.js"></script>
     <link rel="stylesheet" href="assets/css/main.css">"""
@@ -29,22 +29,55 @@ FILES = [
     "ISO-Certifiction.html",
 ]
 
-CORE_JS_PATTERNS = [
-    r"// Preloader Fadeout Animation[\s\S]*?}\);\s*",
-    r"// Preloader transition control[\s\S]*?}\);\s*",
-    r"// Dual-Circle Custom Mouse Follower Logic[\s\S]*?animateCursor\(\);\s*",
-    r"// Interactive Custom Cursor Tracker logic[\s\S]*?updateOutlinePosition\(\);\s*",
-    r"// Dual circle mouse tracking logic[\s\S]*?updateOutlinePosition\(\);\s*",
-    r"// Enlarge Mouse follower outline on hover[\s\S]*?}\);\s*",
-    r"// Enlarge Cursor on interactive elements hover[\s\S]*?}\);\s*",
-    r"// Enlarge Cursor Follower on hover transitions[\s\S]*?}\);\s*",
-    r"// Scroll-driven Reveal Intersections Observer[\s\S]*?}\);\s*",
-    r"// Scroll Reveal Intersection Observer Setup[\s\S]*?}\);\s*",
-    r"// Intersection Observer for scroll triggers[\s\S]*?}\);\s*",
-    r"// Mobile drawer controller[\s\S]*?}\);\s*",
-    r"// Mobile drawer menu logic[\s\S]*?}\);\s*",
-    r"// Mobile drawer menu logic[\s\S]*?}\);\s*",
+CORE_JS_MARKERS = [
+    "preloader",
+    "cursor-dot",
+    "cursor-outline",
+    "revealObserver",
+    "revealElements",
+    "mobileMenuBtn",
+    "mobile-menu-btn",
+    "mobileDrawer",
+    "mobile-drawer",
+    "updateOutlinePosition",
+    "animateCursor",
+    "updateTestimonial",
+    "changeTestimonial",
+    "currentTestimonialIndex",
+    "clientTestimonials",
+    "const testimonials =",
 ]
+
+PAGE_SCRIPT_MARKERS = [
+    "function setFormCategory",
+    "function toggleFaq",
+    "function triggerInquirySuccess",
+    "function toggleManifestDrawer",
+    "function calculateRoadmap",
+    "function showSuccessMessage",
+    "function filterProducts",
+    "function addToManifest",
+    "function toggleFaqItem",
+    "window.BIOSAF_TESTIMONIALS",
+]
+
+
+def strip_inline_scripts(content: str) -> str:
+    """Remove inline core JS blocks; keep page-specific scripts."""
+
+    def replacer(match: re.Match[str]) -> str:
+        body = match.group(1)
+        if any(marker in body for marker in PAGE_SCRIPT_MARKERS):
+            return match.group(0)
+        if any(marker in body for marker in CORE_JS_MARKERS):
+            return ""
+        # Drop orphaned fragments left by partial regex matches
+        if body.strip().startswith("el.addEventListener") or "}, observerOptions);" in body:
+            return ""
+        return match.group(0)
+
+    content = re.sub(r"<script>([\s\S]*?)</script>\s*", replacer, content)
+    return content
 
 
 def strip_inline_head(content: str) -> str:
@@ -63,12 +96,7 @@ def strip_inline_head(content: str) -> str:
 
 
 def strip_core_js(content: str) -> str:
-    for pattern in CORE_JS_PATTERNS:
-        content = re.sub(pattern, "", content, flags=re.MULTILINE)
-
-    # Remove empty script tags
-    content = re.sub(r"<script>\s*</script>\s*", "", content)
-    return content
+    return strip_inline_scripts(content)
 
 
 def inject_core_scripts(content: str) -> str:
@@ -92,22 +120,15 @@ def extract_testimonials_to_external(content: str, filename: str) -> str:
         return content
 
     array_literal = match.group(1)
-    content = re.sub(
-        r"// Premium Testimonial Slider Mechanism[\s\S]*?// Autoplay testmonials[\s\S]*?\}, 8000\);\s*",
-        "",
-        content,
-    )
-    content = re.sub(
-        r"// High-end Testimonials Slider Cycle[\s\S]*?\}, 7500\);\s*",
-        "",
-        content,
-    )
+    content = strip_inline_scripts(content)
 
-    inject = f'<script>window.BIOSAF_TESTIMONIALS = {array_literal};</script>\n<script src="assets/js/testimonials.js"></script>\n'
+    inject = (
+        f'<script>window.BIOSAF_TESTIMONIALS = {array_literal};</script>\n'
+        '<script src="assets/js/testimonials.js"></script>\n'
+    )
     if "assets/js/testimonials.js" not in content:
         content = content.replace("</body>", inject + "</body>")
 
-    content = strip_core_js(content)
     return content
 
 
@@ -122,10 +143,16 @@ def migrate_file(src_name: str) -> None:
 
     content = src.read_text(encoding="utf-8")
     content = strip_inline_head(content)
-    content = strip_core_js(content)
 
     if dest_name in ("index.html", "about.html"):
         content = extract_testimonials_to_external(content, dest_name)
+    else:
+        content = strip_core_js(content)
+
+    if dest_name not in ("index.html", "about.html"):
+        pass
+    elif "assets/js/core.js" not in content:
+        content = strip_core_js(content)
 
     content = inject_core_scripts(content)
     dest.write_text(content, encoding="utf-8")

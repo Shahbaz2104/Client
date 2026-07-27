@@ -1,0 +1,554 @@
+<?php
+declare(strict_types=1);
+
+require_once __DIR__ . '/includes/bootstrap.php';
+
+$pageTitle = 'Food Safety System Development';
+$metaDescription = 'HACCP plans, SSOPs, food safety audits, and regulatory compliance system development by BIOSAF Enterprises.';
+$activePage = 'divisions';
+$navStyle = 'sticky';
+$bodyClass = 'font-sans text-slate-700 antialiased bg-brand-light selection:bg-brand-accent selection:text-brand-dark';
+$preloaderIcon = 'ph-bold ph-shield';
+$preloaderSubtext = 'Food Safety Systems Division';
+$pageScripts = ['food-system-development.js'];
+
+require BIOSAF_INCLUDES . '/header.php';
+?>
+
+<!-- Hero Banner Presentation -->
+    <section class="relative pt-24 pb-20 md:pt-36 md:pb-32 bg-brand-dark overflow-hidden text-white">
+        <!-- Ambient light graphics -->
+        <div class="absolute inset-0 z-0">
+            <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(26,89,53,0.5),transparent_60%)]"></div>
+            <div class="absolute bottom-[-10%] left-[-10%] w-[50%] h-[50%] bg-[radial-gradient(circle,rgba(211,243,64,0.05),transparent_70%)]"></div>
+            <div class="absolute inset-0 opacity-[0.03] bg-[linear-gradient(to_right,#FFF_1px,transparent_1px),linear-gradient(to_bottom,#FFF_1px,transparent_1px)] bg-[size:32px_32px]"></div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid lg:grid-cols-12 gap-12 items-center">
+                <!-- Hero Core Copy -->
+                <div class="lg:col-span-7 space-y-8">
+                    <div class="inline-flex items-center gap-2 bg-white/5 border border-white/10 text-brand-accent px-4 py-2 rounded-full text-xs font-semibold tracking-wider uppercase backdrop-blur-sm">
+                        <span class="w-2.5 h-2.5 rounded-full bg-brand-accent animate-pulse"></span>
+                        Accredited Lead Auditors &amp; Shariah Advisors
+                    </div>
+                    
+                    <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold leading-[1.1] tracking-tight">
+                        Navigate global <span class="text-brand-accent italic font-serif">compliance</span> with certainty
+                    </h1>
+                    
+                    <p class="text-lg text-gray-300 max-w-xl leading-relaxed">
+                        BIOSAF Enterprises delivers professional ISO certification consultancy, documentation architectures, and rigorous Halal assurance programs designed to secure international compliance and boost market access.
+                    </p>
+
+                    <!-- Interactive Quick Stats Widget -->
+                    <div class="flex flex-col sm:flex-row gap-4 pt-2">
+                        <a href="#planner" class="bg-brand-accent hover:bg-brand-accentHover text-brand-dark font-black text-xs px-8 py-4 rounded-xl uppercase tracking-wider transition-colors flex items-center justify-center gap-2 shadow-lg shadow-brand-accent/10">
+                            <i class="ph-bold ph-calculator text-sm"></i> Try Implementation Planner
+                        </a>
+                        <a href="#contact" class="bg-white/5 hover:bg-white/10 text-white border border-white/15 px-8 py-4 rounded-xl font-semibold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2 backdrop-blur-md">
+                            Speak to an Auditor
+                        </a>
+                    </div>
+
+                    <!-- Strategic Trust Anchors -->
+                    <div class="pt-6 border-t border-white/10 grid grid-cols-3 gap-4 max-w-md text-xs">
+                        <div class="flex items-center gap-2">
+                            <i class="ph-bold ph-shield-check text-brand-accent text-lg"></i>
+                            <span class="text-slate-300 font-medium">100% Audit Assurance</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <i class="ph-bold ph-certificate text-brand-accent text-lg"></i>
+                            <span class="text-slate-300 font-medium">IRCA Lead Auditors</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <i class="ph-bold ph-globe text-brand-accent text-lg"></i>
+                            <span class="text-slate-300 font-medium">International Recognition</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Side Visual Presentation (Abstract geometry & ISO Audit asset) -->
+                <div class="lg:col-span-5 relative">
+                    <div class="relative mx-auto max-w-[420px] lg:max-w-none">
+                        <!-- Background glow elements -->
+                        <div class="absolute -top-6 -left-6 w-48 h-48 bg-brand-accent rounded-full opacity-10 blur-3xl"></div>
+                        <div class="absolute -bottom-6 -right-6 w-56 h-56 bg-brand-secondary rounded-full opacity-20 blur-3xl"></div>
+
+                        <!-- Image presentation -->
+                        <div class="relative z-10 rounded-[2.5rem] overflow-hidden border border-white/10 shadow-2xl animate-float">
+                            <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Corporate Quality Management Audit" class="w-full object-cover aspect-[4/3] sm:aspect-square" />
+                            <div class="absolute inset-0 bg-gradient-to-t from-brand-dark via-transparent to-transparent"></div>
+                        </div>
+
+                        <!-- Dynamic Stat Overlay -->
+                        <div class="absolute -bottom-4 -left-4 z-20 bg-white text-brand-dark rounded-2xl p-5 shadow-2xl border border-gray-100 flex items-center gap-3">
+                            <div class="w-10 h-10 bg-brand-light rounded-xl flex items-center justify-center text-brand-primary">
+                                <i class="ph-bold ph-trend-up text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-[10px] text-slate-400 font-bold uppercase leading-none">Acredited Success</h4>
+                                <p class="text-xs font-extrabold text-brand-dark mt-1">100% Certification Ratio</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Overview Section -->
+    <section id="overview" class="py-24 bg-white border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-12 gap-12 lg:gap-20 items-center">
+                
+                <!-- Left graphic aspect -->
+                <div class="lg:col-span-5 relative reveal">
+                    <div class="relative grid grid-cols-12 gap-3">
+                        <div class="col-span-11 rounded-[2.5rem] overflow-hidden shadow-2xl">
+                            <img src="https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Advisory Team Consulting" class="w-full object-cover aspect-[4/5]" />
+                        </div>
+                        <div class="absolute bottom-[-20px] right-0 w-[180px] rounded-2xl overflow-hidden shadow-2xl border-4 border-white">
+                            <img src="https://images.unsplash.com/photo-1450133064473-71024230f91b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="System Review Audit" class="w-full aspect-square object-cover" />
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Consultancy Copy Block -->
+                <div class="lg:col-span-7 space-y-6 reveal">
+                    <span class="text-brand-primary text-xs font-bold tracking-widest uppercase bg-brand-light px-3.5 py-1.5 rounded-full inline-block">
+                        Advisory Framework Overview
+                    </span>
+                    <h2 class="text-3xl sm:text-5xl font-black text-brand-dark tracking-tight">
+                        Securing market credibility through strict regulatory standards
+                    </h2>
+                    <div class="space-y-4 text-slate-600 leading-relaxed text-base">
+                        <p class="font-bold text-brand-primary">
+                            BIOSAF Enterprises acts as the premier strategic partner for organizations seeking accreditation, process compliance, and verified international standards.
+                        </p>
+                        <p>
+                            We transition companies from manual, disjointed processes into unified quality networks. We develop complete technical documentation, perform objective internal gap audits, lead corrective operations, and ensure a smooth certification experience with registrars.
+                        </p>
+                        <p>
+                            Whether establishing food defense mechanisms (ISO 22000 / HACCP) or ensuring robust lab procedures (ISO 17025) and Halal supply chains, we provide structural guidance from initial review to continuous improvement.
+                        </p>
+                    </div>
+                    <div class="grid sm:grid-cols-2 gap-4 pt-4 border-t border-gray-100">
+                        <div class="flex items-center gap-3">
+                            <i class="ph-bold ph-shield-check text-brand-secondary text-xl"></i>
+                            <span class="font-bold text-brand-dark text-sm">Regulatory Process Compliance</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <i class="ph-bold ph-chart-line-up text-brand-secondary text-xl"></i>
+                            <span class="font-bold text-brand-dark text-sm">Accreditation Support Strategy</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ISO & Halal standards catalog -->
+    <section id="standards" class="py-24 bg-[#F8FAF6] relative border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-16 reveal">
+                <span class="text-brand-primary text-xs font-bold tracking-widest uppercase bg-white border border-gray-100 px-4 py-2 rounded-full inline-block">
+                    Standard Portfolios
+                </span>
+                <h2 class="text-3xl sm:text-5xl font-extrabold text-brand-dark mt-4">
+                    Accredited Certifications
+                </h2>
+                <p class="text-slate-600 mt-2">Explore strategic systems customized for industrial, chemical, laboratories, and food manufacturers.</p>
+            </div>
+
+            <!-- Standard Cards Grid -->
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- ISO 9001 -->
+                <div class="bg-white rounded-3xl p-8 border border-gray-100 spec-card transition-all duration-300 hover:-translate-y-1 relative overflow-hidden group">
+                    <div class="w-12 h-12 bg-brand-light text-brand-primary rounded-2xl flex items-center justify-center mb-6 group-hover:bg-brand-primary group-hover:text-brand-accent transition-colors">
+                        <i class="ph-bold ph-check-square text-2xl"></i>
+                    </div>
+                    <span class="text-[10px] uppercase font-bold tracking-wider text-brand-secondary">Core Foundations</span>
+                    <h3 class="font-extrabold text-slate-950 text-lg mb-2 mt-1">ISO 9001:2015</h3>
+                    <p class="text-xs text-slate-500 leading-relaxed mb-4">Quality Management Systems (QMS). Optimize operational processes, trace production quality, and ensure peak user satisfaction.</p>
+                    <ul class="space-y-2 mb-6 text-xs text-slate-600 font-bold">
+                        <li class="flex items-center gap-1.5"><i class="ph ph-check text-brand-secondary"></i> Process Traceability &amp; Risk</li>
+                        <li class="flex items-center gap-1.5"><i class="ph ph-check text-brand-secondary"></i> Customer Feedback Metrics</li>
+                    </ul>
+                    <a href="#contact" class="text-xs font-bold text-brand-secondary flex items-center gap-1 group-hover:underline">
+                        Select Standard <i class="ph ph-caret-right"></i>
+                    </a>
+                </div>
+
+                <!-- ISO 14001 -->
+                <div class="bg-white rounded-3xl p-8 border border-gray-100 spec-card transition-all duration-300 hover:-translate-y-1 relative overflow-hidden group">
+                    <div class="w-12 h-12 bg-brand-light text-brand-primary rounded-2xl flex items-center justify-center mb-6 group-hover:bg-brand-primary group-hover:text-brand-accent transition-colors">
+                        <i class="ph-bold ph-leaf text-2xl"></i>
+                    </div>
+                    <span class="text-[10px] uppercase font-bold tracking-wider text-brand-secondary">Environmental Impact</span>
+                    <h3 class="font-extrabold text-slate-950 text-lg mb-2 mt-1">ISO 14001:2015</h3>
+                    <p class="text-xs text-slate-500 leading-relaxed mb-4">Environmental Management (EMS). Mitigate operational waste footprint, build clean cycles, and align with global green initiatives.</p>
+                    <ul class="space-y-2 mb-6 text-xs text-slate-600 font-bold">
+                        <li class="flex items-center gap-1.5"><i class="ph ph-check text-brand-secondary"></i> Carbon &amp; Waste Auditing</li>
+                        <li class="flex items-center gap-1.5"><i class="ph ph-check text-brand-secondary"></i> Energy Conservation Protocol</li>
+                    </ul>
+                    <a href="#contact" class="text-xs font-bold text-brand-secondary flex items-center gap-1 group-hover:underline">
+                        Select Standard <i class="ph ph-caret-right"></i>
+                    </a>
+                </div>
+
+                <!-- ISO 22000 -->
+                <div class="bg-white rounded-3xl p-8 border border-gray-100 spec-card transition-all duration-300 hover:-translate-y-1 relative overflow-hidden group">
+                    <div class="w-12 h-12 bg-brand-light text-brand-primary rounded-2xl flex items-center justify-center mb-6 group-hover:bg-brand-primary group-hover:text-brand-accent transition-colors">
+                        <i class="ph-bold ph-hamburger text-2xl"></i>
+                    </div>
+                    <span class="text-[10px] uppercase font-bold tracking-wider text-brand-secondary">Food Supply Integrity</span>
+                    <h3 class="font-extrabold text-slate-950 text-lg mb-2 mt-1">ISO 22000 / HACCP</h3>
+                    <p class="text-xs text-slate-500 leading-relaxed mb-4">Food Safety Management Systems (FSMS). Ensure absolute protection against microbiological and chemical vectors across your supply chain.</p>
+                    <ul class="space-y-2 mb-6 text-xs text-slate-600 font-bold">
+                        <li class="flex items-center gap-1.5"><i class="ph ph-check text-brand-secondary"></i> Hazard Analysis &amp; CCPs</li>
+                        <li class="flex items-center gap-1.5"><i class="ph ph-check text-brand-secondary"></i> Hygiene &amp; Sanitization Codes</li>
+                    </ul>
+                    <a href="#contact" class="text-xs font-bold text-brand-secondary flex items-center gap-1 group-hover:underline">
+                        Select Standard <i class="ph ph-caret-right"></i>
+                    </a>
+                </div>
+
+                <!-- ISO 45001 -->
+                <div class="bg-white rounded-3xl p-8 border border-gray-100 spec-card transition-all duration-300 hover:-translate-y-1 relative overflow-hidden group">
+                    <div class="w-12 h-12 bg-brand-light text-brand-primary rounded-2xl flex items-center justify-center mb-6 group-hover:bg-brand-primary group-hover:text-brand-accent transition-colors">
+                        <i class="ph-bold ph-shield-check text-2xl"></i>
+                    </div>
+                    <span class="text-[10px] uppercase font-bold tracking-wider text-brand-secondary">Workplace Protection</span>
+                    <h3 class="font-extrabold text-slate-950 text-lg mb-2 mt-1">ISO 45001:2018</h3>
+                    <p class="text-xs text-slate-500 leading-relaxed mb-4">Occupational Health &amp; Safety (OHSMS). Minimize industrial accidents, optimize field personnel safety, and execute proactive hazard checks.</p>
+                    <ul class="space-y-2 mb-6 text-xs text-slate-600 font-bold">
+                        <li class="flex items-center gap-1.5"><i class="ph ph-check text-brand-secondary"></i> Hazard Assessment Matrices</li>
+                        <li class="flex items-center gap-1.5"><i class="ph ph-check text-brand-secondary"></i> Incidents Log Optimization</li>
+                    </ul>
+                    <a href="#contact" class="text-xs font-bold text-brand-secondary flex items-center gap-1 group-hover:underline">
+                        Select Standard <i class="ph ph-caret-right"></i>
+                    </a>
+                </div>
+
+                <!-- ISO 17025 -->
+                <div class="bg-white rounded-3xl p-8 border border-gray-100 spec-card transition-all duration-300 hover:-translate-y-1 relative overflow-hidden group">
+                    <div class="w-12 h-12 bg-brand-light text-brand-primary rounded-2xl flex items-center justify-center mb-6 group-hover:bg-brand-primary group-hover:text-brand-accent transition-colors">
+                        <i class="ph-bold ph-test-tube text-2xl"></i>
+                    </div>
+                    <span class="text-[10px] uppercase font-bold tracking-wider text-brand-secondary">Scientific Validation</span>
+                    <h3 class="font-extrabold text-slate-950 text-lg mb-2 mt-1">ISO/IEC 17025</h3>
+                    <p class="text-xs text-slate-500 leading-relaxed mb-4">Laboratory Calibration and Testing Accreditation. Ensure diagnostic reliability, precise sample custody trails, and analytical integrity.</p>
+                    <ul class="space-y-2 mb-6 text-xs text-slate-600 font-bold">
+                        <li class="flex items-center gap-1.5"><i class="ph ph-check text-brand-secondary"></i> Calibration Uncertainty Limits</li>
+                        <li class="flex items-center gap-1.5"><i class="ph ph-check text-brand-secondary"></i> Inter-Laboratory Comparisons</li>
+                    </ul>
+                    <a href="#contact" class="text-xs font-bold text-brand-secondary flex items-center gap-1 group-hover:underline">
+                        Select Standard <i class="ph ph-caret-right"></i>
+                    </a>
+                </div>
+
+                <!-- Halal Certification -->
+                <div class="bg-white rounded-3xl p-8 border border-gray-100 spec-card transition-all duration-300 hover:-translate-y-1 relative overflow-hidden group">
+                    <div class="w-12 h-12 bg-brand-light text-brand-primary rounded-2xl flex items-center justify-center mb-6 group-hover:bg-brand-primary group-hover:text-brand-accent transition-colors">
+                        <i class="ph-bold ph-seal-check text-2xl"></i>
+                    </div>
+                    <span class="text-[10px] uppercase font-bold tracking-wider text-brand-secondary">Shariah Compliance</span>
+                    <h3 class="font-extrabold text-slate-950 text-lg mb-2 mt-1">Halal Certification</h3>
+                    <p class="text-xs text-slate-500 leading-relaxed mb-4">Halal Food and Reagent Advisory. Establish robust sourcing verification, chemical-animal segregation, and full compliance with PS 3733.</p>
+                    <ul class="space-y-2 mb-6 text-xs text-slate-600 font-bold">
+                        <li class="flex items-center gap-1.5"><i class="ph ph-check text-brand-secondary"></i> Ingredient Origin Verification</li>
+                        <li class="flex items-center gap-1.5"><i class="ph ph-check text-brand-secondary"></i> Strict Process Separation</li>
+                    </ul>
+                    <a href="#contact" class="text-xs font-bold text-brand-secondary flex items-center gap-1 group-hover:underline">
+                        Select Standard <i class="ph ph-caret-right"></i>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Core Pillars section (Implementation, Documentation, Training, Audits, Certification Support) -->
+    <section id="pillars" class="py-24 bg-white relative border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-12 gap-12 items-center">
+                <!-- Text introduction -->
+                <div class="lg:col-span-5 reveal">
+                    <span class="text-brand-primary text-xs font-bold tracking-widest uppercase bg-brand-light px-3.5 py-1.5 rounded-full inline-block">
+                        Advisory Architecture
+                    </span>
+                    <h2 class="text-3xl sm:text-5xl font-black text-brand-dark mt-4 mb-4">
+                        Advisory Pillars Engineered to Ensure Success
+                    </h2>
+                    <p class="text-slate-600 leading-relaxed text-base">
+                        Securing accreditation requires more than template books. Our modular advisory pillars support your personnel at every strategic juncture.
+                    </p>
+                    <div class="mt-6 border-l-4 border-brand-accent pl-6 py-1">
+                        <p class="font-serif italic text-lg text-brand-primary">
+                            "A system is only as strong as its daily execution. We design functional frameworks, not just certificates."
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Structured pillars grid -->
+                <div class="lg:col-span-7 grid sm:grid-cols-2 gap-4 reveal">
+                    <!-- Documentation -->
+                    <div class="p-6 bg-[#F8FAF6] border border-gray-100 rounded-3xl group hover:bg-white hover:border-brand-accent/30 transition-all">
+                        <div class="w-10 h-10 bg-white text-brand-primary rounded-xl flex items-center justify-center mb-4 border border-gray-200 group-hover:bg-brand-primary group-hover:text-brand-accent transition-colors">
+                            <i class="ph-bold ph-files text-xl"></i>
+                        </div>
+                        <h3 class="font-bold text-brand-dark text-sm">System Documentation</h3>
+                        <p class="text-xs text-slate-500 mt-2">Developing custom Quality Manuals, SOPs, SSOPs, Work Instructions, and Forms tailored to your specific operations.</p>
+                    </div>
+
+                    <!-- Training -->
+                    <div class="p-6 bg-[#F8FAF6] border border-gray-100 rounded-3xl group hover:bg-white hover:border-brand-accent/30 transition-all">
+                        <div class="w-10 h-10 bg-white text-brand-primary rounded-xl flex items-center justify-center mb-4 border border-gray-200 group-hover:bg-brand-primary group-hover:text-brand-accent transition-colors">
+                            <i class="ph-bold ph-student text-xl"></i>
+                        </div>
+                        <h3 class="font-bold text-brand-dark text-sm">Interactive Training</h3>
+                        <p class="text-xs text-slate-500 mt-2">Conducting internal lead auditor sessions, food defense briefings, and operational hazard control seminars.</p>
+                    </div>
+
+                    <!-- Audits -->
+                    <div class="p-6 bg-[#F8FAF6] border border-gray-100 rounded-3xl group hover:bg-white hover:border-brand-accent/30 transition-all">
+                        <div class="w-10 h-10 bg-white text-brand-primary rounded-xl flex items-center justify-center mb-4 border border-gray-200 group-hover:bg-brand-primary group-hover:text-brand-accent transition-colors">
+                            <i class="ph-bold ph-eye text-xl"></i>
+                        </div>
+                        <h3 class="font-bold text-brand-dark text-sm">Pre-Assessment Audits</h3>
+                        <p class="text-xs text-slate-500 mt-2">Executing strict independent mock audits to isolate compliance gaps prior to registrar reviews.</p>
+                    </div>
+
+                    <!-- Certification Support -->
+                    <div class="p-6 bg-[#F8FAF6] border border-gray-100 rounded-3xl group hover:bg-white hover:border-brand-accent/30 transition-all">
+                        <div class="w-10 h-10 bg-white text-brand-primary rounded-xl flex items-center justify-center mb-4 border border-gray-200 group-hover:bg-brand-primary group-hover:text-brand-accent transition-colors">
+                            <i class="ph-bold ph-user-focus text-xl"></i>
+                        </div>
+                        <h3 class="font-bold text-brand-dark text-sm">Accreditation Liaison</h3>
+                        <p class="text-xs text-slate-500 mt-2">Presenting documentation to audit registrars, facilitating audits, and resolving corrective action requests.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Timeline Milestone Section -->
+    <section id="process" class="py-24 bg-brand-dark text-white relative overflow-hidden">
+        <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,rgba(26,89,53,0.3),transparent_60%)]"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center max-w-2xl mx-auto mb-20 reveal">
+                <span class="text-brand-accent text-xs font-bold tracking-widest uppercase bg-white/5 border border-white/10 px-4 py-2 rounded-full inline-block">
+                    Consultation Blueprint
+                </span>
+                <h2 class="text-3xl sm:text-5xl font-extrabold mt-6 mb-4">Certification Roadmap</h2>
+                <p class="text-slate-300">From initial gap diagnostics to Registrar audit success and continuous verification.</p>
+            </div>
+
+            <!-- Flow milestone cards -->
+            <div class="grid md:grid-cols-4 gap-8">
+                <!-- Step 1 -->
+                <div class="bg-white/5 border border-white/10 rounded-3xl p-8 relative group reveal">
+                    <div class="absolute -top-5 left-8 w-10 h-10 bg-brand-accent text-brand-dark rounded-xl flex items-center justify-center font-black text-sm shadow-md">
+                        1
+                    </div>
+                    <h3 class="text-xl font-bold mt-2 mb-3">Gap Diagnosis</h3>
+                    <p class="text-slate-300 text-xs leading-relaxed">Our lead consultants perform a comprehensive on-site analysis, comparing active processes with desired standard frameworks.</p>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="bg-white/5 border border-white/10 rounded-3xl p-8 relative group reveal">
+                    <div class="absolute -top-5 left-8 w-10 h-10 bg-brand-accent text-brand-dark rounded-xl flex items-center justify-center font-black text-sm shadow-md">
+                        2
+                    </div>
+                    <h3 class="text-xl font-bold mt-2 mb-3">Documentation Setup</h3>
+                    <p class="text-slate-300 text-xs leading-relaxed">We design and integrate standard quality policies, trace templates, SOP manuals, and verification logs with your systems.</p>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="bg-white/5 border border-white/10 rounded-3xl p-8 relative group reveal">
+                    <div class="absolute -top-5 left-8 w-10 h-10 bg-brand-accent text-brand-dark rounded-xl flex items-center justify-center font-black text-sm shadow-md">
+                        3
+                    </div>
+                    <h3 class="text-xl font-bold mt-2 mb-3">Internal Audits</h3>
+                    <p class="text-slate-300 text-xs leading-relaxed">We train your core quality team and execute rigorous mock audits to find and address any non-conformances beforehand.</p>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="bg-white/5 border border-white/10 rounded-3xl p-8 relative group reveal">
+                    <div class="absolute -top-5 left-8 w-10 h-10 bg-brand-accent text-brand-dark rounded-xl flex items-center justify-center font-black text-sm shadow-md">
+                        4
+                    </div>
+                    <h3 class="text-xl font-bold mt-2 mb-3">Accreditation</h3>
+                    <p class="text-slate-300 text-xs leading-relaxed">We support you during the registrar’s final assessment, resolve any corrective action reviews, and ensure successful certification.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Compliance Gap & Readiness Planner -->
+    <section id="planner" class="py-24 bg-white relative border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-16 reveal">
+                <span class="text-brand-primary text-xs font-bold tracking-widest uppercase bg-brand-light px-4 py-2 rounded-full inline-block">
+                    Interactive Planner
+                </span>
+                <h2 class="text-3xl sm:text-5xl font-extrabold text-brand-dark mt-4">
+                    Gap Analysis Planner
+                </h2>
+                <p class="text-slate-600 mt-2">Select compliance goals to instantly generate a readiness outline, then export it for an official advisory proposal.</p>
+            </div>
+
+            <!-- Interactive Planner Frame -->
+            <div class="grid lg:grid-cols-12 gap-8 items-start reveal">
+                
+                <!-- Left Hand Interactive Parameters Selector -->
+                <div class="lg:col-span-5 bg-[#F8FAF6] p-8 rounded-3xl border border-gray-100 space-y-6">
+                    <h3 class="text-brand-dark text-lg font-black flex items-center gap-2">
+                        <i class="ph ph-sliders text-xl text-brand-secondary"></i> Define Setup Parameters
+                    </h3>
+
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-700 mb-2">Primary Compliance Targets (Select All That Apply)</label>
+                        <div class="space-y-2">
+                            <label class="flex items-center gap-3 bg-white p-3 rounded-xl border border-gray-100 cursor-pointer hover:border-brand-accent transition-colors">
+                                <input type="checkbox" value="9001" class="compliance-target rounded text-brand-secondary focus:ring-brand-accent" checked onchange="calculateRoadmap()">
+                                <span class="text-xs text-brand-dark font-bold">ISO 9001 (Quality Management)</span>
+                            </label>
+                            <label class="flex items-center gap-3 bg-white p-3 rounded-xl border border-gray-100 cursor-pointer hover:border-brand-accent transition-colors">
+                                <input type="checkbox" value="22000" class="compliance-target rounded text-brand-secondary focus:ring-brand-accent" onchange="calculateRoadmap()">
+                                <span class="text-xs text-brand-dark font-bold">ISO 22000 (Food Safety)</span>
+                            </label>
+                            <label class="flex items-center gap-3 bg-white p-3 rounded-xl border border-gray-100 cursor-pointer hover:border-brand-accent transition-colors">
+                                <input type="checkbox" value="17025" class="compliance-target rounded text-brand-secondary focus:ring-brand-accent" onchange="calculateRoadmap()">
+                                <span class="text-xs text-brand-dark font-bold">ISO 17025 (Lab Calibration)</span>
+                            </label>
+                            <label class="flex items-center gap-3 bg-white p-3 rounded-xl border border-gray-100 cursor-pointer hover:border-brand-accent transition-colors">
+                                <input type="checkbox" value="Halal" class="compliance-target rounded text-brand-secondary focus:ring-brand-accent" onchange="calculateRoadmap()">
+                                <span class="text-xs text-brand-dark font-bold">Halal Assurance (PS 3733 Standard)</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-700 mb-2">Organizational Scale</label>
+                        <select id="company-scale" class="w-full bg-white border border-gray-100 rounded-xl py-3 px-4 text-xs font-bold text-brand-dark focus:outline-none focus:border-brand-accent" onchange="calculateRoadmap()">
+                            <option value="small">Small scale (1 - 25 Employees)</option>
+                            <option value="medium" selected>Mid Scale Enterprise (26 - 150 Employees)</option>
+                            <option value="large">Large Manufacturing Plant (150+ Employees)</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-700 mb-2">Current Documentation Maturity</label>
+                        <select id="doc-maturity" class="w-full bg-white border border-gray-100 rounded-xl py-3 px-4 text-xs font-bold text-brand-dark focus:outline-none focus:border-brand-accent" onchange="calculateRoadmap()">
+                            <option value="none">No structured manuals exist</option>
+                            <option value="partial">Some partial protocols in place</option>
+                            <option value="certified">Looking to migrate / upgrade standards</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Right Hand Diagnostic Output & Recommendations -->
+                <div class="lg:col-span-7 bg-brand-primary text-white p-8 sm:p-12 rounded-3xl relative overflow-hidden flex flex-col justify-between">
+                    <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(211,243,64,0.04),transparent_60%)]"></div>
+                    
+                    <div class="relative z-10 space-y-6">
+                        <div class="flex justify-between items-center pb-4 border-b border-white/10">
+                            <h4 class="text-brand-accent font-black text-sm uppercase tracking-wider">Advisory Readiness Matrix</h4>
+                            <span class="text-[10px] bg-white/10 px-2 py-1 rounded-md text-white font-bold" id="estimation-time">Est. Duration: 12 - 16 Weeks</span>
+                        </div>
+
+                        <div>
+                            <p class="text-xs text-slate-300">BASED ON SYSTEM METRICS:</p>
+                            <h3 class="text-2xl font-extrabold mt-1" id="selected-targets-heading">ISO 9001 System Deployment</h3>
+                        </div>
+
+                        <!-- Milestone Checklist -->
+                        <div class="space-y-3 pt-2">
+                            <p class="text-xs font-bold text-brand-accent tracking-wider uppercase">Strategic Implementation Phases:</p>
+                            <div class="space-y-2 text-xs text-slate-300" id="phase-checklist">
+                                <!-- Dynamic check items -->
+                            </div>
+                        </div>
+
+                        <!-- Next Step callout -->
+                        <div class="p-4 bg-white/5 border border-white/10 rounded-2xl flex items-center gap-3">
+                            <i class="ph-bold ph-info text-brand-accent text-lg"></i>
+                            <p class="text-xs text-slate-300 leading-relaxed">This outline has been loaded directly into the proposal submission form below. Click "Transfer Plan to Quote" to finalize.</p>
+                        </div>
+                    </div>
+
+                    <div class="pt-8 relative z-10 flex flex-col sm:flex-row gap-3">
+                        <button onclick="transferToRfpForm()" class="bg-brand-accent hover:bg-brand-accentHover text-brand-dark text-xs font-extrabold py-3.5 px-6 rounded-xl uppercase tracking-wider transition-colors w-full sm:w-auto text-center">
+                            Transfer Plan to Quote
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Proposal Request CTA Form -->
+    <section id="contact" class="py-24 bg-[#F8FAF6] relative border-t border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-brand-primary rounded-[3rem] overflow-hidden shadow-2xl border border-white/5 relative">
+                
+                <div class="grid lg:grid-cols-12 items-stretch">
+                    <!-- Text Info Column -->
+                    <div class="lg:col-span-7 p-8 md:p-16 text-white space-y-6 relative z-10 flex flex-col justify-center">
+                        <i class="ph-fill ph-certificate text-brand-accent text-5xl animate-pulse"></i>
+                        <h2 class="text-3xl sm:text-5xl font-black leading-tight">Ready to Achieve <br class="hidden sm:inline"/>Accredited Status?</h2>
+                        <p class="text-slate-300 leading-relaxed text-sm max-w-xl">
+                            Our ISO lead auditors and Shariah advisors are prepared to assist your organization. Send your scope parameters today to receive a comprehensive gap assessment proposal.
+                        </p>
+                        
+                        <div class="flex flex-col sm:flex-row gap-4 pt-4">
+                            <a href="tel:+923326079992" class="bg-brand-accent hover:bg-brand-accentHover text-brand-dark px-6 py-4 rounded-full font-bold transition-all text-xs tracking-wider uppercase flex items-center justify-center gap-2">
+                                <i class="ph-fill ph-phone-call"></i> Call +92 332 6079992
+                            </a>
+                            <a href="mailto:info@biosafenterprises.com" class="bg-white/10 hover:bg-white/20 border border-white/20 text-white px-6 py-4 rounded-full font-bold transition-all text-xs tracking-wider uppercase flex items-center justify-center gap-2 backdrop-blur-sm">
+                                <i class="ph-fill ph-envelope"></i> Email Consultation Desk
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- RFQ Interactive Submission Form -->
+                    <div class="lg:col-span-5 bg-white/5 border-l border-white/10 p-8 md:p-12 relative z-10 flex flex-col justify-center">
+                        <h3 class="text-white text-lg font-bold mb-6">Request Advisory Proposal</h3>
+                        <form class="space-y-4" onsubmit="event.preventDefault(); triggerSuccessAlert();">
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-300 mb-1">Company / Organization Name</label>
+                                <input required type="text" placeholder="e.g. Paramount Foods Ltd" class="w-full bg-white/5 border border-white/10 rounded-xl py-3 px-4 text-white placeholder-slate-500 focus:outline-none focus:border-brand-accent focus:ring-1 focus:ring-brand-accent text-xs">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-300 mb-1">Contact Phone</label>
+                                <input required type="tel" placeholder="e.g. +92 332 6079992" class="w-full bg-white/5 border border-white/10 rounded-xl py-3 px-4 text-white placeholder-slate-500 focus:outline-none focus:border-brand-accent focus:ring-1 focus:ring-brand-accent text-xs">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-300 mb-1">Target Standards &amp; Scope Requirements</label>
+                                <textarea id="proposal-scope" required placeholder="No goals selected yet. Select standards in the gap analysis planner above, or write custom scope here." class="w-full bg-white/5 border border-white/10 rounded-xl py-3 px-4 text-slate-300 placeholder-slate-500 focus:outline-none focus:border-brand-accent focus:ring-1 focus:ring-brand-accent text-xs h-32 resize-none"></textarea>
+                            </div>
+                            <button type="submit" class="w-full bg-brand-accent hover:bg-brand-accentHover text-brand-dark font-extrabold py-3.5 rounded-xl transition-all text-xs tracking-wider uppercase mt-4">
+                                Submit Advisory RFP
+                              </button>
+                        </form>
+                        <!-- Success message feedback container -->
+                        <div id="proposal-success" class="hidden mt-4 p-4 bg-emerald-950/80 border border-emerald-500/30 rounded-xl text-center">
+                            <p class="text-xs text-emerald-400 font-bold flex items-center justify-center gap-1.5">
+                                <i class="ph-bold ph-seal-check text-base"></i> Requirements Logged. Lead Auditor will contact you shortly.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Corporate Footer -->
+
+<?php require BIOSAF_INCLUDES . '/footer.php';
