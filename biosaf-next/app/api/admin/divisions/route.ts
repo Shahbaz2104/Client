@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import prisma from '@/lib/prisma';
+import { getSession } from '@/lib/auth';
 import { z } from 'zod';
 
 const divisionSchema = z.object({
@@ -32,6 +33,11 @@ export async function GET() {
 
 export async function POST(request: NextRequest) {
   try {
+    const session = await getSession();
+    if (!session) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    }
+
     const body = await request.json();
     const data = divisionSchema.parse(body);
 
@@ -41,6 +47,12 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json(division);
   } catch (error) {
+    if (error instanceof z.ZodError) {
+      return NextResponse.json(
+        { error: 'Invalid input data' },
+        { status: 400 }
+      );
+    }
     console.error('Error creating division:', error);
     return NextResponse.json(
       { error: 'Failed to create division' },

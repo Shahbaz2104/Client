@@ -17,12 +17,13 @@ export default function Home() {
       { threshold: 0.1 }
     );
 
-    revealRefs.current.forEach((ref) => {
+    const currentRefs = revealRefs.current;
+    currentRefs.forEach((ref) => {
       if (ref) observer.observe(ref);
     });
 
     return () => {
-      revealRefs.current.forEach((ref) => {
+      currentRefs.forEach((ref) => {
         if (ref) observer.unobserve(ref);
       });
     };
@@ -362,7 +363,7 @@ export default function Home() {
                   </div>
                   <div>
                     <label className="block text-xs font-semibold text-gray-300 mb-1">Your Message (Optional)</label>
-                    <textarea name="message" rows="3" placeholder="Tell us about your requirements..." className="w-full bg-white/5 border border-white/10 rounded-xl py-3 px-4 text-white placeholder-gray-500 focus:outline-none focus:border-brand-accent focus:ring-1 focus:ring-brand-accent text-sm resize-none"></textarea>
+                    <textarea name="message" rows={3} placeholder="Tell us about your requirements..." className="w-full bg-white/5 border border-white/10 rounded-xl py-3 px-4 text-white placeholder-gray-500 focus:outline-none focus:border-brand-accent focus:ring-1 focus:ring-brand-accent text-sm resize-none"></textarea>
                   </div>
                   <button type="submit" className="w-full bg-brand-accent hover:bg-[#b8e036] text-brand-dark px-6 py-3 rounded-full font-bold transition-all text-sm flex items-center justify-center gap-2">
                     Submit Request

@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import { useRouter } from 'next/navigation';
 import { Lock, Mail, Loader2 } from 'lucide-react';
 
 export default function LoginPage() {
@@ -9,7 +8,6 @@ export default function LoginPage() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
-  const router = useRouter();
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -28,7 +26,7 @@ export default function LoginPage() {
         throw new Error(data.error || 'Login failed');
       }
 
-      router.push('/admin');
+      window.location.href = '/admin';
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Login failed');
     } finally {

@@ -155,12 +155,13 @@ export default function Divisions() {
       { threshold: 0.1 }
     );
 
-    revealRefs.current.forEach((ref) => {
+    const currentRefs = revealRefs.current;
+    currentRefs.forEach((ref) => {
       if (ref) observer.observe(ref);
     });
 
     return () => {
-      revealRefs.current.forEach((ref) => {
+      currentRefs.forEach((ref) => {
         if (ref) observer.unobserve(ref);
       });
     };
@@ -293,7 +294,7 @@ export default function Divisions() {
                 </div>
                 <div className="pt-6">
                   <a
-                    href="#contact"
+                    href="/"
                     className="inline-flex items-center gap-2 text-xs font-extrabold tracking-widest uppercase bg-brand-primary hover:bg-brand-secondary text-white hover:text-brand-accent px-6 py-3.5 rounded-full shadow-lg transition-all duration-300"
                   >
                     Learn More{' '}

@@ -109,12 +109,13 @@ export default function Products() {
       { threshold: 0.1 },
     );
 
-    revealRefs.current.forEach((ref) => {
+    const currentRefs = revealRefs.current;
+    currentRefs.forEach((ref) => {
       if (ref) observer.observe(ref);
     });
 
     return () => {
-      revealRefs.current.forEach((ref) => {
+      currentRefs.forEach((ref) => {
         if (ref) observer.unobserve(ref);
       });
     };

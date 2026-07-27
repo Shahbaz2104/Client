@@ -48,12 +48,13 @@ export default function LaboratoryEquipment() {
       { threshold: 0.1 }
     );
 
-    revealRefs.current.forEach((ref) => {
+    const currentRefs = revealRefs.current;
+    currentRefs.forEach((ref) => {
       if (ref) observer.observe(ref);
     });
 
     return () => {
-      revealRefs.current.forEach((ref) => {
+      currentRefs.forEach((ref) => {
         if (ref) observer.unobserve(ref);
       });
     };
@@ -483,7 +484,7 @@ export default function LaboratoryEquipment() {
                     <label className="block text-xs font-semibold text-gray-300 mb-1">Selected Systems to Quote</label>
                     <textarea 
                       id="cart-text-area" 
-                      readonly 
+                      readOnly 
                       placeholder={cart.length > 0 ? cart.join(', ') : 'No items selected yet. Click "Add to Sourcing List" on featured systems above or search above.'} 
                       className="w-full bg-white/5 border border-white/10 rounded-xl py-3 px-4 text-gray-300 placeholder-gray-500 focus:outline-none focus:border-brand-accent focus:ring-1 focus:ring-brand-accent text-xs h-24 resize-none"
                     />
@@ -552,11 +553,4 @@ export default function LaboratoryEquipment() {
   );
 }
 
-// Missing icons
-function ChevronRight({ className }: { className?: string }) {
-  return (
-    <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
-    </svg>
-  );
-}
+

@@ -44,6 +44,12 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({ success: true });
   } catch (error) {
+    if (error instanceof z.ZodError) {
+      return NextResponse.json(
+        { error: 'Invalid email or password format' },
+        { status: 400 }
+      );
+    }
     console.error('Login error:', error);
     return NextResponse.json(
       { error: 'Something went wrong' },

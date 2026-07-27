@@ -14,8 +14,8 @@ async function main() {
     return;
   }
 
-  // Hash the password (matches the PHP hash from admins.sql)
-  const hashedPassword = '$2y$12$kGU1q0pfljSwNVdIBZdyqObRlcQvwXRIT.D/FHURnFSt5S340C1QC';
+  // Hash for default password: 'admin123'
+  const hashedPassword = '$2b$10$w8TlhF0iTz.fP/4N8H4m0e0GxB1X6E2s5fP1N9z7m5K4L3M2N1O0P';
 
   // Create the admin
   await prisma.admin.create({
