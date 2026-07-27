@@ -1,14 +1,21 @@
 import { Users, Package, MessageSquare, Quote, ArrowUpRight, Plus, Eye } from 'lucide-react';
 import Link from 'next/link';
+import prisma from '@/lib/prisma';
 
 async function getDashboardStats() {
-  // We'll use mock data for now, replace with real DB calls later
-  return {
-    admins: 1,
-    products: 10,
-    messages: 5,
-    quotes: 3,
-  };
+  try {
+    const [admins, products, messages, quotes] = await Promise.all([
+      prisma.admin.count(),
+      prisma.product.count(),
+      prisma.contactMessage.count(),
+      prisma.quoteRequest.count(),
+    ]);
+
+    return { admins, products, messages, quotes };
+  } catch (error) {
+    console.error('Error fetching dashboard stats:', error);
+    return { admins: 0, products: 0, messages: 0, quotes: 0 };
+  }
 }
 
 export default async function AdminDashboard() {

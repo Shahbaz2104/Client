@@ -34,6 +34,18 @@ export default function Contact() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const revealRefs = useRef<(HTMLDivElement | null)[]>([]);
 
+  // Form State
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    company: '',
+    message: '',
+  });
+  const [loading, setLoading] = useState(false);
+  const [toast, setToast] = useState<{ type: 'success' | 'error'; text: string } | null>(null);
+  const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -58,8 +70,78 @@ export default function Contact() {
     };
   }, []);
 
+  function validateForm() {
+    const errors: Record<string, string> = {};
+    if (!formData.name.trim()) errors.name = 'Contact officer name is required';
+    if (!formData.email.trim()) {
+      errors.email = 'Professional email is required';
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      errors.email = 'Please enter a valid email address';
+    }
+    if (!formData.message.trim()) {
+      errors.message = 'Technical requirements brief is required';
+    } else if (formData.message.length < 5) {
+      errors.message = 'Message must be at least 5 characters';
+    }
+    setFieldErrors(errors);
+    return Object.keys(errors).length === 0;
+  }
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    if (!validateForm() || loading) return;
+
+    setLoading(true);
+    setToast(null);
+
+    try {
+      const subject = `[${categories[selectedCategory].label}] ${formData.company || 'General Inquiry'}`;
+      const payload = {
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone || undefined,
+        subject,
+        message: `Scope: ${categories[selectedCategory].value}\n\nCompany: ${formData.company}\n\nDetails:\n${formData.message}`,
+      };
+
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+
+      const data = await res.json();
+
+      if (res.ok && data.success) {
+        setToast({ type: 'success', text: 'Thank you! Your sourcing request has been registered successfully.' });
+        setFormData({ name: '', email: '', phone: '', company: '', message: '' });
+        setFieldErrors({});
+      } else {
+        setToast({ type: 'error', text: data.error || 'Failed to submit inquiry. Please try again.' });
+      }
+    } catch (err) {
+      console.error(err);
+      setToast({ type: 'error', text: 'Network or server error occurred. Please try again later.' });
+    } finally {
+      setLoading(false);
+    }
+  }
+
   return (
     <div>
+      {/* Toast Notification */}
+      {toast && (
+        <div className={`fixed top-24 right-4 z-50 px-6 py-4 rounded-2xl shadow-2xl border text-sm font-bold flex items-center gap-3 transition-all animate-bounce ${
+          toast.type === 'success'
+            ? 'bg-emerald-900 text-emerald-100 border-emerald-700'
+            : 'bg-red-900 text-red-100 border-red-700'
+        }`}>
+          <span>{toast.type === 'success' ? '✓' : '✕'}</span>
+          <span>{toast.text}</span>
+          <button onClick={() => setToast(null)} className="ml-2 text-xs opacity-70 hover:opacity-100">✕</button>
+        </div>
+      )}
+
       {/* Hero */}
       <section className="relative pt-20 pb-20 md:pt-28 md:pb-28 bg-brand-dark overflow-hidden text-white">
         <div className="absolute inset-0 z-0">
@@ -179,9 +261,10 @@ export default function Contact() {
                 {categories.map((category, index) => (
                   <button
                     key={index}
+                    type="button"
                     onClick={() => setSelectedCategory(index)}
                     className={`text-[11px] font-bold uppercase tracking-wider py-3 px-2 rounded-xl transition-all ${
-                      selectedCategory === index ? 'bg-brand-accent text-brand-dark font-black' : 'bg-white text-slate-500 border border-gray-200 hover:bg-slate-50'
+                      selectedCategory === index ? 'bg-brand-accent text-brand-dark font-black shadow-xs' : 'bg-white text-slate-500 border border-gray-200 hover:bg-slate-50'
                     }`}
                   >
                     {category.label}
@@ -189,41 +272,99 @@ export default function Contact() {
                 ))}
               </div>
 
-              <form className="space-y-5" onSubmit={(e) => e.preventDefault()}>
+              <form className="space-y-5" onSubmit={handleSubmit} noValidate>
                 <div className="grid sm:grid-cols-2 gap-5">
                   <div>
                     <label className="block text-xs font-bold text-brand-primary uppercase tracking-wider mb-2">Company / Organization</label>
-                    <input required type="text" placeholder="e.g. Paramount Foods Ltd" className="w-full bg-white border border-gray-200 rounded-xl py-3.5 px-4 text-brand-dark placeholder-slate-400 focus:outline-none focus:border-brand-accent focus:ring-1 focus:ring-brand-accent text-xs" />
+                    <input
+                      type="text"
+                      placeholder="e.g. Paramount Foods Ltd"
+                      value={formData.company}
+                      onChange={(e) => setFormData({ ...formData, company: e.target.value })}
+                      className="w-full bg-white border border-gray-200 rounded-xl py-3.5 px-4 text-brand-dark placeholder-slate-400 focus:outline-none focus:border-brand-accent focus:ring-1 focus:ring-brand-accent text-xs"
+                    />
                   </div>
                   <div>
-                    <label className="block text-xs font-bold text-brand-primary uppercase tracking-wider mb-2">Contact Officer Name</label>
-                    <input required type="text" placeholder="e.g. Sarah Naveed" className="w-full bg-white border border-gray-200 rounded-xl py-3.5 px-4 text-brand-dark placeholder-slate-400 focus:outline-none focus:border-brand-accent focus:ring-1 focus:ring-brand-accent text-xs" />
+                    <label className="block text-xs font-bold text-brand-primary uppercase tracking-wider mb-2">Contact Officer Name *</label>
+                    <input
+                      type="text"
+                      placeholder="e.g. Sarah Naveed"
+                      value={formData.name}
+                      onChange={(e) => {
+                        setFormData({ ...formData, name: e.target.value });
+                        if (fieldErrors.name) setFieldErrors({ ...fieldErrors, name: '' });
+                      }}
+                      className={`w-full bg-white border rounded-xl py-3.5 px-4 text-brand-dark placeholder-slate-400 focus:outline-none focus:border-brand-accent focus:ring-1 focus:ring-brand-accent text-xs ${
+                        fieldErrors.name ? 'border-red-500 bg-red-50/20' : 'border-gray-200'
+                      }`}
+                    />
+                    {fieldErrors.name && <p className="text-red-500 text-[10px] font-bold mt-1">{fieldErrors.name}</p>}
                   </div>
                 </div>
 
                 <div className="grid sm:grid-cols-2 gap-5">
                   <div>
-                    <label className="block text-xs font-bold text-brand-primary uppercase tracking-wider mb-2">Professional Email</label>
-                    <input required type="email" placeholder="e.g. s.naveed@paramount.com" className="w-full bg-white border border-gray-200 rounded-xl py-3.5 px-4 text-brand-dark placeholder-slate-400 focus:outline-none focus:border-brand-accent focus:ring-1 focus:ring-brand-accent text-xs" />
+                    <label className="block text-xs font-bold text-brand-primary uppercase tracking-wider mb-2">Professional Email *</label>
+                    <input
+                      type="email"
+                      placeholder="e.g. s.naveed@paramount.com"
+                      value={formData.email}
+                      onChange={(e) => {
+                        setFormData({ ...formData, email: e.target.value });
+                        if (fieldErrors.email) setFieldErrors({ ...fieldErrors, email: '' });
+                      }}
+                      className={`w-full bg-white border rounded-xl py-3.5 px-4 text-brand-dark placeholder-slate-400 focus:outline-none focus:border-brand-accent focus:ring-1 focus:ring-brand-accent text-xs ${
+                        fieldErrors.email ? 'border-red-500 bg-red-50/20' : 'border-gray-200'
+                      }`}
+                    />
+                    {fieldErrors.email && <p className="text-red-500 text-[10px] font-bold mt-1">{fieldErrors.email}</p>}
                   </div>
                   <div>
                     <label className="block text-xs font-bold text-brand-primary uppercase tracking-wider mb-2">Active Mobile Line</label>
-                    <input required type="tel" placeholder="e.g. +92 332 0000000" className="w-full bg-white border border-gray-200 rounded-xl py-3.5 px-4 text-brand-dark placeholder-slate-400 focus:outline-none focus:border-brand-accent focus:ring-1 focus:ring-brand-accent text-xs" />
+                    <input
+                      type="tel"
+                      placeholder="e.g. +92 332 0000000"
+                      value={formData.phone}
+                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                      className="w-full bg-white border border-gray-200 rounded-xl py-3.5 px-4 text-brand-dark placeholder-slate-400 focus:outline-none focus:border-brand-accent focus:ring-1 focus:ring-brand-accent text-xs"
+                    />
                   </div>
                 </div>
 
                 <div>
                   <label className="block text-xs font-bold text-brand-primary uppercase tracking-wider mb-2">Current Sourcing Area / Scope of Inquiry</label>
-                  <input required type="text" value={categories[selectedCategory].value} className="w-full bg-gray-100 border border-gray-200 rounded-xl py-3.5 px-4 text-brand-dark font-semibold text-xs cursor-not-allowed" readOnly />
+                  <input type="text" value={categories[selectedCategory].value} className="w-full bg-gray-100 border border-gray-200 rounded-xl py-3.5 px-4 text-brand-dark font-semibold text-xs cursor-not-allowed" readOnly />
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold text-brand-primary uppercase tracking-wider mb-2">Technical Requirements Brief / Site Specifics</label>
-                  <textarea required placeholder="Outline chemical limitations, desired ISO parameters, or timeline guidelines here." className="w-full bg-white border border-gray-200 rounded-xl py-3.5 px-4 text-brand-dark placeholder-slate-400 focus:outline-none focus:border-brand-accent focus:ring-1 focus:ring-brand-accent text-xs h-36 resize-none" />
+                  <label className="block text-xs font-bold text-brand-primary uppercase tracking-wider mb-2">Technical Requirements Brief / Site Specifics *</label>
+                  <textarea
+                    placeholder="Outline chemical limitations, desired ISO parameters, or timeline guidelines here."
+                    value={formData.message}
+                    onChange={(e) => {
+                      setFormData({ ...formData, message: e.target.value });
+                      if (fieldErrors.message) setFieldErrors({ ...fieldErrors, message: '' });
+                    }}
+                    className={`w-full bg-white border rounded-xl py-3.5 px-4 text-brand-dark placeholder-slate-400 focus:outline-none focus:border-brand-accent focus:ring-1 focus:ring-brand-accent text-xs h-36 resize-none ${
+                      fieldErrors.message ? 'border-red-500 bg-red-50/20' : 'border-gray-200'
+                    }`}
+                  />
+                  {fieldErrors.message && <p className="text-red-500 text-[10px] font-bold mt-1">{fieldErrors.message}</p>}
                 </div>
 
-                <button type="submit" className="w-full bg-brand-primary hover:bg-brand-secondary text-white font-extrabold py-4 rounded-xl transition-all text-xs tracking-widest uppercase shadow-md">
-                  Submit Sourcing Request
+                <button
+                  type="submit"
+                  disabled={loading}
+                  className="w-full bg-brand-primary hover:bg-brand-secondary disabled:opacity-50 text-white font-extrabold py-4 rounded-xl transition-all text-xs tracking-widest uppercase shadow-md flex items-center justify-center gap-2"
+                >
+                  {loading ? (
+                    <>
+                      <span className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
+                      <span>Processing Request...</span>
+                    </>
+                  ) : (
+                    <span>Submit Sourcing Request</span>
+                  )}
                 </button>
               </form>
             </div>

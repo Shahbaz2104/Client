@@ -293,7 +293,7 @@ export default function Divisions() {
                   </div>
                 </div>
                 <div className="pt-6">
-                  <a
+                  <Link
                     href="/"
                     className="inline-flex items-center gap-2 text-xs font-extrabold tracking-widest uppercase bg-brand-primary hover:bg-brand-secondary text-white hover:text-brand-accent px-6 py-3.5 rounded-full shadow-lg transition-all duration-300"
                   >
@@ -309,7 +309,7 @@ export default function Divisions() {
                         clipRule="evenodd"
                       />
                     </svg>
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>

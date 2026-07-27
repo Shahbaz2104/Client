@@ -26,6 +26,18 @@ export default function PestManagement() {
   const revealRefs = useRef<(HTMLDivElement | null)[]>([]);
   const [openFAQ, setOpenFAQ] = useState<number | null>(null);
 
+  // Form State
+  const [formData, setFormData] = useState({
+    name: '',
+    phone: '',
+    email: '',
+    company: '',
+    requirement: 'Pest Management & Fumigation',
+  });
+  const [loading, setLoading] = useState(false);
+  const [toast, setToast] = useState<{ type: 'success' | 'error'; text: string } | null>(null);
+  const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -49,6 +61,66 @@ export default function PestManagement() {
       });
     };
   }, []);
+
+  function validateForm() {
+    const errors: Record<string, string> = {};
+    if (!formData.name.trim()) errors.name = 'Contact name is required';
+    if (!formData.phone.trim()) {
+      errors.phone = 'Active phone line is required';
+    } else if (formData.phone.length < 5) {
+      errors.phone = 'Please enter a valid phone line';
+    }
+    if (!formData.email.trim()) {
+      errors.email = 'Email address is required';
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      errors.email = 'Please enter a valid email address';
+    }
+    setFieldErrors(errors);
+    return Object.keys(errors).length === 0;
+  }
+
+  async function handleQuoteSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    if (!validateForm() || loading) return;
+
+    setLoading(true);
+    setToast(null);
+
+    try {
+      const res = await fetch('/api/quote', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: formData.name,
+          phone: formData.phone,
+          email: formData.email,
+          company: formData.company || undefined,
+          message: `Primary Requirement: ${formData.requirement}`,
+        }),
+      });
+
+      const data = await res.json();
+
+      if (res.ok && data.success) {
+        setToast({ type: 'success', text: 'Callback request registered successfully! Our compliance team will reach out.' });
+        setFormData({
+          name: '',
+          phone: '',
+          email: '',
+          company: '',
+          requirement: 'Pest Management & Fumigation',
+        });
+        setFieldErrors({});
+      } else {
+        setToast({ type: 'error', text: data.error || 'Failed to submit request. Please try again.' });
+      }
+    } catch (err) {
+      console.error(err);
+      setToast({ type: 'error', text: 'Network error occurred. Please try again later.' });
+    } finally {
+      setLoading(false);
+    }
+  }
 
   const faqs = [
     {
@@ -74,6 +146,19 @@ export default function PestManagement() {
 
   return (
     <div>
+      {/* Toast Notification */}
+      {toast && (
+        <div className={`fixed top-24 right-4 z-50 px-6 py-4 rounded-2xl shadow-2xl border text-sm font-bold flex items-center gap-3 transition-all animate-bounce ${
+          toast.type === 'success'
+            ? 'bg-emerald-900 text-emerald-100 border-emerald-700'
+            : 'bg-red-900 text-red-100 border-red-700'
+        }`}>
+          <span>{toast.type === 'success' ? '✓' : '✕'}</span>
+          <span>{toast.text}</span>
+          <button onClick={() => setToast(null)} className="ml-2 text-xs opacity-70 hover:opacity-100">✕</button>
+        </div>
+      )}
+
       {/* Hero */}
       <section className="relative pt-48 pb-28 sm:pt-56 sm:pb-36 lg:pt-60 lg:pb-48 bg-brand-dark overflow-hidden">
         <div className="absolute inset-0 z-0">
@@ -589,7 +674,7 @@ export default function PestManagement() {
         </div>
       </section>
 
-      {/* Contact CTA */}
+      {/* Contact CTA / Request Quote */}
       <section id="quote" className="py-24 bg-brand-light relative border-t border-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="bg-brand-primary rounded-[3rem] overflow-hidden shadow-2xl border border-white/5 relative">
@@ -613,26 +698,96 @@ export default function PestManagement() {
 
               <div className="lg:col-span-5 bg-white/5 border-l border-white/10 p-8 md:p-12 relative z-10 flex flex-col justify-center">
                 <h3 className="text-white text-lg font-bold mb-6">Schedule Regulatory Review</h3>
-                <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
+                <form className="space-y-4" onSubmit={handleQuoteSubmit} noValidate>
+                  <div>
+                    <label className="block text-xs font-semibold text-gray-300 mb-1">Contact Officer Name *</label>
+                    <input
+                      type="text"
+                      placeholder="e.g. Sarah Naveed"
+                      value={formData.name}
+                      onChange={(e) => {
+                        setFormData({ ...formData, name: e.target.value });
+                        if (fieldErrors.name) setFieldErrors({ ...fieldErrors, name: '' });
+                      }}
+                      className={`w-full bg-white/5 border rounded-xl py-3 px-4 text-white placeholder-gray-500 focus:outline-none focus:border-brand-accent focus:ring-1 focus:ring-brand-accent text-xs ${
+                        fieldErrors.name ? 'border-red-400 bg-red-950/20' : 'border-white/10'
+                      }`}
+                    />
+                    {fieldErrors.name && <p className="text-red-400 text-[10px] font-bold mt-1">{fieldErrors.name}</p>}
+                  </div>
+
+                  <div>
+                    <label className="block text-xs font-semibold text-gray-300 mb-1">Active Phone Line *</label>
+                    <input
+                      type="tel"
+                      placeholder="e.g. +92 332 6079992"
+                      value={formData.phone}
+                      onChange={(e) => {
+                        setFormData({ ...formData, phone: e.target.value });
+                        if (fieldErrors.phone) setFieldErrors({ ...fieldErrors, phone: '' });
+                      }}
+                      className={`w-full bg-white/5 border rounded-xl py-3 px-4 text-white placeholder-gray-500 focus:outline-none focus:border-brand-accent focus:ring-1 focus:ring-brand-accent text-xs ${
+                        fieldErrors.phone ? 'border-red-400 bg-red-950/20' : 'border-white/10'
+                      }`}
+                    />
+                    {fieldErrors.phone && <p className="text-red-400 text-[10px] font-bold mt-1">{fieldErrors.phone}</p>}
+                  </div>
+
+                  <div>
+                    <label className="block text-xs font-semibold text-gray-300 mb-1">Email Address *</label>
+                    <input
+                      type="email"
+                      placeholder="e.g. sarah@company.com"
+                      value={formData.email}
+                      onChange={(e) => {
+                        setFormData({ ...formData, email: e.target.value });
+                        if (fieldErrors.email) setFieldErrors({ ...fieldErrors, email: '' });
+                      }}
+                      className={`w-full bg-white/5 border rounded-xl py-3 px-4 text-white placeholder-gray-500 focus:outline-none focus:border-brand-accent focus:ring-1 focus:ring-brand-accent text-xs ${
+                        fieldErrors.email ? 'border-red-400 bg-red-950/20' : 'border-white/10'
+                      }`}
+                    />
+                    {fieldErrors.email && <p className="text-red-400 text-[10px] font-bold mt-1">{fieldErrors.email}</p>}
+                  </div>
+
                   <div>
                     <label className="block text-xs font-semibold text-gray-300 mb-1">Company / Facility Name</label>
-                    <input type="text" placeholder="e.g. Paramount Pharma Ltd" className="w-full bg-white/5 border border-white/10 rounded-xl py-3 px-4 text-white placeholder-gray-500 focus:outline-none focus:border-brand-accent focus:ring-1 focus:ring-brand-accent text-xs" />
+                    <input
+                      type="text"
+                      placeholder="e.g. Paramount Pharma Ltd"
+                      value={formData.company}
+                      onChange={(e) => setFormData({ ...formData, company: e.target.value })}
+                      className="w-full bg-white/5 border border-white/10 rounded-xl py-3 px-4 text-white placeholder-gray-500 focus:outline-none focus:border-brand-accent focus:ring-1 focus:ring-brand-accent text-xs"
+                    />
                   </div>
-                  <div>
-                    <label className="block text-xs font-semibold text-gray-300 mb-1">Active Phone Line</label>
-                    <input type="tel" placeholder="e.g. +92 332 6079992" className="w-full bg-white/5 border border-white/10 rounded-xl py-3 px-4 text-white placeholder-gray-500 focus:outline-none focus:border-brand-accent focus:ring-1 focus:ring-brand-accent text-xs" />
-                  </div>
+
                   <div>
                     <label className="block text-xs font-semibold text-gray-300 mb-1">Primary Requirement</label>
-                    <select className="w-full bg-brand-primary border border-white/10 rounded-xl py-3 px-4 text-gray-300 focus:outline-none focus:border-brand-accent focus:ring-1 focus:ring-brand-accent text-xs">
+                    <select
+                      value={formData.requirement}
+                      onChange={(e) => setFormData({ ...formData, requirement: e.target.value })}
+                      className="w-full bg-brand-primary border border-white/10 rounded-xl py-3 px-4 text-gray-300 focus:outline-none focus:border-brand-accent focus:ring-1 focus:ring-brand-accent text-xs"
+                    >
                       <option className="bg-brand-primary text-white">Pest Management & Fumigation</option>
                       <option className="bg-brand-primary text-white">ISO Certification Support</option>
                       <option className="bg-brand-primary text-white">Food Safety Systems Development</option>
                       <option className="bg-brand-primary text-white">Laboratory Equipment Sales</option>
                     </select>
                   </div>
-                  <button type="submit" className="w-full bg-brand-accent hover:bg-[#b8e036] text-brand-dark font-extrabold py-3.5 rounded-xl transition-all text-xs tracking-wider uppercase mt-4">
-                    Request Callback
+
+                  <button
+                    type="submit"
+                    disabled={loading}
+                    className="w-full bg-brand-accent hover:bg-[#b8e036] disabled:opacity-50 text-brand-dark font-extrabold py-3.5 rounded-xl transition-all text-xs tracking-wider uppercase mt-4 flex items-center justify-center gap-2"
+                  >
+                    {loading ? (
+                      <>
+                        <span className="w-4 h-4 border-2 border-brand-dark border-t-transparent rounded-full animate-spin"></span>
+                        <span>Registering Request...</span>
+                      </>
+                    ) : (
+                      <span>Request Callback</span>
+                    )}
                   </button>
                 </form>
               </div>
@@ -643,5 +798,3 @@ export default function PestManagement() {
     </div>
   );
 }
-
-

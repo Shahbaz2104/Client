@@ -2,7 +2,6 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
 import { User, Settings, LogOut, Shield, ChevronDown, Loader2 } from 'lucide-react';
 
 interface AdminUser {
@@ -17,7 +16,6 @@ export function ProfileMenu() {
   const [isOpen, setIsOpen] = useState(false);
   const [isLoggingOut, setIsLoggingOut] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
-  const router = useRouter();
 
   useEffect(() => {
     async function fetchUser() {
