@@ -3,6 +3,7 @@ import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
+import { ClientLayout } from "@/components/layout/ClientLayout";
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ["latin"],
@@ -10,8 +11,15 @@ const plusJakartaSans = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "BIOSAF Enterprises",
-  description: "Quality Systems & Scientific Solutions",
+  title: { default: "BIOSAF Enterprises - Quality Systems & Scientific Solutions", template: "%s | BIOSAF Enterprises" },
+  description: "Delivering Safe Environments & Scientific Quality Systems. ISO certification, pest management, food safety, and laboratory equipment solutions across Pakistan.",
+  keywords: ["BIOSAF", "ISO Certification", "Pest Management", "Food Safety", "Laboratory Equipment", "Pakistan", "Quality Systems"],
+  openGraph: {
+    title: "BIOSAF Enterprises",
+    description: "Delivering Safe Environments & Scientific Quality Systems",
+    type: "website",
+    siteName: "BIOSAF Enterprises",
+  },
 };
 
 export default function RootLayout({
@@ -23,7 +31,9 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${plusJakartaSans.variable} antialiased flex flex-col min-h-screen`}>
         <Navbar />
-        <main className="flex-1">{children}</main>
+        <main className="flex-1">
+          <ClientLayout>{children}</ClientLayout>
+        </main>
         <Footer />
       </body>
     </html>

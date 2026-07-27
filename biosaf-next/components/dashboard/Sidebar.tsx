@@ -3,6 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { motion, AnimatePresence } from 'framer-motion';
 import {
   LayoutDashboard,
   Users,
@@ -143,7 +144,13 @@ export function Sidebar({
         {/* Navigation Area */}
         <div className="flex-1 overflow-y-auto px-3 py-4 space-y-6 scrollbar-thin">
           {navGroups.map((group, groupIdx) => (
-            <div key={groupIdx} className="space-y-1">
+            <motion.div
+              key={groupIdx}
+              initial={{ opacity: 0, x: -12 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: groupIdx * 0.06, duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+              className="space-y-1"
+            >
               {(!collapsed || mobileOpen) && (
                 <div className="px-3 mb-2 text-[11px] font-bold uppercase tracking-wider text-gray-400 dark:text-gray-500">
                   {group.title}
@@ -177,7 +184,12 @@ export function Sidebar({
 
                     {/* Active Pill Indicator */}
                     {active && (!collapsed || mobileOpen) && (
-                      <div className="ml-auto w-1.5 h-1.5 rounded-full bg-white dark:bg-gray-950" />
+                      <motion.div
+                        initial={{ scale: 0 }}
+                        animate={{ scale: 1 }}
+                        transition={{ type: 'spring' as const, damping: 15 }}
+                        className="ml-auto w-1.5 h-1.5 rounded-full bg-white dark:bg-gray-950"
+                      />
                     )}
 
                     {/* Tooltip for collapsed desktop mode */}
@@ -189,7 +201,7 @@ export function Sidebar({
                   </Link>
                 );
               })}
-            </div>
+            </motion.div>
           ))}
         </div>
 

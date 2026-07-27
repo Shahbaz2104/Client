@@ -1,6 +1,8 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { buttonTap, modalOverlay, modalContent } from '@/lib/motion';
 import { Plus, Edit, Trash2, FileText } from 'lucide-react';
 
 interface Blog {
@@ -19,6 +21,7 @@ export default function BlogsPage() {
   const [loading, setLoading] = useState(true);
   const [showModal, setShowModal] = useState(false);
   const [editingItem, setEditingItem] = useState<Blog | null>(null);
+  const [submitting, setSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     title: '',
     slug: '',
@@ -45,6 +48,7 @@ export default function BlogsPage() {
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
+    setSubmitting(true);
     try {
       const url = editingItem ? `/api/admin/blogs/${editingItem.id}` : '/api/admin/blogs';
       const method = editingItem ? 'PUT' : 'POST';
@@ -60,6 +64,8 @@ export default function BlogsPage() {
       fetchItems();
     } catch (err) {
       console.error(err);
+    } finally {
+      setSubmitting(false);
     }
   }
 
@@ -69,7 +75,48 @@ export default function BlogsPage() {
     fetchItems();
   }
 
-  if (loading) return <div className="p-8 text-gray-500 font-semibold">Loading blogs...</div>;
+  if (loading) {
+    return (
+      <div className="space-y-6">
+        <div className="flex items-center justify-between">
+          <div>
+            <div className="h-8 w-48 bg-gray-200 dark:bg-gray-700 rounded-lg animate-pulse" />
+            <div className="h-4 w-64 bg-gray-200 dark:bg-gray-700 rounded-lg animate-pulse mt-2" />
+          </div>
+          <div className="h-10 w-40 bg-gray-200 dark:bg-gray-700 rounded-xl animate-pulse" />
+        </div>
+        <div className="bg-white dark:bg-gray-900 rounded-2xl shadow-xs border border-gray-200 dark:border-gray-800 overflow-hidden">
+          <table className="w-full">
+            <thead className="bg-gray-50 dark:bg-gray-800/50 border-b border-gray-200 dark:border-gray-800">
+              <tr>
+                {[...Array(4)].map((_, i) => (
+                  <th key={i} className="px-6 py-3.5">
+                    <div className="h-3 w-20 bg-gray-200 dark:bg-gray-700 rounded animate-pulse" />
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-gray-200 dark:divide-gray-800">
+              {[...Array(5)].map((_, i) => (
+                <motion.tr
+                  key={i}
+                  initial={{ opacity: 0, y: -8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.2, delay: i * 0.02 }}
+                >
+                  {[...Array(4)].map((_, j) => (
+                    <td key={j} className="px-6 py-4">
+                      <div className="h-4 w-24 bg-gray-200 dark:bg-gray-700 rounded animate-pulse" />
+                    </td>
+                  ))}
+                </motion.tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="space-y-6">
@@ -78,17 +125,18 @@ export default function BlogsPage() {
           <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100">Articles & Insights</h1>
           <p className="text-sm text-gray-600 dark:text-gray-400">Publish laboratory, ISO compliance, and food safety technical blogs</p>
         </div>
-        <button
+        <motion.button
           onClick={() => {
             setFormData({ title: '', slug: '', excerpt: '', content: '', status: 'draft', author: 'BIOSAF Editorial Team' });
             setEditingItem(null);
             setShowModal(true);
           }}
           className="flex items-center gap-2 bg-brand-primary dark:bg-brand-accent dark:text-gray-950 text-white px-4 py-2 rounded-xl font-semibold hover:bg-brand-dark transition-colors shadow-xs text-sm"
+          {...buttonTap}
         >
           <Plus className="w-4 h-4" />
           Add Article
-        </button>
+        </motion.button>
       </div>
 
       <div className="bg-white dark:bg-gray-900 rounded-2xl shadow-xs border border-gray-200 dark:border-gray-800 overflow-hidden">
@@ -102,8 +150,15 @@ export default function BlogsPage() {
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-200 dark:divide-gray-800">
-            {items.map((item) => (
-              <tr key={item.id} className="hover:bg-gray-50/80 dark:hover:bg-gray-800/40">
+            {items.map((item, index) => (
+              <motion.tr
+                key={item.id}
+                initial={{ opacity: 0, y: -8 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.2, delay: index * 0.02 }}
+                whileHover={{ y: -1 }}
+                className="hover:bg-gray-50/80 dark:hover:bg-gray-800/40"
+              >
                 <td className="px-6 py-4 font-semibold text-sm text-gray-900 dark:text-gray-100">
                   <div className="flex items-center gap-2">
                     <FileText className="w-4 h-4 text-brand-primary" />
@@ -120,7 +175,7 @@ export default function BlogsPage() {
                 </td>
                 <td className="px-6 py-4 text-right">
                   <div className="flex items-center justify-end gap-2">
-                    <button onClick={() => {
+                    <motion.button onClick={() => {
                       setEditingItem(item);
                       setFormData({
                         title: item.title,
@@ -131,72 +186,115 @@ export default function BlogsPage() {
                         author: item.author || 'BIOSAF Editorial Team',
                       });
                       setShowModal(true);
-                    }} className="p-1.5 text-brand-primary dark:text-brand-accent">
+                    }} className="p-1.5 text-brand-primary dark:text-brand-accent"
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 0.9 }}
+                    >
                       <Edit className="w-4 h-4" />
-                    </button>
-                    <button onClick={() => handleDelete(item.id)} className="p-1.5 text-red-600">
+                    </motion.button>
+                    <motion.button onClick={() => handleDelete(item.id)} className="p-1.5 text-red-600"
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 0.9 }}
+                    >
                       <Trash2 className="w-4 h-4" />
-                    </button>
+                    </motion.button>
                   </div>
                 </td>
-              </tr>
+              </motion.tr>
             ))}
-          </tbody>
-        </table>
+              {items.length === 0 && (
+                <motion.tr
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.4 }}
+                >
+                  <td colSpan={4} className="px-6 py-12 text-center text-gray-500 dark:text-gray-400 text-sm">No articles found. Click "Add Article" to create one.</td>
+                </motion.tr>
+              )}
+            </tbody>
+          </table>
       </div>
 
-      {showModal && (
-        <div className="fixed inset-0 bg-black/60 backdrop-blur-xs flex items-center justify-center z-50 p-4">
-          <div className="bg-white dark:bg-gray-900 rounded-2xl p-6 max-w-lg w-full border border-gray-200 dark:border-gray-800">
-            <h2 className="text-xl font-bold mb-4">{editingItem ? 'Edit Article' : 'Add Article'}</h2>
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <div>
-                <label className="block text-sm font-semibold mb-1">Title</label>
-                <input
-                  type="text"
-                  value={formData.title}
-                  onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-                  className="w-full p-2.5 border rounded-xl dark:bg-gray-800 text-sm"
-                  required
-                />
+      <AnimatePresence>
+        {showModal && (
+          <motion.div
+            className="fixed inset-0 bg-black/60 backdrop-blur-xs flex items-center justify-center z-50 p-4"
+            variants={modalOverlay}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+            onKeyDown={(e) => e.key === 'Escape' && setShowModal(false)}
+          >
+            <motion.div
+              className="bg-white dark:bg-gray-900 rounded-2xl p-6 max-w-lg w-full border border-gray-200 dark:border-gray-800"
+              variants={modalContent}
+              initial="hidden"
+              animate="visible"
+              exit="exit"
+            >
+              <div className="flex items-center justify-between mb-4">
+                <h2 className="text-xl font-bold">{editingItem ? 'Edit Article' : 'Add Article'}</h2>
+                <motion.button type="button" onClick={() => setShowModal(false)} className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 p-1"
+                  whileHover={{ rotate: 90 }}
+                  whileTap={{ scale: 0.9 }}
+                ><svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg></motion.button>
               </div>
-              <div>
-                <label className="block text-sm font-semibold mb-1">Slug</label>
-                <input
-                  type="text"
-                  value={formData.slug}
-                  onChange={(e) => setFormData({ ...formData, slug: e.target.value })}
-                  className="w-full p-2.5 border rounded-xl dark:bg-gray-800 text-sm"
-                  required
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-semibold mb-1">Excerpt</label>
-                <input
-                  type="text"
-                  value={formData.excerpt}
-                  onChange={(e) => setFormData({ ...formData, excerpt: e.target.value })}
-                  className="w-full p-2.5 border rounded-xl dark:bg-gray-800 text-sm"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-semibold mb-1">Content</label>
-                <textarea
-                  value={formData.content}
-                  onChange={(e) => setFormData({ ...formData, content: e.target.value })}
-                  className="w-full p-2.5 border rounded-xl dark:bg-gray-800 text-sm"
-                  rows={5}
-                  required
-                />
-              </div>
-              <div className="flex justify-end gap-3 pt-4">
-                <button type="button" onClick={() => setShowModal(false)} className="px-4 py-2 border rounded-xl text-sm font-medium">Cancel</button>
-                <button type="submit" className="px-4 py-2 bg-brand-primary text-white rounded-xl text-sm font-semibold">{editingItem ? 'Save' : 'Publish'}</button>
-              </div>
-            </form>
-          </div>
-        </div>
-      )}
+              <form onSubmit={handleSubmit} className="space-y-4">
+                <div>
+                  <label className="block text-sm font-semibold mb-1">Title</label>
+                  <motion.input
+                    type="text"
+                    value={formData.title}
+                    onChange={(e) => setFormData({ ...formData, title: e.target.value })}
+                    className="w-full p-2.5 border rounded-xl dark:bg-gray-800 text-sm"
+                    required
+                    whileFocus={{ scale: 1.01 }}
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-semibold mb-1">Slug</label>
+                  <motion.input
+                    type="text"
+                    value={formData.slug}
+                    onChange={(e) => setFormData({ ...formData, slug: e.target.value })}
+                    className="w-full p-2.5 border rounded-xl dark:bg-gray-800 text-sm"
+                    required
+                    whileFocus={{ scale: 1.01 }}
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-semibold mb-1">Excerpt</label>
+                  <motion.input
+                    type="text"
+                    value={formData.excerpt}
+                    onChange={(e) => setFormData({ ...formData, excerpt: e.target.value })}
+                    className="w-full p-2.5 border rounded-xl dark:bg-gray-800 text-sm"
+                    whileFocus={{ scale: 1.01 }}
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-semibold mb-1">Content</label>
+                  <motion.textarea
+                    value={formData.content}
+                    onChange={(e) => setFormData({ ...formData, content: e.target.value })}
+                    className="w-full p-2.5 border rounded-xl dark:bg-gray-800 text-sm"
+                    rows={5}
+                    required
+                    whileFocus={{ scale: 1.01 }}
+                  />
+                </div>
+                <div className="flex justify-end gap-3 pt-4">
+                  <motion.button type="button" onClick={() => setShowModal(false)} className="px-4 py-2 border rounded-xl text-sm font-medium"
+                    whileHover={{ scale: 1.03 }}
+                    whileTap={{ scale: 0.97 }}
+                  >Cancel</motion.button>
+                  <motion.button type="submit" disabled={submitting} className="px-4 py-2 bg-brand-primary text-white rounded-xl text-sm font-semibold disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2" {...buttonTap}>{submitting && <span className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />}{editingItem ? 'Save' : 'Publish'}</motion.button>
+                </div>
+              </form>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
