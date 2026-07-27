@@ -182,7 +182,7 @@ export default function GalleryPage() {
           >
             <ImageIcon className="w-10 h-10 mb-3 opacity-50" />
             <p className="text-sm font-medium">No media items found</p>
-            <p className="text-xs mt-1">Click "Add Media" to upload imagery</p>
+            <p className="text-xs mt-1">Click &quot;Add Media&quot; to upload imagery</p>
           </motion.div>
         )}
       </div>

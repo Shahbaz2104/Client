@@ -25,7 +25,7 @@ import {
 } from 'lucide-react';
 import { PageTransition } from '@/components/ui/PageTransition';
 import { ScrollReveal, StaggerGroup, StaggerItem } from '@/components/ui/ScrollReveal';
-import { buttonTap, cardHover, fadeUp, staggerContainer } from '@/lib/motion';
+import { buttonTap, cardHover } from '@/lib/motion';
 
 export default function Industries() {
   const [activeCategory, setActiveCategory] = useState<string>('all');

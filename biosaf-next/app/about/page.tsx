@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { ScrollReveal, StaggerGroup, StaggerItem } from '@/components/ui/ScrollReveal';
-import { fadeUp, fadeIn, scaleIn, buttonTap } from '@/lib/motion';
+import { fadeUp, fadeIn } from '@/lib/motion';
 
 const testimonials = [
   {
@@ -414,7 +414,7 @@ export default function About() {
                         <motion.input
                           whileFocus={{ scale: 1.01 }}
                           type={field.type}
-                          value={(aboutForm as any)[field.name]}
+                          value={(aboutForm as Record<string, string>)[field.name]}
                           onChange={(e) => setAboutForm({ ...aboutForm, [field.name]: e.target.value })}
                           placeholder={field.placeholder}
                           className="w-full bg-white/5 border border-white/10 rounded-xl py-3.5 px-4 text-white placeholder-gray-500 focus:outline-none focus:border-brand-accent focus:ring-1 focus:ring-brand-accent text-xs transition-all"

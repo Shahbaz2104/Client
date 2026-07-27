@@ -241,7 +241,7 @@ export default function DivisionsPage() {
                   animate={{ opacity: 1 }}
                   transition={{ duration: 0.4 }}
                 >
-                  <td colSpan={5} className="px-6 py-12 text-center text-gray-500 dark:text-gray-400 text-sm">No divisions found. Click "Add Division" to create one.</td>
+                  <td colSpan={5} className="px-6 py-12 text-center text-gray-500 dark:text-gray-400 text-sm">No divisions found. Click &quot;Add Division&quot; to create one.</td>
                 </motion.tr>
               )}
             </tbody>

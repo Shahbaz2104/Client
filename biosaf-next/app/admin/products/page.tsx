@@ -280,7 +280,7 @@ export default function ProductsPage() {
                   animate={{ opacity: 1 }}
                   transition={{ duration: 0.4 }}
                 >
-                  <td colSpan={5} className="px-6 py-12 text-center text-gray-500 dark:text-gray-400 text-sm">No products found. Click "Add Product" to create one.</td>
+                  <td colSpan={5} className="px-6 py-12 text-center text-gray-500 dark:text-gray-400 text-sm">No products found. Click &quot;Add Product&quot; to create one.</td>
                 </motion.tr>
               )}
             </tbody>

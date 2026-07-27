@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { ScrollReveal, StaggerGroup, StaggerItem } from '@/components/ui/ScrollReveal';
-import { fadeUp, fadeIn, slideLeft, slideRight, scaleIn, buttonTap } from '@/lib/motion';
+import { fadeUp, fadeIn } from '@/lib/motion';
 
 export default function Home() {
   const [homeForm, setHomeForm] = useState({ name: '', email: '', phone: '', service: '', message: '' });
@@ -286,7 +286,7 @@ export default function Home() {
                       {[
                         { label: 'ISO Certified Systems' },
                         { label: 'Complete Compliance' },
-                      ].map((item, i) => (
+                      ].map((item) => (
                         <motion.div
                           key={item.label}
                           whileHover={{ x: 4 }}
@@ -444,7 +444,7 @@ export default function Home() {
                           whileFocus={{ scale: 1.01 }}
                           type={field.type}
                           name={field.name}
-                          value={(homeForm as any)[field.name]}
+                          value={(homeForm as Record<string, string>)[field.name]}
                           onChange={(e) => setHomeForm({ ...homeForm, [field.name]: e.target.value })}
                           placeholder={field.placeholder}
                           className="w-full bg-white/5 border border-white/10 rounded-xl py-3 px-4 text-white placeholder-gray-500 focus:outline-none focus:border-brand-accent focus:ring-1 focus:ring-brand-accent text-sm transition-all"

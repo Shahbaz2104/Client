@@ -201,7 +201,7 @@ export default function FaqsPage() {
                   animate={{ opacity: 1 }}
                   transition={{ duration: 0.4 }}
                 >
-                  <td colSpan={4} className="px-6 py-12 text-center text-gray-500 dark:text-gray-400 text-sm">No FAQs found. Click "Add FAQ" to create one.</td>
+                  <td colSpan={4} className="px-6 py-12 text-center text-gray-500 dark:text-gray-400 text-sm">No FAQs found. Click &quot;Add FAQ&quot; to create one.</td>
                 </motion.tr>
               )}
           </tbody>

@@ -274,7 +274,7 @@ export default function ServicesPage() {
                   animate={{ opacity: 1 }}
                   transition={{ duration: 0.4 }}
                 >
-                  <td colSpan={5} className="px-6 py-12 text-center text-gray-500 dark:text-gray-400 text-sm">No services found. Click "Add Service" to create one.</td>
+                  <td colSpan={5} className="px-6 py-12 text-center text-gray-500 dark:text-gray-400 text-sm">No services found. Click &quot;Add Service&quot; to create one.</td>
                 </motion.tr>
               )}
             </tbody>

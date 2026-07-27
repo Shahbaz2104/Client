@@ -1,7 +1,7 @@
 'use client';
 
-import { motion, type Variants } from 'framer-motion';
-import { fadeUp, DURATION, EASE } from '@/lib/motion';
+import { motion, type Variants, type Transition } from 'framer-motion';
+import { fadeUp } from '@/lib/motion';
 
 interface ScrollRevealProps {
   children: React.ReactNode;
@@ -23,7 +23,7 @@ export function ScrollReveal({
         hidden: variants.hidden,
         visible: {
           ...(variants.visible as object),
-          transition: { ...((variants.visible as any)?.transition || {}), delay },
+          transition: { ...((variants.visible as { transition?: Transition })?.transition || {}), delay },
         },
       }
     : variants;

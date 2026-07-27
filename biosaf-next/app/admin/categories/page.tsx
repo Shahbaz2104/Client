@@ -260,7 +260,7 @@ export default function CategoriesPage() {
                   animate={{ opacity: 1 }}
                   transition={{ duration: 0.4 }}
                 >
-                  <td colSpan={5} className="px-6 py-12 text-center text-gray-500 dark:text-gray-400 text-sm">No categories found. Click "Add Category" to create one.</td>
+                  <td colSpan={5} className="px-6 py-12 text-center text-gray-500 dark:text-gray-400 text-sm">No categories found. Click &quot;Add Category&quot; to create one.</td>
                 </motion.tr>
               )}
             </tbody>

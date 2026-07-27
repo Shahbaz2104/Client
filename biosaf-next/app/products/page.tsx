@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { PageTransition } from '@/components/ui/PageTransition';
 import { ScrollReveal, StaggerGroup, StaggerItem } from '@/components/ui/ScrollReveal';
-import { buttonTap, cardHover, badgePing, fadeUp, staggerContainer } from '@/lib/motion';
+import { buttonTap, cardHover } from '@/lib/motion';
 
 const products = [
   {

@@ -208,7 +208,7 @@ export default function BlogsPage() {
                   animate={{ opacity: 1 }}
                   transition={{ duration: 0.4 }}
                 >
-                  <td colSpan={4} className="px-6 py-12 text-center text-gray-500 dark:text-gray-400 text-sm">No articles found. Click "Add Article" to create one.</td>
+                  <td colSpan={4} className="px-6 py-12 text-center text-gray-500 dark:text-gray-400 text-sm">No articles found. Click &quot;Add Article&quot; to create one.</td>
                 </motion.tr>
               )}
             </tbody>

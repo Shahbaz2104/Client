@@ -24,7 +24,7 @@ import {
 } from 'lucide-react';
 import { PageTransition } from '@/components/ui/PageTransition';
 import { ScrollReveal, StaggerGroup, StaggerItem } from '@/components/ui/ScrollReveal';
-import { buttonTap, cardHover, badgePing, fadeUp, staggerContainer, slideLeft, slideRight } from '@/lib/motion';
+import { buttonTap, cardHover } from '@/lib/motion';
 
 export default function PestManagement() {
   const [openFAQ, setOpenFAQ] = useState<number | null>(null);

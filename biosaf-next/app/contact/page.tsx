@@ -179,11 +179,11 @@ export default function Contact() {
                     <div>
                       <h4 className="text-xs font-extrabold uppercase tracking-widest text-slate-400">{item.title}</h4>
                       {item.content && <p className="text-brand-dark font-bold text-sm mt-1 leading-relaxed">{item.content}</p>}
-                      {(item as any).phones?.map((p: string) => (
+                      {(item as { phones?: string[] }).phones?.map((p: string) => (
                         <a key={p} href={`tel:${p.replace(/\s/g, '')}`} className="text-brand-dark hover:text-brand-primary font-extrabold text-sm transition-colors flex items-center gap-1.5 mt-1">{p}</a>
                       ))}
-                      {(item as any).email && (
-                        <a href={`mailto:${(item as any).email}`} className="text-brand-dark hover:text-brand-primary font-extrabold text-sm transition-colors block mt-1">{(item as any).email}</a>
+                      {(item as { email?: string }).email && (
+                        <a href={`mailto:${(item as { email?: string }).email}`} className="text-brand-dark hover:text-brand-primary font-extrabold text-sm transition-colors block mt-1">{(item as { email?: string }).email}</a>
                       )}
                       {item.emergency && (
                         <p className="text-xs text-brand-primary font-semibold mt-1 flex items-center gap-1">
@@ -248,7 +248,7 @@ export default function Contact() {
                         whileFocus={{ scale: 1.01 }}
                         type="text"
                         placeholder={field.placeholder}
-                        value={(formData as any)[field.name]}
+                        value={(formData as Record<string, string>)[field.name]}
                         onChange={(e) => { setFormData({ ...formData, [field.name]: e.target.value }); if (fieldErrors[field.name]) setFieldErrors({ ...fieldErrors, [field.name]: '' }); }}
                         className={`w-full bg-white border rounded-xl py-3.5 px-4 text-brand-dark placeholder-slate-400 focus:outline-none focus:border-brand-accent focus:ring-1 focus:ring-brand-accent text-xs transition-all ${fieldErrors[field.name] ? 'border-red-500 bg-red-50/20' : 'border-gray-200'}`}
                       />
@@ -268,7 +268,7 @@ export default function Contact() {
                         whileFocus={{ scale: 1.01 }}
                         type={field.type}
                         placeholder={field.placeholder}
-                        value={(formData as any)[field.name]}
+                        value={(formData as Record<string, string>)[field.name]}
                         onChange={(e) => { setFormData({ ...formData, [field.name]: e.target.value }); if (fieldErrors[field.name]) setFieldErrors({ ...fieldErrors, [field.name]: '' }); }}
                         className={`w-full bg-white border rounded-xl py-3.5 px-4 text-brand-dark placeholder-slate-400 focus:outline-none focus:border-brand-accent focus:ring-1 focus:ring-brand-accent text-xs transition-all ${fieldErrors[field.name] ? 'border-red-500 bg-red-50/20' : 'border-gray-200'}`}
                       />

@@ -217,7 +217,7 @@ export default function TestimonialsPage() {
                   animate={{ opacity: 1 }}
                   transition={{ duration: 0.4 }}
                 >
-                  <td colSpan={5} className="px-6 py-12 text-center text-gray-500 dark:text-gray-400 text-sm">No testimonials found. Click "Add Testimonial" to create one.</td>
+                  <td colSpan={5} className="px-6 py-12 text-center text-gray-500 dark:text-gray-400 text-sm">No testimonials found. Click &quot;Add Testimonial&quot; to create one.</td>
                 </motion.tr>
               )}
           </tbody>

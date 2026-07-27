@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { PageTransition } from '@/components/ui/PageTransition';
 import { ScrollReveal, StaggerGroup, StaggerItem } from '@/components/ui/ScrollReveal';
-import { buttonTap, cardHover, fadeUp, scaleIn, staggerContainer } from '@/lib/motion';
+import { buttonTap, cardHover, fadeUp, staggerContainer } from '@/lib/motion';
 
 const divisions = [
   {
@@ -226,7 +226,7 @@ export default function Divisions() {
         {/* Divisions List */}
         <section className="py-24 bg-white relative">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-32">
-            {divisions.map((division, idx) => (
+            {divisions.map((division) => (
               <ScrollReveal key={division.divisionNumber}>
                 <div className={`grid lg:grid-cols-12 gap-12 lg:gap-20 items-center`}>
                   <div
