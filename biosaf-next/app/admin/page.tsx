@@ -33,7 +33,7 @@ export default async function AdminDashboard() {
       {/* Header Banner */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 bg-gradient-to-r from-brand-dark to-brand-primary dark:from-gray-900 dark:to-gray-800 p-6 rounded-2xl text-white shadow-lg">
         <div>
-          <h1 className="text-2xl font-extrabold tracking-tight">Welcome back to BIOSAF</h1>
+          <h1 className="text-2xl font-extrabold tracking-tight">Welcome back to BIOSAF Enterprises</h1>
           <p className="text-sm text-emerald-100 dark:text-gray-300 mt-1">Here is a quick summary of system operations and activity.</p>
         </div>
         <div className="flex items-center gap-3">

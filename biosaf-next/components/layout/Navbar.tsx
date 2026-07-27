@@ -40,7 +40,7 @@ export function Navbar() {
       <div className="container mx-auto px-4 py-3 flex items-center justify-between">
         <Link href="/" className="text-2xl font-black text-brand-dark tracking-tight flex items-center gap-2">
           <span className="bg-brand-primary text-white w-8 h-8 rounded-lg flex items-center justify-center font-bold text-sm">B</span>
-          <span>BIOSAF</span>
+          <span>BIOSAF Enterprises</span>
         </Link>
 
         {/* Desktop Nav */}

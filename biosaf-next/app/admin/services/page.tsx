@@ -130,7 +130,7 @@ export default function ServicesPage() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100">Services Catalog</h1>
-          <p className="text-sm text-gray-600 dark:text-gray-400">Manage BIOSAF technical & operational services</p>
+          <p className="text-sm text-gray-600 dark:text-gray-400">Manage BIOSAF Enterprises technical & operational services</p>
         </div>
         <button
           onClick={() => {

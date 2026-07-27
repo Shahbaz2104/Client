@@ -121,7 +121,7 @@ export function Sidebar({
             {(!collapsed || mobileOpen) && (
               <div className="flex flex-col">
                 <span className="font-extrabold text-lg tracking-tight text-gray-900 dark:text-white leading-tight">
-                  BIOSAF
+                  BIOSAF Enterprises
                 </span>
                 <span className="text-[10px] uppercase tracking-wider font-semibold text-brand-primary dark:text-brand-accent">
                   Admin Panel
