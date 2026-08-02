@@ -274,3 +274,33 @@ model Seo {
 
   @@map("seo")
 }
+
+enum ProjectStatus {
+  draft
+  published
+}
+
+model Project {
+  id              Int           @id @default(autoincrement()) @db.UnsignedInt
+  title           String        @db.VarChar(150)
+  slug            String        @unique @db.VarChar(150)
+  clientName      String        @map("client_name") @db.VarChar(100)
+  location        String?       @db.VarChar(150)
+  industry        String?       @db.VarChar(100)
+  serviceType     String?       @map("service_type") @db.VarChar(150)
+  description     String?
+  challenge       String?
+  solution        String?
+  outcome         String?
+  completionDate  DateTime?     @map("completion_date") @db.Timestamp
+  image           String?       @db.VarChar(255)
+  images          Json?
+  invoiceFile     String?       @map("invoice_file") @db.VarChar(255)
+  certificateFile String?       @map("certificate_file") @db.VarChar(255)
+  status          ProjectStatus @default(draft)
+  isFeatured      Boolean       @default(false) @map("is_featured") @db.TinyInt
+  createdAt       DateTime      @default(now()) @map("created_at") @db.Timestamp
+  updatedAt       DateTime      @updatedAt @map("updated_at") @db.Timestamp
+
+  @@map("projects")
+}

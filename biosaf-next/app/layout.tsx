@@ -12,6 +12,7 @@ const plusJakartaSans = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://biosafenterprises.com"),
   title: { default: "BIOSAF Enterprises - Quality Systems & Scientific Solutions", template: "%s | BIOSAF Enterprises" },
   description: "Delivering Safe Environments & Scientific Quality Systems. ISO certification, pest management, food safety, and laboratory equipment solutions across Pakistan.",
   keywords: ["BIOSAF", "ISO Certification", "Pest Management", "Food Safety", "Laboratory Equipment", "Pakistan", "Quality Systems"],

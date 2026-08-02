@@ -6,17 +6,50 @@ import { Menu, X, ChevronDown, Phone, Mail, Clock, MessageCircle } from "lucide-
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
+const services = [
+  { title: "Pest Management & Fumigation", href: "/pest-management", desc: "Pest control, fumigation & disinfection" },
+  { title: "Laboratory Equipment Sales", href: "/laboratory-equipment", desc: "Scientific instruments & lab supplies" },
+  { title: "Products & Equipment", href: "/products", desc: "Browse the full lab equipment catalog" },
+  { title: "Food Safety Systems", href: "/food-system-development", desc: "HACCP, SOPs & food safety programs" },
+  { title: "ISO Consultancy", href: "/iso-certification", desc: "Certification support & audits" },
+  { title: "Product Innovation", href: "/product-innovation", desc: "Development, testing & commercialization" },
+];
+
+const compliance = [
+  { title: "ISO 9001", href: "/iso-standards#iso-9001", desc: "Quality management" },
+  { title: "ISO 22000", href: "/iso-standards#iso-22000", desc: "Food safety management" },
+  { title: "ISO 14001", href: "/iso-standards#iso-14001", desc: "Environmental management" },
+  { title: "ISO 45001", href: "/iso-standards#iso-45001", desc: "Health & safety" },
+  { title: "ISO 17025", href: "/iso-standards#iso-17025", desc: "Laboratory accreditation" },
+  { title: "ISO 13485", href: "/iso-standards#iso-13485", desc: "Medical devices" },
+  { title: "HACCP", href: "/haccp", desc: "Hazard analysis & CCPs" },
+  { title: "BRCGS", href: "/brcgs", desc: "Global food safety standard" },
+  { title: "FSSC 22000", href: "/fssc-22000", desc: "Food safety system certification" },
+  { title: "Halal Certification", href: "/halal-certification", desc: "Halal readiness & audits" },
+];
+
 export function Navbar() {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
-  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [servicesOpen, setServicesOpen] = useState(false);
+  const [complianceOpen, setComplianceOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const dropdownRef = useRef<HTMLDivElement>(null);
+  const servicesRef = useRef<HTMLDivElement>(null);
+  const complianceRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
-        setDropdownOpen(false);
+      if (
+        servicesRef.current &&
+        !servicesRef.current.contains(event.target as Node)
+      ) {
+        setServicesOpen(false);
+      }
+      if (
+        complianceRef.current &&
+        !complianceRef.current.contains(event.target as Node)
+      ) {
+        setComplianceOpen(false);
       }
     }
     document.addEventListener("mousedown", handleClickOutside);
@@ -34,22 +67,16 @@ export function Navbar() {
 
   useEffect(() => {
     setIsOpen(false);
-    setDropdownOpen(false);
+    setServicesOpen(false);
+    setComplianceOpen(false);
   }, [pathname]);
 
   if (pathname.startsWith('/admin') || pathname === '/login') {
     return null;
   }
 
-  const divisionLinks = [
-    { title: "All Divisions Overview", href: "/divisions", desc: "Complete spectrum of BIOSAF security wings" },
-    { title: "Pest Control", href: "/pest-management", desc: "Corporate pest management & fumigation" },
-    { title: "Products & Equipment", href: "/products", desc: "Scientific laboratory apparatus & equipment" },
-    { title: "Food Safety Management", href: "/food-system-development", desc: "HACCP & food safety systems development" },
-    { title: "ISO Certification", href: "/iso-certification", desc: "ISO 22000 & Halal audit consultancy" },
-  ];
-
-  const isDivisionsActive = divisionLinks.some(link => pathname === link.href);
+  const isServicesActive = services.some(link => pathname === link.href) || pathname === "/divisions";
+  const isComplianceActive = compliance.some(link => pathname === link.href.split("#")[0]) || pathname === "/food-safety-compliance" || pathname === "/iso-standards";
 
   const linkClasses = (active: boolean) =>
     `text-sm font-semibold transition-colors relative ${
@@ -58,6 +85,11 @@ export function Navbar() {
 
   const underline = (active: boolean) =>
     active && <span className="absolute -bottom-1 left-0 right-0 h-0.5 bg-brand-primary rounded-full" />;
+
+  const dropdownButtonClasses = (active: boolean) =>
+    `flex items-center gap-1 text-sm font-semibold py-2 transition-colors ${
+      active ? "text-brand-primary font-bold" : "text-gray-700 hover:text-brand-primary"
+    }`;
 
   return (
     <>
@@ -130,22 +162,20 @@ export function Navbar() {
               {underline(pathname === "/about")}
             </Link>
 
-            {/* Divisions Dropdown */}
+            {/* Services Dropdown */}
             <div
               className="relative"
-              ref={dropdownRef}
-              onMouseEnter={() => setDropdownOpen(true)}
-              onMouseLeave={() => setDropdownOpen(false)}
+              ref={servicesRef}
+              onMouseEnter={() => setServicesOpen(true)}
+              onMouseLeave={() => setServicesOpen(false)}
             >
               <button
-                onClick={() => setDropdownOpen(!dropdownOpen)}
-                className={`flex items-center gap-1 text-sm font-semibold py-2 transition-colors ${
-                  isDivisionsActive ? "text-brand-primary font-bold" : "text-gray-700 hover:text-brand-primary"
-                }`}
+                onClick={() => { setServicesOpen(!servicesOpen); setComplianceOpen(false); }}
+                className={dropdownButtonClasses(isServicesActive)}
               >
-                <span>Divisions</span>
+                <span>Services</span>
                 <motion.span
-                  animate={{ rotate: dropdownOpen ? 180 : 0 }}
+                  animate={{ rotate: servicesOpen ? 180 : 0 }}
                   transition={{ duration: 0.2 }}
                 >
                   <ChevronDown className="w-4 h-4" />
@@ -153,15 +183,15 @@ export function Navbar() {
               </button>
 
               <AnimatePresence>
-                {dropdownOpen && (
+                {servicesOpen && (
                   <motion.div
                     initial={{ opacity: 0, y: 8, scale: 0.97 }}
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: 8, scale: 0.97 }}
                     transition={{ duration: 0.15, ease: [0.16, 1, 0.3, 1] }}
-                    className="absolute top-full left-0 w-72 bg-white rounded-2xl shadow-xl border border-gray-100 py-3 z-50"
+                    className="absolute top-full left-0 w-80 bg-white rounded-2xl shadow-xl border border-gray-100 py-3 z-50"
                   >
-                    {divisionLinks.map((item, i) => (
+                    {services.map((item, i) => (
                       <motion.div
                         key={item.href}
                         initial={{ opacity: 0, x: -8 }}
@@ -170,7 +200,7 @@ export function Navbar() {
                       >
                         <Link
                           href={item.href}
-                          onClick={() => setDropdownOpen(false)}
+                          onClick={() => setServicesOpen(false)}
                           className={`block px-4 py-2.5 hover:bg-brand-light/50 transition-colors ${
                             pathname === item.href ? "bg-brand-light/60 font-bold border-l-4 border-brand-primary" : ""
                           }`}
@@ -180,6 +210,89 @@ export function Navbar() {
                         </Link>
                       </motion.div>
                     ))}
+                    <div className="border-t border-gray-100 mt-1 pt-1">
+                      <Link
+                        href="/divisions"
+                        onClick={() => setServicesOpen(false)}
+                        className={`block px-4 py-2.5 hover:bg-brand-light/50 transition-colors ${
+                          pathname === "/divisions" ? "bg-brand-light/60 font-bold border-l-4 border-brand-primary" : ""
+                        }`}
+                      >
+                        <div className="text-xs font-bold text-brand-primary">All Divisions Overview</div>
+                        <div className="text-[10px] text-gray-500">Complete spectrum of BIOSAF divisions</div>
+                      </Link>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+
+            {/* Compliance Dropdown */}
+            <div
+              className="relative"
+              ref={complianceRef}
+              onMouseEnter={() => setComplianceOpen(true)}
+              onMouseLeave={() => setComplianceOpen(false)}
+            >
+              <button
+                onClick={() => { setComplianceOpen(!complianceOpen); setServicesOpen(false); }}
+                className={dropdownButtonClasses(isComplianceActive)}
+              >
+                <span>Compliance</span>
+                <motion.span
+                  animate={{ rotate: complianceOpen ? 180 : 0 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <ChevronDown className="w-4 h-4" />
+                </motion.span>
+              </button>
+
+              <AnimatePresence>
+                {complianceOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 8, scale: 0.97 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: 8, scale: 0.97 }}
+                    transition={{ duration: 0.15, ease: [0.16, 1, 0.3, 1] }}
+                    className="absolute top-full left-0 w-[560px] bg-white rounded-2xl shadow-xl border border-gray-100 p-3 z-50"
+                  >
+                    <div className="grid grid-cols-2 gap-1">
+                      {compliance.map((item, i) => (
+                        <motion.div
+                          key={item.href}
+                          initial={{ opacity: 0, x: -8 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ delay: i * 0.02, duration: 0.15 }}
+                        >
+                          <Link
+                            href={item.href}
+                            onClick={() => setComplianceOpen(false)}
+                            className={`block px-3 py-2.5 rounded-xl hover:bg-brand-light/50 transition-colors ${
+                              pathname === item.href.split("#")[0] ? "bg-brand-light/60 font-bold" : ""
+                            }`}
+                          >
+                            <div className="text-xs font-bold text-gray-900">{item.title}</div>
+                            <div className="text-[10px] text-gray-500">{item.desc}</div>
+                          </Link>
+                        </motion.div>
+                      ))}
+                    </div>
+                    <div className="border-t border-gray-100 mt-1 pt-1 flex gap-3 px-3">
+                      <Link
+                        href="/iso-standards"
+                        onClick={() => setComplianceOpen(false)}
+                        className="text-xs font-bold text-brand-primary hover:text-brand-dark transition-colors py-1.5"
+                      >
+                        All ISO Standards →
+                      </Link>
+                      <Link
+                        href="/food-safety-compliance"
+                        onClick={() => setComplianceOpen(false)}
+                        className="text-xs font-bold text-brand-primary hover:text-brand-dark transition-colors py-1.5"
+                      >
+                        Food Safety Compliance →
+                      </Link>
+                    </div>
                   </motion.div>
                 )}
               </AnimatePresence>
@@ -248,9 +361,9 @@ export function Navbar() {
                 </Link>
 
                 <div className="py-2 border-y border-gray-100 my-1">
-                  <div className="text-xs font-bold uppercase tracking-wider text-gray-400 mb-2">Divisions</div>
-                  <div className="pl-3 flex flex-col gap-2">
-                    {divisionLinks.map((item) => (
+                  <div className="text-xs font-bold uppercase tracking-wider text-gray-400 mb-2">Services</div>
+                  <div className="pl-3 flex flex-col gap-1">
+                    {services.map((item) => (
                       <Link
                         key={item.href}
                         href={item.href}
@@ -260,6 +373,37 @@ export function Navbar() {
                         {item.title}
                       </Link>
                     ))}
+                    <Link
+                      href="/divisions"
+                      className="text-xs py-1.5 font-bold text-brand-primary"
+                      onClick={() => setIsOpen(false)}
+                    >
+                      All Divisions Overview
+                    </Link>
+                  </div>
+                </div>
+
+                <div className="py-2 border-b border-gray-100 mb-1">
+                  <div className="text-xs font-bold uppercase tracking-wider text-gray-400 mb-2">Compliance</div>
+                  <div className="pl-3 grid grid-cols-2 gap-1">
+                    {compliance.map((item) => (
+                      <Link
+                        key={item.href}
+                        href={item.href}
+                        className={`text-xs py-1.5 font-medium ${pathname === item.href.split("#")[0] ? "text-brand-primary font-bold" : "text-gray-600"}`}
+                        onClick={() => setIsOpen(false)}
+                      >
+                        {item.title}
+                      </Link>
+                    ))}
+                  </div>
+                  <div className="pl-3 pt-1 flex gap-3">
+                    <Link href="/iso-standards" onClick={() => setIsOpen(false)} className="text-xs font-bold text-brand-primary">
+                      All ISO Standards →
+                    </Link>
+                    <Link href="/food-safety-compliance" onClick={() => setIsOpen(false)} className="text-xs font-bold text-brand-primary">
+                      Food Safety Compliance →
+                    </Link>
                   </div>
                 </div>
 

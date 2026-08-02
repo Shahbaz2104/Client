@@ -15,27 +15,41 @@ export function Footer() {
   const quickLinks = [
     { label: 'Home', href: '/' },
     { label: 'About', href: '/about' },
-    { label: 'Divisions', href: '/divisions' },
+    { label: 'All Divisions', href: '/divisions' },
     { label: 'Industries', href: '/industries' },
+    { label: 'Case Studies', href: '/case-studies' },
     { label: 'Contact', href: '/contact' },
   ];
 
-  const divisionLinks = [
-    { label: 'Pest Control', href: '/pest-management' },
-    { label: 'Lab Equipment', href: '/products' },
-    { label: 'Food Safety', href: '/food-system-development' },
-    { label: 'ISO Certification', href: '/iso-certification' },
+  const serviceLinks = [
+    { label: 'Pest Management', href: '/pest-management' },
+    { label: 'Laboratory Equipment', href: '/laboratory-equipment' },
+    { label: 'Products Catalog', href: '/products' },
+    { label: 'Food Safety Systems', href: '/food-system-development' },
+    { label: 'ISO Consultancy', href: '/iso-certification' },
+    { label: 'Product Innovation', href: '/product-innovation' },
+  ];
+
+  const complianceLinks = [
+    { label: 'ISO Standards Hub', href: '/iso-standards' },
+    { label: 'ISO 22000', href: '/iso-standards#iso-22000' },
+    { label: 'Food Safety Compliance', href: '/food-safety-compliance' },
+    { label: 'HACCP', href: '/haccp' },
+    { label: 'BRCGS', href: '/brcgs' },
+    { label: 'FSSC 22000', href: '/fssc-22000' },
+    { label: 'Halal Certification', href: '/halal-certification' },
   ];
 
   return (
     <footer className="bg-brand-dark text-white">
       <ScrollReveal className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+            className="lg:col-span-2"
           >
             <h3 className="text-2xl font-bold text-brand-accent mb-4">BIOSAF Enterprises</h3>
             <p className="text-gray-300 text-sm leading-relaxed">
@@ -66,9 +80,27 @@ export function Footer() {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
           >
-            <h4 className="font-semibold mb-4 text-sm uppercase tracking-wider">Our Divisions</h4>
+            <h4 className="font-semibold mb-4 text-sm uppercase tracking-wider">Our Services</h4>
             <ul className="space-y-2">
-              {divisionLinks.map((link) => (
+              {serviceLinks.map((link) => (
+                <li key={link.href}>
+                  <Link href={link.href} className="text-gray-300 hover:text-brand-accent transition-colors text-sm group inline-flex items-center gap-1">
+                    <motion.span className="w-0 group-hover:w-2 h-0.5 bg-brand-accent rounded-full transition-all duration-200" />
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <h4 className="font-semibold mb-4 text-sm uppercase tracking-wider">Compliance</h4>
+            <ul className="space-y-2">
+              {complianceLinks.map((link) => (
                 <li key={link.href}>
                   <Link href={link.href} className="text-gray-300 hover:text-brand-accent transition-colors text-sm group inline-flex items-center gap-1">
                     <motion.span className="w-0 group-hover:w-2 h-0.5 bg-brand-accent rounded-full transition-all duration-200" />
