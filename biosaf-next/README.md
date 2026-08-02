@@ -122,7 +122,10 @@ biosaf-next/
 ├── prisma/
 │   ├── schema.prisma            # 15 models (see below)
 │   └── seed.ts                  # Default admin + starter data
-├── public/                      # Static assets
+├── public/
+│   ├── images/                  # AI-generated hero/about/services/contact/case-study WebP
+│   ├── brand-cards/             # Corporate brand card image
+│   └── ...                      # Other static assets
 ├── .env.example                 # Sample env vars
 ├── next.config.ts
 ├── tailwind.config.ts           # Brand color tokens
@@ -241,6 +244,15 @@ Brand tokens live in `app/globals.css` (`:root`) and are mapped in `tailwind.con
 
 ### 7. Seed data — case study
 - A sample **SUBWAY (Dolmen Mall Clifton)** case study is seeded (facts derived only from the internal invoice PDF in `private/`): fumigation + rodent control, certificate handed over after completion, Aug 2025. The invoice file is never served publicly.
+
+### 8. Mobile responsiveness
+- Audited every public route + admin for mobile. Site is structurally responsive (grids collapse, navbar drawer, sticky mobile call/WhatsApp bar with `pb-14 md:pb-0`, scrollable admin tables).
+- Fixed `ScrollToTop` overlapping the mobile call bar: `bottom-20 md:bottom-6` (`components/ui/ScrollToTop.tsx`).
+
+### 9. AI-generated imagery
+- Replaced the homepage Unsplash placeholders with 9 Gemini-generated images, converted to WebP (~36–80 KB each) in `public/images/`: `hero`, `about-main`, `about-square`, `service-{pest,iso,food,lab}`, `contact-bg`, `case-study`.
+- SUBWAY case-study cover switched to `/images/case-study.webp` (raw SQL).
+- **Still on Unsplash** (not covered by the 9 images): `industries`, `divisions`, `products` grids and inner service-page images.
 
 ---
 

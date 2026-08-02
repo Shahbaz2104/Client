@@ -50,8 +50,26 @@
 - [x] **Home polish (user request)**: icons added to hero stats (BadgeCheck/Globe2/Clock), icons on marquee slider items, background images added to the 4 "Core Business Areas" service cards (image header + overlay icon), subtle bg image added to home contact panel.
 - [x] **QA**: full `npx next lint` clean; **clean build passes 55/55 static pages** (all new routes `/case-studies`, `/case-studies/[slug]`, `/admin/projects` + API present). Playwright crawl of 20 routes done (17 pass; the 3 flagged were the `next/image` remote-host 400 → fixed via `images.remotePatterns: images.unsplash.com`). User tests manually going forward.
 
+### DONE — mobile responsiveness (user request)
+- [x] **Full mobile audit** (static review, all public pages + admin): site is structurally responsive — every grid collapses to 1 column on mobile, Navbar uses drawer, `MobileCallBar` (`md:hidden`) with body `pb-14 md:pb-0`, admin sidebar becomes a drawer with tables in `overflow-x-auto`, marquee uses correct mobile pattern.
+- [x] **One real bug found & fixed**: `components/ui/ScrollToTop.tsx` was `fixed bottom-6 left-6 z-50`, overlapping the `MobileCallBar` on mobile. Changed to `fixed bottom-20 md:bottom-6 left-6 z-50`. Build 55/55. Committed `7265274` "fix: move scroll-to-top button above mobile call bar".
+
+### DONE — AI-generated imagery (user request)
+- [x] Gave the client a Gemini prompt pack (one prompt per image slot: subject, lighting, aspect ratio, brand palette, "no text / no logos").
+- [x] Client generated 9 images and dropped the PNGs (1.5–2 MB each) into `public/` root.
+- [x] Converted all 9 to WebP via ImageMagick `convert` (`-quality 82`) → **36–80 KB each**, renamed semantically, moved to `public/images/`, originals deleted:
+  - `hero.webp` (928×1152, home hero, `app/content.tsx:218`)
+  - `about-main.webp` (928×1152, about main, `app/content.tsx:332`)
+  - `about-square.webp` (1024×1024, about floating square, `app/content.tsx:342`)
+  - `service-pest.webp` / `service-iso.webp` / `service-food.webp` / `service-lab.webp` (1664×640, 4 Core Business Area cards, `app/content.tsx:422-425`)
+  - `contact-bg.webp` (1376×768, contact panel bg, `app/content.tsx:651`)
+  - `case-study.webp` (1200×896, SUBWAY project card via `ProjectCard.tsx`)
+- [x] Replaced 7 Unsplash URLs in `app/content.tsx` with local `/images/*.webp`; updated SUBWAY `projects.image` → `/images/case-study.webp` via raw SQL (`UPDATE projects SET image=... WHERE id=1`). Build 55/55. Committed `f4b21f3` "feat: replace Unsplash placeholders with AI-generated images".
+- [x] **NOT covered by the 9 images** (still Unsplash): `industries`, `divisions`, `products` grids + inner service-page images (`/pest-management`, `/iso-certification`, `/food-system-development`, `/laboratory-equipment`, `about`). Open follow-up if client wants full local imagery.
+
 ## Build status (last run)
-- **2026-08-02: BUILD PASSES (clean, final)** — `rm -rf .next` + `next build` → 55/55 static pages, no errors. Fixed: 4 missing `Factory` imports (brcgs/halal/fssc/haccp), dead `category.spanFull` ternary (laboratory-equipment), and **`images.unsplash.com` missing from `images.remotePatterns`** (next/image was returning 400 on case-study/home cards).
+- **2026-08-02 (2nd pass): BUILD PASSES** — after image swap commit `f4b21f3`, `next build` → 55/55 static pages, no errors.
+- **2026-08-02 (1st pass): BUILD PASSES (clean, final)** — `rm -rf .next` + `next build` → 55/55 static pages, no errors. Fixed: 4 missing `Factory` imports (brcgs/halal/fssc/haccp), dead `category.spanFull` ternary (laboratory-equipment), and **`images.unsplash.com` missing from `images.remotePatterns`** (next/image was returning 400 on case-study/home cards).
 - **Build speed (user request):** `next.config.ts` has `eslint.ignoreDuringBuilds: true` (lint runs separately) + `images.remotePatterns` for unsplash. Type checking stays ON. **Do NOT `rm -rf .next` between builds** — keeping the webpack cache makes builds faster. Only wipe `.next` if a build produces weird/stale errors (old rule was for dev-server route-map races only).
 
 ## Notes / gotchas
