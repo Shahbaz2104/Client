@@ -3,7 +3,7 @@ import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
-import { ClientLayout } from "@/components/layout/ClientLayout";
+import { ScrollToTop } from "@/components/ui/ScrollToTop";
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ["latin"],
@@ -31,10 +31,9 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${plusJakartaSans.variable} antialiased flex flex-col min-h-screen`}>
         <Navbar />
-        <main className="flex-1">
-          <ClientLayout>{children}</ClientLayout>
-        </main>
+        <main className="flex-1">{children}</main>
         <Footer />
+        <ScrollToTop />
       </body>
     </html>
   );
