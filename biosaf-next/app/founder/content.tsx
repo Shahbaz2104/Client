@@ -48,7 +48,7 @@ const certifications = [
     icon: ShieldCheck,
   },
   {
-    title: 'Certified PSCQCI',
+    title: 'Certified PSCQCA',
     detail: 'Pakistan Standards & Quality Control Authority certification',
     icon: BadgeCheck,
   },
