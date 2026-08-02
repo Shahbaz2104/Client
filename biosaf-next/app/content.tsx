@@ -215,7 +215,7 @@ export default function HomeContent({ featuredProjects }: { featuredProjects: Pr
                   className="relative z-10 rounded-[2.5rem] overflow-hidden border border-white/10 shadow-2xl"
                 >
                   <img
-                    src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80"
+                    src="/images/hero.webp"
                     alt="Advanced Corporate Laboratory Facility"
                     className="w-full object-cover aspect-[4/5]"
                   />
@@ -329,7 +329,7 @@ export default function HomeContent({ featuredProjects }: { featuredProjects: Pr
                   className="relative grid grid-cols-12 gap-4"
                 >
                   <div className="col-span-10 rounded-[2rem] overflow-hidden shadow-2xl relative">
-                    <img src="https://images.unsplash.com/photo-1576086213369-97a306d36557?auto=format&fit=crop&w=800&q=80" alt="Scientific Lab Auditing and Safety Checks" className="w-full object-cover aspect-[4/5]" loading="lazy" decoding="async" />
+                    <img src="/images/about-main.webp" alt="Scientific Lab Auditing and Safety Checks" className="w-full object-cover aspect-[4/5]" loading="lazy" decoding="async" />
                     <div className="absolute inset-0 bg-brand-primary/10" />
                   </div>
                   <motion.div
@@ -339,7 +339,7 @@ export default function HomeContent({ featuredProjects }: { featuredProjects: Pr
                     transition={{ delay: 0.3, type: 'spring' as const, damping: 15 }}
                     className="absolute bottom-[-40px] right-0 col-span-5 w-[200px] sm:w-[240px] rounded-3xl overflow-hidden shadow-2xl border-4 border-white"
                   >
-                    <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=600&q=80" alt="ISO Certification Consultation" className="w-full aspect-square object-cover" loading="lazy" decoding="async" />
+                    <img src="/images/about-square.webp" alt="ISO Certification Consultation" className="w-full aspect-square object-cover" loading="lazy" decoding="async" />
                   </motion.div>
                 </motion.div>
               </div>
@@ -419,10 +419,10 @@ export default function HomeContent({ featuredProjects }: { featuredProjects: Pr
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
-              { id: 0, icon: 'clock', title: 'Pest Management & Fumigation', desc: 'Professional pest control, termite management, rodent control, warehouse fumigation, annual maintenance contracts, and food industry pest management.', cta: 'Request Quote', image: 'https://images.unsplash.com/photo-1584820927498-cafea60b93a0?auto=format&fit=crop&w=800&q=80' },
-              { id: 1, icon: 'cert', title: 'ISO Certification Support', desc: 'Expert guidance for ISO 9001, ISO 22000, ISO 14001, ISO 45001, HACCP, GMP, GHP, documentation, internal audits, and registration support.', cta: 'Get Certified', image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=800&q=80' },
-              { id: 2, icon: 'shield', title: 'Food Safety Systems', desc: 'Development of HACCP manuals, operational SOPs, SSOPs, food safety audits, custom risk assessments, and targeted corporate training programs.', cta: 'Analyze System', image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80' },
-              { id: 3, icon: 'lab', title: 'Laboratory Equipment Sales', desc: 'Procurement of premium scientific instruments, glassware, chemicals, custom lab furniture, food & water testing equipment, and consumables.', cta: 'Browse Equipment', image: 'https://images.unsplash.com/photo-1579154204601-01588f351167?auto=format&fit=crop&w=800&q=80' },
+              { id: 0, icon: 'clock', title: 'Pest Management & Fumigation', desc: 'Professional pest control, termite management, rodent control, warehouse fumigation, annual maintenance contracts, and food industry pest management.', cta: 'Request Quote', image: '/images/service-pest.webp' },
+              { id: 1, icon: 'cert', title: 'ISO Certification Support', desc: 'Expert guidance for ISO 9001, ISO 22000, ISO 14001, ISO 45001, HACCP, GMP, GHP, documentation, internal audits, and registration support.', cta: 'Get Certified', image: '/images/service-iso.webp' },
+              { id: 2, icon: 'shield', title: 'Food Safety Systems', desc: 'Development of HACCP manuals, operational SOPs, SSOPs, food safety audits, custom risk assessments, and targeted corporate training programs.', cta: 'Analyze System', image: '/images/service-food.webp' },
+              { id: 3, icon: 'lab', title: 'Laboratory Equipment Sales', desc: 'Procurement of premium scientific instruments, glassware, chemicals, custom lab furniture, food & water testing equipment, and consumables.', cta: 'Browse Equipment', image: '/images/service-lab.webp' },
             ].map((division, i) => (
               <motion.div
                 key={division.id}
@@ -648,7 +648,7 @@ export default function HomeContent({ featuredProjects }: { featuredProjects: Pr
         <section id="contact" className="py-24 lg:py-36 bg-brand-light relative">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="bg-brand-primary rounded-[3rem] overflow-hidden shadow-2xl border border-white/5 relative">
-              <div className="absolute inset-0 opacity-[0.07] bg-cover bg-center" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1581093458791-9f3c3900df4b?auto=format&fit=crop&w=1400&q=80')" }} />
+              <div className="absolute inset-0 opacity-[0.07] bg-cover bg-center" style={{ backgroundImage: "url('/images/contact-bg.webp')" }} />
               <div className="grid lg:grid-cols-12 items-stretch relative">
                 <div className="lg:col-span-7 p-8 md:p-16 text-white space-y-6 relative z-10">
                   <motion.svg
