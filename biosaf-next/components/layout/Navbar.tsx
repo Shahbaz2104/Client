@@ -141,12 +141,12 @@ export function Navbar() {
         }`}
       >
         <div className="container mx-auto px-4 py-3 flex items-center justify-between">
-          <Link href="/" className="text-2xl font-black text-brand-dark tracking-tight flex items-center gap-2 group">
+          <Link href="/" className="text-2xl font-black text-brand-dark tracking-tight flex items-center gap-2.5 group">
             <motion.span
               whileHover={{ rotate: -5, scale: 1.05 }}
-              className="bg-brand-primary text-white w-8 h-8 rounded-lg flex items-center justify-center font-bold text-sm transition-shadow"
+              className="w-9 h-9 rounded-xl bg-white border border-gray-100 p-1.5 flex items-center justify-center shadow-sm transition-shadow"
             >
-              B
+              <img src="/images/logo1.png" alt="BIOSAF Enterprises Logo" className="w-full h-full object-contain" />
             </motion.span>
             <span>BIOSAF Enterprises</span>
           </Link>
@@ -160,6 +160,10 @@ export function Navbar() {
             <Link href="/about" className={linkClasses(pathname === "/about")}>
               About
               {underline(pathname === "/about")}
+            </Link>
+            <Link href="/founder" className={linkClasses(pathname === "/founder")}>
+              Founder
+              {underline(pathname === "/founder")}
             </Link>
 
             {/* Services Dropdown */}
@@ -358,6 +362,13 @@ export function Navbar() {
                   onClick={() => setIsOpen(false)}
                 >
                   About
+                </Link>
+                <Link
+                  href="/founder"
+                  className={`py-2 text-sm font-semibold ${pathname === "/founder" ? "text-brand-primary font-bold" : "text-gray-700"}`}
+                  onClick={() => setIsOpen(false)}
+                >
+                  Founder
                 </Link>
 
                 <div className="py-2 border-y border-gray-100 my-1">

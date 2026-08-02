@@ -118,8 +118,8 @@ export function Sidebar({
             className="flex items-center gap-3 overflow-hidden group focus:outline-none"
             onClick={onMobileClose}
           >
-            <div className="w-10 h-10 rounded-xl bg-brand-primary dark:bg-brand-accent text-white dark:text-gray-950 flex items-center justify-center font-extrabold text-lg flex-shrink-0 shadow-md group-hover:scale-105 transition-transform">
-              B
+            <div className="w-10 h-10 rounded-xl bg-white border border-gray-200 dark:border-gray-700 p-1 flex items-center justify-center flex-shrink-0 shadow-md group-hover:scale-105 transition-transform">
+              <img src="/images/logo1.png" alt="BIOSAF Enterprises Logo" className="w-full h-full object-contain" />
             </div>
             {(!collapsed || mobileOpen) && (
               <div className="flex flex-col">

@@ -50,6 +50,9 @@ export default function LoginPage() {
           transition={{ delay: 0.15 }}
           className="text-center mb-8"
         >
+          <div className="w-20 h-20 bg-white border border-gray-100 rounded-2xl p-2.5 shadow-md mx-auto mb-5 flex items-center justify-center">
+            <img src="/images/logo1.png" alt="BIOSAF Enterprises Logo" className="w-full h-full object-contain" />
+          </div>
           <h1 className="text-3xl font-bold text-gray-900 mb-2">Admin Login</h1>
           <p className="text-gray-500">Sign in to your dashboard</p>
         </motion.div>

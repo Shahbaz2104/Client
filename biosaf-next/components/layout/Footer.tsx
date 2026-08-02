@@ -15,6 +15,7 @@ export function Footer() {
   const quickLinks = [
     { label: 'Home', href: '/' },
     { label: 'About', href: '/about' },
+    { label: 'Founder', href: '/founder' },
     { label: 'All Divisions', href: '/divisions' },
     { label: 'Industries', href: '/industries' },
     { label: 'Case Studies', href: '/case-studies' },
@@ -51,7 +52,10 @@ export function Footer() {
             transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
             className="lg:col-span-2"
           >
-            <h3 className="text-2xl font-bold text-brand-accent mb-4">BIOSAF Enterprises</h3>
+            <div className="flex items-center gap-3 mb-4">
+              <img src="/images/logo1.png" alt="BIOSAF Enterprises Logo" className="w-11 h-11 rounded-xl bg-white p-1.5 object-contain" />
+              <h3 className="text-2xl font-bold text-brand-accent">BIOSAF Enterprises</h3>
+            </div>
             <p className="text-gray-300 text-sm leading-relaxed">
               Delivering Safe Environments & Scientific Quality Systems across Pakistan and global markets.
             </p>
