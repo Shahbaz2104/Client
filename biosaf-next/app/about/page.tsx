@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
+import { MessageCircle } from 'lucide-react';
 import { ScrollReveal, StaggerGroup, StaggerItem } from '@/components/ui/ScrollReveal';
 import { fadeUp, fadeIn } from '@/lib/motion';
 
@@ -110,29 +111,49 @@ export default function About() {
                   </p>
                 </StaggerItem>
                 <StaggerItem>
-                  <div className="flex flex-col sm:flex-row gap-4 pt-4">
-                    <motion.a
-                      href="#contact"
-                      whileHover={{ scale: 1.03, y: -2 }}
-                      whileTap={{ scale: 0.97 }}
-                      className="bg-brand-accent hover:bg-[#b8e036] text-brand-dark px-8 py-5 rounded-full font-extrabold text-base transition-all flex items-center justify-center gap-3 shadow-[0_15px_30px_rgba(211,243,64,0.25)] group"
-                    >
-                      Request Quote
-                      <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="currentColor" viewBox="0 0 20 20">
-                        <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
-                      </svg>
-                    </motion.a>
-                    <motion.a
-                      whileHover={{ scale: 1.03, y: -2 }}
-                      whileTap={{ scale: 0.97 }}
-                      href="/divisions"
-                      className="bg-white/5 hover:bg-white/10 text-white border border-white/15 px-8 py-5 rounded-full font-semibold text-base transition-all flex items-center justify-center gap-2 backdrop-blur-sm"
-                    >
-                      Explore Services
-                      <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                        <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
-                      </svg>
-                    </motion.a>
+                  <div className="flex flex-col gap-4 pt-4">
+                    <div className="inline-flex items-center gap-2 text-brand-accent text-xs font-bold uppercase tracking-wider w-fit">
+                      <span className="relative flex h-2 w-2">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-accent opacity-75" />
+                        <span className="relative inline-flex rounded-full h-2 w-2 bg-brand-accent" />
+                      </span>
+                      24/7 Emergency Pest Response
+                    </div>
+                    <div className="flex flex-col sm:flex-row gap-4">
+                      <motion.a
+                        href="#contact"
+                        whileHover={{ scale: 1.03, y: -2 }}
+                        whileTap={{ scale: 0.97 }}
+                        className="bg-brand-accent hover:bg-brand-accentHover text-brand-dark px-8 py-5 rounded-full font-extrabold text-base transition-all flex items-center justify-center gap-3 shadow-[0_15px_30px_rgba(211,243,64,0.25)] group"
+                      >
+                        Request Quote
+                        <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
+                        </svg>
+                      </motion.a>
+                      <motion.a
+                        whileHover={{ scale: 1.03, y: -2 }}
+                        whileTap={{ scale: 0.97 }}
+                        href="/divisions"
+                        className="bg-white/5 hover:bg-white/10 text-white border border-white/15 px-8 py-5 rounded-full font-semibold text-base transition-all flex items-center justify-center gap-2 backdrop-blur-sm"
+                      >
+                        Explore Services
+                        <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
+                        </svg>
+                      </motion.a>
+                      <motion.a
+                        href="https://wa.me/923422766482"
+                        target="_blank"
+                        rel="noreferrer"
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        aria-label="Chat on WhatsApp"
+                        className="bg-emerald-600 hover:bg-emerald-700 text-white w-[58px] h-[58px] rounded-full flex items-center justify-center shadow-lg transition-colors"
+                      >
+                        <MessageCircle className="w-6 h-6" />
+                      </motion.a>
+                    </div>
                   </div>
                 </StaggerItem>
                 <StaggerItem variants={fadeIn}>
@@ -230,7 +251,7 @@ export default function About() {
                   className="relative grid grid-cols-12 gap-4"
                 >
                   <div className="col-span-10 rounded-[2rem] overflow-hidden shadow-2xl relative">
-                    <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80" alt="Advanced Safety Auditing Personnel" className="w-full object-cover aspect-[4/5]" />
+                    <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80" alt="Advanced Safety Auditing Personnel" className="w-full object-cover aspect-[4/5]" loading="lazy" decoding="async" />
                     <div className="absolute inset-0 bg-brand-primary/10" />
                   </div>
                   <motion.div
@@ -240,7 +261,7 @@ export default function About() {
                     transition={{ delay: 0.3, type: 'spring' as const, damping: 15 }}
                     className="absolute bottom-[-30px] right-0 col-span-5 w-[200px] sm:w-[240px] rounded-3xl overflow-hidden shadow-2xl border-4 border-white"
                   >
-                    <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=600&q=80" alt="Consultation meeting on safety" className="w-full aspect-square object-cover" />
+                    <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=600&q=80" alt="Consultation meeting on safety" className="w-full aspect-square object-cover" loading="lazy" decoding="async" />
                   </motion.div>
                 </motion.div>
               </div>
@@ -391,7 +412,7 @@ export default function About() {
                   </p>
 
                   <div className="flex flex-col sm:flex-row gap-4 pt-4">
-                    <motion.a whileHover={{ scale: 1.03, y: -2 }} whileTap={{ scale: 0.97 }} href="tel:+923422766482" className="bg-brand-accent hover:bg-[#b8e036] text-brand-dark px-8 py-4 rounded-full font-bold transition-all text-sm flex items-center justify-center gap-2">
+                    <motion.a whileHover={{ scale: 1.03, y: -2 }} whileTap={{ scale: 0.97 }} href="tel:+923422766482" className="bg-brand-accent hover:bg-brand-accentHover text-brand-dark px-8 py-4 rounded-full font-bold transition-all text-sm flex items-center justify-center gap-2">
                       <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" /></svg>
                       Call +92 342 2766482
                     </motion.a>
@@ -436,7 +457,7 @@ export default function About() {
                       whileTap={{ scale: 0.97 }}
                       type="submit"
                       disabled={aboutSubmitting}
-                      className="w-full bg-brand-accent hover:bg-[#b8e036] text-brand-dark font-extrabold py-4 rounded-xl transition-all text-xs tracking-wider uppercase mt-4 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                      className="w-full bg-brand-accent hover:bg-brand-accentHover text-brand-dark font-extrabold py-4 rounded-xl transition-all text-xs tracking-wider uppercase mt-4 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                     >
                       {aboutSubmitting && (
                         <motion.span animate={{ rotate: 360 }} transition={{ duration: 1, repeat: Infinity, ease: 'linear' }} className="w-4 h-4 border-2 border-brand-dark border-t-transparent rounded-full" />

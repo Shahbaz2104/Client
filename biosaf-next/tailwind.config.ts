@@ -45,8 +45,10 @@ const config: Config = {
         brand: {
           dark: "var(--brand-dark)",
           primary: "var(--brand-primary)",
+          secondary: "var(--brand-secondary)",
           light: "var(--brand-light)",
           accent: "var(--brand-accent)",
+          accentHover: "var(--brand-accent-hover)",
         },
       },
       fontFamily: {

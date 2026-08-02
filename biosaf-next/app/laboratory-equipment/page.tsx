@@ -212,7 +212,7 @@ export default function LaboratoryEquipment() {
                 >
                   <Search className="text-brand-accent text-xl ml-3" />
                   <input type="text" placeholder="Search instruments, CAS chemicals, glassware..." className="w-full bg-transparent border-none py-3 px-3 text-white placeholder-gray-400 focus:outline-none focus:ring-0 text-sm" />
-                  <motion.button {...buttonTap} className="bg-brand-accent hover:bg-[#b8e036] text-brand-dark font-black text-xs px-6 py-3.5 rounded-xl uppercase tracking-wide transition-colors">
+                  <motion.button {...buttonTap} className="bg-brand-accent hover:bg-brand-accentHover text-brand-dark font-black text-xs px-6 py-3.5 rounded-xl uppercase tracking-wide transition-colors">
                     Find Item
                   </motion.button>
                 </motion.div>
@@ -266,10 +266,10 @@ export default function LaboratoryEquipment() {
                 <ScrollReveal className="lg:col-span-5 relative">
                   <div className="relative grid grid-cols-12 gap-3">
                     <div className="col-span-11 rounded-[2.5rem] overflow-hidden shadow-2xl">
-                      <img src="https://images.unsplash.com/photo-1579154204601-01588f351167?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Laboratory testing workflow" className="w-full object-cover aspect-[4/5]" />
+                      <img src="https://images.unsplash.com/photo-1579154204601-01588f351167?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Laboratory testing workflow" className="w-full object-cover aspect-[4/5]" loading="lazy" decoding="async" />
                     </div>
                     <div className="absolute bottom-[-20px] right-0 w-[180px] rounded-2xl overflow-hidden shadow-2xl border-4 border-white">
-                      <img src="https://images.unsplash.com/photo-1582719508461-905c673771fd?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Liquid chromatography analyzer" className="w-full aspect-square object-cover" />
+                      <img src="https://images.unsplash.com/photo-1582719508461-905c673771fd?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Liquid chromatography analyzer" className="w-full aspect-square object-cover" loading="lazy" decoding="async" />
                     </div>
                   </div>
                 </ScrollReveal>
@@ -394,7 +394,7 @@ export default function LaboratoryEquipment() {
                       className="border border-gray-100 rounded-3xl overflow-hidden hover:shadow-2xl hover:border-brand-accent/30 transition-all flex flex-col justify-between group bg-brand-light"
                     >
                       <div className="relative bg-gray-100 aspect-[4/3] overflow-hidden">
-                        <img src={product.image} alt={product.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                        <img src={product.image} alt={product.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" decoding="async" />
                         <span className="absolute top-4 left-4 bg-brand-primary text-white text-[10px] font-bold tracking-wider uppercase px-2.5 py-1 rounded-md border border-brand-accent/20">
                           {product.badge}
                         </span>
@@ -536,7 +536,7 @@ export default function LaboratoryEquipment() {
                     </p>
                     <div className="flex flex-col sm:flex-row gap-4 pt-4">
                       <motion.div {...buttonTap}>
-                        <a href="tel:+923422766482" className="bg-brand-accent hover:bg-[#b8e036] text-brand-dark px-6 py-4 rounded-full font-bold transition-all text-xs tracking-wider uppercase flex items-center justify-center gap-2">
+                        <a href="tel:+923422766482" className="bg-brand-accent hover:bg-brand-accentHover text-brand-dark px-6 py-4 rounded-full font-bold transition-all text-xs tracking-wider uppercase flex items-center justify-center gap-2">
                           <Phone className="w-5 h-5" /> Call +92 342 2766482
                         </a>
                       </motion.div>
@@ -574,7 +574,7 @@ export default function LaboratoryEquipment() {
                           className="w-full bg-white/5 border border-white/10 rounded-xl py-3 px-4 text-gray-300 placeholder-gray-500 focus:outline-none focus:border-brand-accent focus:ring-1 focus:ring-brand-accent text-xs h-24 resize-none"
                         />
                       </div>
-                      <motion.button type="submit" disabled={labSubmitting} {...buttonTap} className="w-full bg-brand-accent hover:bg-[#b8e036] text-brand-dark font-extrabold py-3.5 rounded-xl transition-all text-xs tracking-wider uppercase mt-4 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2">
+                      <motion.button type="submit" disabled={labSubmitting} {...buttonTap} className="w-full bg-brand-accent hover:bg-brand-accentHover text-brand-dark font-extrabold py-3.5 rounded-xl transition-all text-xs tracking-wider uppercase mt-4 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2">
                         {labSubmitting && <span className="w-4 h-4 border-2 border-brand-dark border-t-transparent rounded-full animate-spin" />}
                         {labSubmitting ? 'Sending...' : 'Submit Sourcing Inquiry'}
                       </motion.button>

@@ -234,7 +234,7 @@ export default function Products() {
                   <motion.a
                     href="#catalog"
                     {...buttonTap}
-                    className="bg-brand-accent hover:bg-[#b8e036] text-brand-dark font-black text-xs px-8 py-4 rounded-xl uppercase tracking-wider transition-colors flex items-center justify-center gap-2 shadow-lg shadow-brand-accent/10"
+                    className="bg-brand-accent hover:bg-brand-accentHover text-brand-dark font-black text-xs px-8 py-4 rounded-xl uppercase tracking-wider transition-colors flex items-center justify-center gap-2 shadow-lg shadow-brand-accent/10"
                   >
                     <svg
                       className="w-5 h-5"
@@ -692,7 +692,7 @@ export default function Products() {
                       <motion.div {...buttonTap}>
                         <a
                           href="tel:+923422766482"
-                          className="bg-brand-accent hover:bg-[#b8e036] text-brand-dark px-6 py-4 rounded-full font-bold transition-all text-xs tracking-wider uppercase flex items-center justify-center gap-2"
+                          className="bg-brand-accent hover:bg-brand-accentHover text-brand-dark px-6 py-4 rounded-full font-bold transition-all text-xs tracking-wider uppercase flex items-center justify-center gap-2"
                         >
                           <svg
                             className="w-5 h-5"
@@ -787,7 +787,7 @@ export default function Products() {
                         type="submit"
                         disabled={productSubmitting}
                         {...buttonTap}
-                        className="w-full bg-brand-accent hover:bg-[#b8e036] text-brand-dark font-extrabold py-3.5 rounded-xl transition-all text-xs tracking-wider uppercase mt-4 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                        className="w-full bg-brand-accent hover:bg-brand-accentHover text-brand-dark font-extrabold py-3.5 rounded-xl transition-all text-xs tracking-wider uppercase mt-4 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                       >
                         {productSubmitting && <span className="w-4 h-4 border-2 border-brand-dark border-t-transparent rounded-full animate-spin" />}
                         {productSubmitting ? 'Sending...' : 'Submit Sourcing RFP'}
@@ -925,7 +925,7 @@ export default function Products() {
                     onClick={transferToRfp}
                     disabled={inquiryList.length === 0}
                     {...buttonTap}
-                    className="w-full bg-brand-accent hover:bg-[#b8e036] disabled:bg-slate-600 disabled:cursor-not-allowed text-brand-dark py-3.5 rounded-xl text-xs font-extrabold uppercase tracking-wider transition-colors flex items-center justify-center gap-2"
+                    className="w-full bg-brand-accent hover:bg-brand-accentHover disabled:bg-slate-600 disabled:cursor-not-allowed text-brand-dark py-3.5 rounded-xl text-xs font-extrabold uppercase tracking-wider transition-colors flex items-center justify-center gap-2"
                   >
                     Transfer Sourcing to Quote
                     <svg

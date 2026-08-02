@@ -37,8 +37,10 @@
     /* BIOSAF Brand Colors */
     --brand-dark: #0f5132;
     --brand-primary: #198754;
+    --brand-secondary: #0f5132;
     --brand-light: #e8f5e9;
     --brand-accent: #d3f340;
+    --brand-accent-hover: #b8e036;
   }
 
   .dark {
@@ -73,8 +75,10 @@
     /* BIOSAF Brand Colors (Dark Mode) */
     --brand-dark: #0a3d23;
     --brand-primary: #146b41;
+    --brand-secondary: #0a3d23;
     --brand-light: #0f2d1a;
     --brand-accent: #b8e036;
+    --brand-accent-hover: #cfe63c;
   }
 }
 
@@ -84,6 +88,10 @@
   }
   body {
     @apply bg-background text-foreground font-sans;
+  }
+  :focus-visible {
+    outline: 2px solid var(--brand-primary);
+    outline-offset: 2px;
   }
 }
 

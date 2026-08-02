@@ -187,7 +187,7 @@ export default function PestManagement() {
                   transition={{ duration: 0.5, delay: 0.3 }}
                   className="flex flex-col sm:flex-row gap-4 pt-4"
                 >
-                  <motion.a href="#quote" {...buttonTap} className="bg-brand-accent hover:bg-[#b8e036] text-brand-dark px-8 py-4 rounded-full font-extrabold text-base transition-all duration-300 flex items-center justify-center gap-3 shadow-[0_15px_30px_rgba(211,243,64,0.25)] hover:-translate-y-1 group">
+                  <motion.a href="#quote" {...buttonTap} className="bg-brand-accent hover:bg-brand-accentHover text-brand-dark px-8 py-4 rounded-full font-extrabold text-base transition-all duration-300 flex items-center justify-center gap-3 shadow-[0_15px_30px_rgba(211,243,64,0.25)] hover:-translate-y-1 group">
                     Schedule Free Estimation
                     <Phone className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                   </motion.a>
@@ -266,10 +266,10 @@ export default function PestManagement() {
                 <ScrollReveal className="lg:col-span-6 relative">
                   <div className="relative grid grid-cols-12 gap-4">
                     <div className="col-span-11 rounded-[2.5rem] overflow-hidden shadow-2xl border border-gray-100">
-                      <img src="https://images.unsplash.com/photo-1629851608889-42b406e23b20?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Exclusion audit and inspection" className="w-full object-cover aspect-[4/5]" />
+                      <img src="https://images.unsplash.com/photo-1629851608889-42b406e23b20?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Exclusion audit and inspection" className="w-full object-cover aspect-[4/5]" loading="lazy" decoding="async" />
                     </div>
                     <div className="absolute bottom-[-30px] right-0 w-[200px] sm:w-[260px] rounded-3xl overflow-hidden shadow-2xl border-4 border-white">
-                      <img src="https://images.unsplash.com/photo-1516594798947-e65505dbb29d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Safe chemical preparation" className="w-full aspect-square object-cover" />
+                      <img src="https://images.unsplash.com/photo-1516594798947-e65505dbb29d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Safe chemical preparation" className="w-full aspect-square object-cover" loading="lazy" decoding="async" />
                     </div>
                   </div>
                 </ScrollReveal>
@@ -402,7 +402,7 @@ export default function PestManagement() {
                   <div className={`grid lg:grid-cols-12 gap-12 items-center`}>
                     <div className={`lg:col-span-6 ${svc.reverse ? 'order-1 lg:order-2' : ''}`}>
                       <div className="relative rounded-[2rem] overflow-hidden shadow-2xl border border-gray-200 glow-hover group">
-                        <img src={svc.img} alt={svc.title} className="w-full h-[350px] object-cover transition-transform duration-700 group-hover:scale-105" />
+                        <img src={svc.img} alt={svc.title} className="w-full h-[350px] object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" decoding="async" />
                         <div className="absolute bottom-4 left-4 bg-brand-accent text-brand-dark text-xs font-black px-4 py-2 rounded-xl">
                           {svc.system}
                         </div>
@@ -607,7 +607,7 @@ export default function PestManagement() {
 
                     <div className="flex flex-col sm:flex-row gap-4 pt-4">
                       <motion.div {...buttonTap}>
-                        <a href="tel:+923422766482" className="bg-brand-accent hover:bg-[#b8e036] text-brand-dark px-8 py-4 rounded-full font-bold transition-all text-xs tracking-wider uppercase flex items-center justify-center gap-2">
+                        <a href="tel:+923422766482" className="bg-brand-accent hover:bg-brand-accentHover text-brand-dark px-8 py-4 rounded-full font-bold transition-all text-xs tracking-wider uppercase flex items-center justify-center gap-2">
                           <Phone className="w-5 h-5" /> Call +92 342 2766482
                         </a>
                       </motion.div>
@@ -706,7 +706,7 @@ export default function PestManagement() {
                         type="submit"
                         disabled={loading}
                         {...buttonTap}
-                        className="w-full bg-brand-accent hover:bg-[#b8e036] disabled:opacity-50 text-brand-dark font-extrabold py-3.5 rounded-xl transition-all text-xs tracking-wider uppercase mt-4 flex items-center justify-center gap-2"
+                        className="w-full bg-brand-accent hover:bg-brand-accentHover disabled:opacity-50 text-brand-dark font-extrabold py-3.5 rounded-xl transition-all text-xs tracking-wider uppercase mt-4 flex items-center justify-center gap-2"
                       >
                         {loading ? (
                           <>

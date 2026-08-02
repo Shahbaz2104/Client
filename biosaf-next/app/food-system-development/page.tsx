@@ -160,7 +160,7 @@ export default function FoodSystemDevelopment() {
                   transition={{ duration: 0.5, delay: 0.3 }}
                   className="flex flex-col sm:flex-row gap-4 pt-2"
                 >
-                  <motion.a href="#planner" {...buttonTap} className="bg-brand-accent hover:bg-[#b8e036] text-brand-dark font-black text-xs px-8 py-4 rounded-xl uppercase tracking-wider transition-colors flex items-center justify-center gap-2 shadow-lg shadow-brand-accent/10">
+                  <motion.a href="#planner" {...buttonTap} className="bg-brand-accent hover:bg-brand-accentHover text-brand-dark font-black text-xs px-8 py-4 rounded-xl uppercase tracking-wider transition-colors flex items-center justify-center gap-2 shadow-lg shadow-brand-accent/10">
                     <Calculator className="text-sm" />
                     System Implementation Planner
                   </motion.a>
@@ -228,10 +228,10 @@ export default function FoodSystemDevelopment() {
                 <ScrollReveal className="lg:col-span-5 relative">
                   <div className="relative grid grid-cols-12 gap-3">
                     <div className="col-span-11 rounded-[2.5rem] overflow-hidden shadow-2xl">
-                      <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Food Safety Consulting" className="w-full object-cover aspect-[4/5]" />
+                      <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Food Safety Consulting" className="w-full object-cover aspect-[4/5]" loading="lazy" decoding="async" />
                     </div>
                     <div className="absolute bottom-[-20px] right-0 w-[180px] rounded-2xl overflow-hidden shadow-2xl border-4 border-white">
-                      <img src="https://images.unsplash.com/photo-1579154204601-01588f351167?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Food Testing Laboratory" className="w-full aspect-square object-cover" />
+                      <img src="https://images.unsplash.com/photo-1579154204601-01588f351167?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Food Testing Laboratory" className="w-full aspect-square object-cover" loading="lazy" decoding="async" />
                     </div>
                   </div>
                 </ScrollReveal>
@@ -532,7 +532,7 @@ export default function FoodSystemDevelopment() {
                     <motion.button
                       {...buttonTap}
                       onClick={() => document.getElementById('proposal-scope')?.focus()}
-                      className="bg-brand-accent hover:bg-[#b8e036] text-brand-dark text-xs font-extrabold py-3.5 px-6 rounded-xl uppercase tracking-wider transition-colors w-full sm:w-auto text-center"
+                      className="bg-brand-accent hover:bg-brand-accentHover text-brand-dark text-xs font-extrabold py-3.5 px-6 rounded-xl uppercase tracking-wider transition-colors w-full sm:w-auto text-center"
                     >
                       Get Your Custom Quote
                     </motion.button>
@@ -564,7 +564,7 @@ export default function FoodSystemDevelopment() {
                     </p>
                     <div className="flex flex-col sm:flex-row gap-4 pt-4">
                       <motion.div {...buttonTap}>
-                        <a href="tel:+923422766482" className="bg-brand-accent hover:bg-[#b8e036] text-brand-dark px-6 py-4 rounded-full font-bold transition-all text-xs tracking-wider uppercase flex items-center justify-center gap-2">
+                        <a href="tel:+923422766482" className="bg-brand-accent hover:bg-brand-accentHover text-brand-dark px-6 py-4 rounded-full font-bold transition-all text-xs tracking-wider uppercase flex items-center justify-center gap-2">
                           <Phone className="w-5 h-5" /> Call +92 342 2766482
                         </a>
                       </motion.div>
@@ -602,7 +602,7 @@ export default function FoodSystemDevelopment() {
                           className="w-full bg-white/5 border border-white/10 rounded-xl py-3 px-4 text-gray-300 placeholder-gray-500 focus:outline-none focus:border-brand-accent focus:ring-1 focus:ring-brand-accent text-xs h-32 resize-none"
                         />
                       </div>
-                      <motion.button type="submit" disabled={foodSubmitting} {...buttonTap} className="w-full bg-brand-accent hover:bg-[#b8e036] text-brand-dark font-extrabold py-3.5 rounded-xl transition-all text-xs tracking-wider uppercase mt-4 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2">
+                      <motion.button type="submit" disabled={foodSubmitting} {...buttonTap} className="w-full bg-brand-accent hover:bg-brand-accentHover text-brand-dark font-extrabold py-3.5 rounded-xl transition-all text-xs tracking-wider uppercase mt-4 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2">
                         {foodSubmitting && <span className="w-4 h-4 border-2 border-brand-dark border-t-transparent rounded-full animate-spin" />}
                         {foodSubmitting ? 'Sending...' : 'Request Free Consultation'}
                       </motion.button>

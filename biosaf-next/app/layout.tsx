@@ -4,6 +4,7 @@ import "./globals.css";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { ScrollToTop } from "@/components/ui/ScrollToTop";
+import { MobileCallBar } from "@/components/ui/MobileCallBar";
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ["latin"],
@@ -29,11 +30,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${plusJakartaSans.variable} antialiased flex flex-col min-h-screen`}>
+      <body className={`${plusJakartaSans.variable} antialiased flex flex-col min-h-screen pb-14 md:pb-0`}>
         <Navbar />
         <main className="flex-1">{children}</main>
         <Footer />
         <ScrollToTop />
+        <MobileCallBar />
       </body>
     </html>
   );

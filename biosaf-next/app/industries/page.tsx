@@ -240,7 +240,7 @@ export default function Industries() {
                   >
                     <div>
                       <div className="relative aspect-[16/10] overflow-hidden bg-gray-100">
-                        <img src={industry.image} alt={industry.title} className="w-full h-full object-cover transition-transform duration-500 hover:scale-105" />
+                        <img src={industry.image} alt={industry.title} className="w-full h-full object-cover transition-transform duration-500 hover:scale-105" loading="lazy" decoding="async" />
                         <div className="absolute top-4 left-4 bg-brand-primary text-brand-accent text-[9px] font-bold uppercase tracking-wider px-3 py-1 rounded-full">
                           {industry.badge}
                         </div>
@@ -353,7 +353,7 @@ export default function Industries() {
 
                     <div className="flex flex-col sm:flex-row gap-4 pt-4">
                       <motion.div {...buttonTap}>
-                        <a href="tel:+923422766482" className="bg-brand-accent hover:bg-[#b8e036] text-brand-dark px-6 py-4 rounded-full font-bold transition-all text-xs tracking-wider uppercase flex items-center justify-center gap-2">
+                        <a href="tel:+923422766482" className="bg-brand-accent hover:bg-brand-accentHover text-brand-dark px-6 py-4 rounded-full font-bold transition-all text-xs tracking-wider uppercase flex items-center justify-center gap-2">
                           <Phone className="w-5 h-5" /> Call Sourcing Desk
                         </a>
                       </motion.div>
@@ -405,7 +405,7 @@ export default function Industries() {
                           className="w-full bg-white/5 border border-white/10 rounded-xl py-3 px-4 text-gray-300 placeholder-gray-500 focus:outline-none focus:border-brand-accent focus:ring-1 focus:ring-brand-accent text-xs h-28 resize-none"
                         />
                       </div>
-                      <motion.button type="submit" disabled={industrySubmitting} {...buttonTap} className="w-full bg-brand-accent hover:bg-[#b8e036] text-brand-dark font-extrabold py-3.5 rounded-xl transition-all text-xs tracking-wider uppercase mt-4 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2">
+                      <motion.button type="submit" disabled={industrySubmitting} {...buttonTap} className="w-full bg-brand-accent hover:bg-brand-accentHover text-brand-dark font-extrabold py-3.5 rounded-xl transition-all text-xs tracking-wider uppercase mt-4 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2">
                         {industrySubmitting && <span className="w-4 h-4 border-2 border-brand-dark border-t-transparent rounded-full animate-spin" />}
                         {industrySubmitting ? 'Sending...' : 'Request Assessment Now'}
                       </motion.button>
